@@ -159,7 +159,8 @@ async function renderListenQuiz(root, ctx) {
       </div>`;
     const play = async () => {
       const r = await speak(w.target, meta.voiceLang);
-      if (!r.hadVoice) document.getElementById("voice-warn").textContent = missingVoiceMessage(meta.label);
+      const warnEl = document.getElementById("voice-warn");
+      if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
     };
     document.getElementById("quiz-play").addEventListener("click", play);
     play();

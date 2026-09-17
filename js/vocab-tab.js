@@ -352,7 +352,8 @@ export async function renderWordDetail(root, ctx, stt) {
 
   document.getElementById("btn-speak-main").addEventListener("click", async () => {
     const r = await speak(w.target, meta.voiceLang);
-    if (!r.hadVoice) document.getElementById("voice-warn").textContent = missingVoiceMessage(meta.label);
+    const warnEl = document.getElementById("voice-warn");
+    if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
   });
 
   if (lang === "zh") {
@@ -417,7 +418,8 @@ async function renderSkillPanel(panel, ctx, w, skill, onDone) {
       </div>`;
     const play = async () => {
       const r = await speak(w.target, meta.voiceLang);
-      if (!r.hadVoice) panel.querySelector("#voice-warn").textContent = missingVoiceMessage(meta.label);
+      const warnEl = panel.querySelector("#voice-warn");
+      if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
     };
     panel.querySelector("#listen-play").addEventListener("click", play);
     play();
@@ -520,7 +522,8 @@ async function renderSkillPanel(panel, ctx, w, skill, onDone) {
       </div>`;
     panel.querySelector("#speak-play").addEventListener("click", async () => {
       const r = await speak(w.target, meta.voiceLang);
-      if (!r.hadVoice) panel.querySelector("#mic-status").textContent = missingVoiceMessage(meta.label);
+      const statusEl = panel.querySelector("#mic-status");
+      if (!r.hadVoice && statusEl) statusEl.textContent = missingVoiceMessage(meta.label);
     });
     if (sttOk) {
       const micBtn = panel.querySelector("#mic-btn");
