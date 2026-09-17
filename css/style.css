@@ -226,32 +226,33 @@ body { overflow-x: hidden; }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 14px 12px;
+  padding: 18px 14px;
   color: #fff;
   text-align: center;
 }
 .branch-card-seal {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.16);
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  background: rgba(255,255,255,0.18);
   backdrop-filter: blur(3px);
   color: #fff;
   font-weight: 800;
-  font-size: 17px;
+  font-size: 21px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.35);
 }
-.branch-card-content h3 { color: #fff; }
-.branch-card-content p { color: rgba(255,255,255,0.75); }
-.branch-card-content .progress-track { background: rgba(255,255,255,0.2); }
-.branch-card-content .progress-label { color: rgba(255,255,255,0.75); }
+.branch-grid--twin .branch-card-content h3 { color: #fff; font-size: 24px; margin: 0 0 6px; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+.branch-grid--twin .branch-card-content p { color: rgba(255,255,255,0.88); font-size: 14px; }
+.branch-card-content .progress-row { margin-top: 16px; }
+.branch-card-content .progress-track { background: rgba(255,255,255,0.25); height: 7px; }
+.branch-grid--twin .branch-card-content .progress-label { color: rgba(255,255,255,0.88); font-size: 13px; font-weight: 600; }
 
 /* ---------- Progress bar ---------- */
 .progress-track {
