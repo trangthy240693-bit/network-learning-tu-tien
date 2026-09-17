@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>Network Learning</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3/dist/index.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <div class="topbar">
+    <a href="index.html" class="icon-btn" title="Về trang chọn ngôn ngữ" style="text-decoration:none;font-size:18px">←</a>
+    <div class="brand"><span id="lang-badge" class="lang-badge"></span></div>
+    <div style="width:32px"></div>
+  </div>
+
+  <div class="tabbar">
+    <a href="#/batches" data-section="vocab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+      Từ vựng
+    </a>
+    <a href="#/review" data-section="review">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Ôn tập
+    </a>
+    <a href="#/talk" data-section="freetalk">
+      <span class="tab-emoji">👑</span>
+      Boss Gạo
+    </a>
+  </div>
+
+  <div class="main-content" id="main-content"></div>
+
+  <button class="skip-fab" id="skip-btn" style="display:none">Bỏ qua ⏭</button>
+</div>
+
+<script type="module" src="js/main.js"></script>
+<script>
+  // Skip button: only visible on word-detail screens, jumps to next word in batch.
+  function updateSkip() {
+    const btn = document.getElementById('skip-btn');
+    const m = location.hash.match(/^#\/word\/(\d+)/);
+    if (m) {
+      btn.style.display = 'flex';
+      btn.onclick = () => {
+        const stt = Number(m[1]);
+        const batchIdx = Math.floor((stt - 1) / 20);
+        const nextStt = stt + 1;
+        const batchEnd = (batchIdx + 1) * 20;
+        location.hash = nextStt <= batchEnd ? `#/word/${nextStt}` : `#/batch/${batchIdx}`;
+      };
+    } else {
+      btn.style.display = 'none';
+    }
+  }
+  window.addEventListener('hashchange', updateSkip);
+  window.addEventListener('load', updateSkip);
+</script>
+</body>
+</html>
