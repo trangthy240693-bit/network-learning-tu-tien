@@ -248,7 +248,7 @@ body { overflow-x: hidden; }
   justify-content: center;
   border: 1px solid rgba(255,255,255,0.35);
 }
-.branch-grid--twin .branch-card-content h3 { color: #fff; font-size: 24px; margin: 0 0 6px; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+.branch-grid--twin .branch-card-content h3 { color: #fff; font-size: 32px; margin: 0 0 8px; font-weight: 800; line-height: 1.15; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
 .branch-grid--twin .branch-card-content p { color: rgba(255,255,255,0.88); font-size: 14px; }
 .branch-card-content .progress-row { margin-top: 16px; }
 .branch-card-content .progress-track { background: rgba(255,255,255,0.25); height: 7px; }
