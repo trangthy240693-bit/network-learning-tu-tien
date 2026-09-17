@@ -2,6 +2,7 @@ import { loadWords, LANG_META } from "./data.js";
 import { renderBatchList, renderBatch, renderWordDetail } from "./vocab-tab.js";
 import { renderReview } from "./review-tab.js";
 import { renderFreeTalk, renderTalkWithGao } from "./freetalk.js";
+import { renderTomQuiz, renderGaoQuiz } from "./quiz-chat.js";
 import { ensureRankBaseline, initRankTracker } from "./rank-tracker.js";
 import { mountGaoSupportWidget } from "./support-widget.js";
 
@@ -48,13 +49,21 @@ async function route() {
     setActiveTab("review");
     return renderReview(root, ctx, parts[1]);
   }
-  if (parts[0] === "freetalk" && parts[1] !== undefined) {
+  if (parts[0] === "freetalk-ai" && parts[1] !== undefined) {
     setActiveTab("freetalk");
     return renderFreeTalk(root, ctx, Number(parts[1]));
   }
-  if (parts[0] === "talk") {
+  if (parts[0] === "freetalk" && parts[1] !== undefined) {
+    setActiveTab("freetalk");
+    return renderTomQuiz(root, ctx, Number(parts[1]));
+  }
+  if (parts[0] === "talk-ai") {
     setActiveTab("freetalk");
     return renderTalkWithGao(root, ctx);
+  }
+  if (parts[0] === "talk") {
+    setActiveTab("freetalk");
+    return renderGaoQuiz(root, ctx);
   }
   setActiveTab("vocab");
   return renderBatchList(root, ctx);
