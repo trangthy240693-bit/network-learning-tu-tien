@@ -1,6 +1,5 @@
 import { Store } from "./db.js";
 import { speak } from "./tts.js";
-import { createRecognizer, isSttSupported } from "./stt.js";
 import { tomAvatar, gaoAvatar } from "./mascot.js";
 import { LANG_META } from "./data.js";
 
@@ -67,12 +66,10 @@ export async function renderChatShell(root, ctx, opts) {
     return;
   }
 
-  const sttOk = isSttSupported();
   html += `
     <div class="card msg-card">
       <div id="chat-log" class="msg-log"></div>
       <div class="msg-input-row">
-        ${sttOk ? `<button class="msg-mic-btn" id="msg-mic" title="Đọc để điền vào ô nhắn">🎤</button>` : ""}
         <input class="type-input msg-input" id="msg-input" placeholder="Nhắn tin cho ${opts.name}..." autocomplete="off" />
         <button class="msg-send-btn" id="msg-send" title="Gửi">➤</button>
       </div>
@@ -140,24 +137,6 @@ export async function renderChatShell(root, ctx, opts) {
 
   sendBtn.addEventListener("click", sendMessage);
   inputEl.addEventListener("keydown", (e) => { if (e.key === "Enter") sendMessage(); });
-
-  if (sttOk) {
-    const micBtn = document.getElementById("msg-mic");
-    micBtn.addEventListener("click", () => {
-      micBtn.classList.add("recording");
-      statusEl.textContent = "Đang nghe...";
-      const rec = createRecognizer(meta.sttLang, {
-        onResult: (transcript) => {
-          inputEl.value = transcript;
-          inputEl.focus();
-          statusEl.textContent = "Bấm gửi khi ký chủ sẵn sàng.";
-        },
-        onError: () => { statusEl.textContent = "Không nghe rõ, thử lại nhé."; },
-        onEnd: () => micBtn.classList.remove("recording"),
-      });
-      rec && rec.start();
-    });
-  }
 
   addBubble(opts.introMessage, "ai");
 }

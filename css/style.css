@@ -799,13 +799,6 @@ body { overflow-x: hidden; }
 .msg-listen-btn:hover { opacity: 1; }
 .msg-input-row { display: flex; align-items: center; gap: 8px; }
 .msg-input { margin-top: 0; flex: 1; }
-.msg-mic-btn {
-  width: 40px; height: 40px; flex-shrink: 0;
-  border-radius: 50%; border: none;
-  background: var(--surface-2); color: var(--text);
-  font-size: 16px; cursor: pointer;
-}
-.msg-mic-btn.recording { background: var(--danger); color: white; }
 .msg-send-btn {
   width: 44px; height: 44px; flex-shrink: 0;
   border-radius: 50%; border: none;
