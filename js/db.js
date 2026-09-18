@@ -92,6 +92,8 @@ export const Store = {
         flag: false,
         listenStreakCorrect: 0,
         listenStreakWrong: 0,
+        readWrongCount: 0,
+        readFlag: false,
         skills: { listen: false, speak: false, read: false, write: false },
         srs: { ease: 2.5, interval: 0, reps: 0, due: Date.now() },
         lastSeen: Date.now(),
@@ -135,6 +137,31 @@ export const Store = {
     p.lastSeen = Date.now();
     await this.putProgress(p);
     if (p.status === "learned") window.dispatchEvent(new CustomEvent("nl:progress-changed", { detail: { lang } }));
+    return p;
+  },
+
+  // Reading (mic pronunciation check on example sentences): 5 mispronounced
+  // attempts auto-flags the word for the "Ôn đọc" review list; a correct
+  // read resets the counter. Separate from the listen-quiz flag since it
+  // tracks a different skill.
+  async recordReadResult(lang, stt, correct) {
+    const p = await this.ensureProgress(lang, stt);
+    if (correct) {
+      p.readWrongCount = 0;
+    } else {
+      p.readWrongCount = (p.readWrongCount || 0) + 1;
+      if (p.readWrongCount >= 5) p.readFlag = true;
+    }
+    p.lastSeen = Date.now();
+    await this.putProgress(p);
+    return p;
+  },
+
+  async clearReadFlag(lang, stt) {
+    const p = await this.ensureProgress(lang, stt);
+    p.readFlag = false;
+    p.readWrongCount = 0;
+    await this.putProgress(p);
     return p;
   },
 

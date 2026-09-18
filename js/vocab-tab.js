@@ -204,7 +204,7 @@ export async function renderBatch(root, ctx, batchIndex) {
     const p = progressMap.get(w.stt);
     html += `
       <div class="word-tile" data-nav="#/word/${w.stt}">
-        ${p?.flag ? `<span class="flag-icon">🚩</span>` : ""}
+        ${(p?.flag || p?.readFlag) ? `<span class="flag-icon">🚩</span>` : ""}
         <span class="status-dot ${statusClass(p)}"></span>
         <div class="target">${w.target}</div>
         <div class="pron">${w.pron}</div>
@@ -282,7 +282,7 @@ function pinyinAlphaChips(lang) {
 
 // Word-level diff for Korean (space-separated 어절), char-level for Chinese
 // (no spaces) — used by the Đọc skill's mic pronunciation check.
-function diffSentence(expected, recognized, lang) {
+export function diffSentence(expected, recognized, lang) {
   const strip = (s) => s.replace(/[\s.,。！!?？、，]/g, "");
   if (lang === "zh") {
     const exp = Array.from(strip(expected));
@@ -294,29 +294,49 @@ function diffSentence(expected, recognized, lang) {
   return exp.map((word, i) => `<span class="${rec[i] === word ? "diff-ok" : "diff-wrong"}">${word}</span>`).join(" ");
 }
 
+function pickDistractors(words, correct, n = 3) {
+  const pool = words.filter((w) => w.stt !== correct.stt);
+  const picked = [];
+  while (picked.length < n && pool.length) {
+    const idx = Math.floor(Math.random() * pool.length);
+    picked.push(pool.splice(idx, 1)[0]);
+  }
+  return picked;
+}
+
+// One unified page — every task (nghe/nói/đọc/viết) visible and usable at
+// once, no tab-clicking. "Nói" lives next to the 🔊 button, "Viết" lives
+// next to the stroke box, "Nghe" and "Đọc" are always-open sections below.
 export async function renderWordDetail(root, ctx, stt) {
   const { lang, words } = ctx;
   const w = words.find((x) => x.stt === Number(stt));
   const meta = LANG_META[lang];
   if (!w) { root.innerHTML = `<div class="empty-state">Không tìm thấy từ này.</div>`; return; }
   const p = await Store.ensureProgress(lang, w.stt);
+  const sttOk = isSttSupported();
 
   const batchIndex = Math.floor((w.stt - 1) / BATCH_SIZE);
+  const choices = [w, ...pickDistractors(words, w, 3)].sort(() => Math.random() - 0.5);
 
   let html = `<a href="#/batch/${batchIndex}" class="text-muted" style="text-decoration:none;font-size:13px">← Quay lại nhóm từ</a>`;
   html += `
     <div class="word-detail-head">
       <div class="target-big">
         <span>${w.target}</span>
-        <button class="speak-btn" id="btn-speak-main">🔊</button>
+        <button class="speak-btn" id="btn-speak-main" title="Nghe">🔊</button>
+        ${sttOk ? `<button class="speak-btn" id="btn-speak-record" title="Nói theo">🎤</button>` : ""}
       </div>
       <div class="pron-big">${w.pron}</div>
       <div class="en-tag">${w.en} · ${w.meaning}${w.hanvietDisplay ? ` · <span class="hanviet-pill">Hán Việt: ${w.hanvietDisplay}</span>` : ""}</div>
       <div id="voice-warn" class="text-muted" style="font-size:12px;margin-top:6px"></div>
+      <div id="speak-fb" class="feedback-banner" style="text-align:left"></div>
     </div>
 
     <div class="info-block">
-      <h4>🖼️ Hình ảnh minh họa</h4>
+      <div class="section-title-row">
+        <h4 style="margin:0">🖼️ Hình ảnh minh họa</h4>
+        <button class="btn ghost" id="btn-toggle-write" style="font-size:12px;padding:5px 10px">✍️ Tập viết</button>
+      </div>
       <div class="visual-mnemonic">
         ${emojiFor(w.en) ? `<div class="visual-emoji">${emojiFor(w.en)}</div>` : ""}
         ${lang === "zh"
@@ -326,6 +346,16 @@ export async function renderWordDetail(root, ctx, stt) {
                 <button class="btn ghost" style="font-size:12px;padding:6px 10px;margin-top:6px" data-replay="${i}">▶ Xem nét</button>
               </div>`).join("")}</div>`
           : renderHangulBreakdown(w.target)}
+      </div>
+      <div class="write-panel hidden" id="write-panel">
+        <div class="text-muted" style="font-size:13px">Gõ đúng ${lang === "zh" ? "Pinyin" : "phiên âm La-tinh"} của từ này:</div>
+        <input class="type-input" id="write-input" placeholder="Gõ vào đây..." autocomplete="off"/>
+        ${lang === "zh" ? `<div class="text-muted" style="font-size:11px;margin-top:10px">Bảng chữ cái Pinyin</div>` : ""}
+        ${pinyinAlphaChips(lang)}
+        ${lang === "zh" ? `<div class="text-muted" style="font-size:11px;margin-top:8px">Nguyên âm có dấu thanh</div>` : ""}
+        ${toneHintChips(lang)}
+        <button class="btn block mt-16" id="write-check">Kiểm tra</button>
+        <div class="feedback-banner" id="fb-w"></div>
       </div>
     </div>
 
@@ -339,23 +369,86 @@ export async function renderWordDetail(root, ctx, stt) {
       <div class="expand-list">${renderExpandItems(w.expandList, lang)}</div>
     </div>
 
-    <div class="skill-tabs">
-      <div class="skill-tab ${p.skills.listen ? "done" : ""}" data-skill="listen"><span class="emoji">🎧</span>Nghe</div>
-      <div class="skill-tab ${p.skills.speak ? "done" : ""}" data-skill="speak"><span class="emoji">🗣️</span>Nói</div>
-      <div class="skill-tab ${p.skills.read ? "done" : ""}" data-skill="read"><span class="emoji">📖</span>Đọc</div>
-      <div class="skill-tab ${p.skills.write ? "done" : ""}" data-skill="write"><span class="emoji">✍️</span>Viết</div>
+    <div class="info-block">
+      <h4>🎧 Nghe & đoán nghĩa ${p.skills.listen ? '<span class="section-check">✓ đã luyện</span>' : ""}</h4>
+      <div class="skill-panel">
+        <div class="row gap"><button class="btn round" id="listen-play">🔊</button><span class="text-muted">Nghe rồi chọn đúng nghĩa</span></div>
+        <div class="choice-list">
+          ${choices.map((c) => `<button class="choice-btn" data-correct="${c.stt === w.stt}">${c.meaning}</button>`).join("")}
+        </div>
+        <div class="feedback-banner" id="fb-listen"></div>
+      </div>
     </div>
 
-    <div id="skill-panel"></div>
+    <div class="info-block">
+      <div class="section-title-row">
+        <h4 style="margin:0">📖 Đọc câu ví dụ ${p.skills.read ? '<span class="section-check">✓ đã luyện</span>' : ""}</h4>
+        ${p.readFlag ? `<button class="btn ghost" id="btn-unflag-read" style="font-size:12px;padding:5px 10px;color:var(--danger);border-color:var(--danger)">🚩 Bỏ cờ</button>` : ""}
+      </div>
+      <div class="text-muted" style="font-size:13px;margin-bottom:6px">Bấm 🔊 để nghe mẫu${sttOk ? ", bấm 🎤 để kiểm tra bạn đọc đúng chưa" : ""}</div>
+      ${w.exampleList.map((ex, i) => `
+        <div class="example-block">
+          <div class="ex-target">${ex.target} <button class="speak-btn small" data-t="${encodeURIComponent(ex.target)}">🔊</button>${sttOk ? ` <button class="speak-btn small" data-rec="${i}">🎤</button>` : ""}</div>
+          <div class="ex-pron">${ex.pron}</div>
+          <div class="ex-vi">${ex.vi}</div>
+          <div class="diff-result" id="diff-${i}"></div>
+        </div>`).join("")}
+      ${sttOk ? "" : `<div class="text-muted" style="font-size:12px;margin:2px 0 10px">Trình duyệt này chưa hỗ trợ nhận diện giọng nói để kiểm tra — thử Chrome nhé.</div>`}
+    </div>
   `;
   root.innerHTML = html;
 
+  const markDone = (skill) => Store.markSkillDone(lang, w.stt, skill);
+
+  // 🔊 main listen
   document.getElementById("btn-speak-main").addEventListener("click", async () => {
     const r = await speak(w.target, meta.voiceLang);
     const warnEl = document.getElementById("voice-warn");
     if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
   });
 
+  // 🎤 main speak-and-check (next to the listen button)
+  if (sttOk) {
+    const recordBtn = document.getElementById("btn-speak-record");
+    const fb = document.getElementById("speak-fb");
+    recordBtn.addEventListener("click", () => {
+      recordBtn.classList.add("recording");
+      const rec = createRecognizer(meta.sttLang, {
+        onResult: async (transcript) => {
+          const said = transcript.replace(/[.,。！!?？\s]/g, "");
+          const target = w.target.split("/")[0].replace(/[.,。！!?？\s]/g, "");
+          const close = said.includes(target) || target.includes(said);
+          fb.classList.add("show", close ? "good" : "retry");
+          fb.textContent = close ? `Nghe được: "${transcript}" — ${mascotSay("correct")}` : `Nghe được: "${transcript}" — gần đúng rồi, thử lại xem sao?`;
+          if (close) await markDone("speak");
+        },
+        onError: () => { fb.classList.add("show", "retry"); fb.textContent = "Không nghe rõ, thử lại nhé."; },
+        onEnd: () => recordBtn.classList.remove("recording"),
+      });
+      rec && rec.start();
+    });
+  }
+
+  // ✍️ inline write-practice toggle (next to stroke box)
+  const writePanel = document.getElementById("write-panel");
+  document.getElementById("btn-toggle-write").addEventListener("click", () => {
+    writePanel.classList.toggle("hidden");
+  });
+  const writeInput = document.getElementById("write-input");
+  writePanel.querySelectorAll(".tone-chip").forEach((c) => c.addEventListener("click", () => {
+    writeInput.value += c.dataset.ch;
+    writeInput.focus();
+  }));
+  document.getElementById("write-check").addEventListener("click", async () => {
+    const norm = (s) => s.toLowerCase().replace(/\s+/g, "");
+    const correct = norm(writeInput.value) === norm(w.pron);
+    const fb = document.getElementById("fb-w");
+    fb.classList.add("show", correct ? "good" : "retry");
+    fb.textContent = correct ? mascotSay("correct") + ` (${w.pron})` : `${mascotSay("wrong")} Đáp án: ${w.pron}`;
+    if (correct) await markDone("write");
+  });
+
+  // stroke order (zh only)
   if (lang === "zh") {
     const chars = primaryHanzi(w.target);
     if (chars.length) {
@@ -380,178 +473,54 @@ export async function renderWordDetail(root, ctx, stt) {
     }
   }
 
-  const panel = document.getElementById("skill-panel");
-  const tabs = root.querySelectorAll(".skill-tab");
-  tabs.forEach((t) => t.addEventListener("click", () => {
-    tabs.forEach((x) => x.classList.remove("active"));
-    t.classList.add("active");
-    renderSkillPanel(panel, ctx, w, t.dataset.skill, () => {
-      t.classList.add("done");
-    });
-  }));
-}
-
-function pickDistractors(words, correct, n = 3) {
-  const pool = words.filter((w) => w.stt !== correct.stt);
-  const picked = [];
-  while (picked.length < n && pool.length) {
-    const idx = Math.floor(Math.random() * pool.length);
-    picked.push(pool.splice(idx, 1)[0]);
-  }
-  return picked;
-}
-
-async function renderSkillPanel(panel, ctx, w, skill, onDone) {
-  const { lang, words } = ctx;
-  const meta = LANG_META[lang];
-
-  if (skill === "listen") {
-    const choices = [w, ...pickDistractors(words, w, 3)].sort(() => Math.random() - 0.5);
-    panel.innerHTML = `
-      <div class="skill-panel">
-        <div class="row gap"><button class="btn round" id="listen-play">🔊</button><span class="text-muted">Nghe rồi chọn đúng nghĩa</span></div>
-        <div class="choice-list">
-          ${choices.map((c) => `<button class="choice-btn" data-correct="${c.stt === w.stt}">${c.meaning}</button>`).join("")}
-        </div>
-        <div id="voice-warn" class="text-muted" style="font-size:12px"></div>
-        <div class="feedback-banner" id="fb"></div>
-      </div>`;
-    const play = async () => {
-      const r = await speak(w.target, meta.voiceLang);
-      const warnEl = panel.querySelector("#voice-warn");
-      if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
-    };
-    panel.querySelector("#listen-play").addEventListener("click", play);
-    play();
-    panel.querySelectorAll(".choice-btn").forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        const correct = btn.dataset.correct === "true";
-        const fb = panel.querySelector("#fb");
-        fb.classList.add("show", correct ? "good" : "retry");
-        fb.textContent = mascotSay(correct ? "correct" : "wrong");
-        btn.classList.add(correct ? "correct" : "wrong");
-        await Store.recordListenResult(lang, w.stt, correct);
-        if (correct) { await Store.markSkillDone(lang, w.stt, "listen"); onDone(); }
-      });
-    });
-    return;
-  }
-
-  if (skill === "read") {
-    const sttOk = isSttSupported();
-    panel.innerHTML = `
-      <div class="skill-panel">
-        <div class="text-muted" style="font-size:13px;margin-bottom:6px">Đọc các câu ví dụ (bấm 🔊 để nghe mẫu${sttOk ? ", bấm 🎤 để Tom kiểm tra bạn đọc đúng chưa" : ""})</div>
-        ${w.exampleList.map((ex, i) => `
-          <div class="example-block">
-            <div class="ex-target">${ex.target} <button class="speak-btn small" data-t="${encodeURIComponent(ex.target)}">🔊</button>${sttOk ? ` <button class="speak-btn small" data-rec="${i}">🎤</button>` : ""}</div>
-            <div class="ex-pron">${ex.pron}</div>
-            <div class="ex-vi">${ex.vi}</div>
-            <div class="diff-result" id="diff-${i}"></div>
-          </div>`).join("")}
-        ${sttOk ? "" : `<div class="text-muted" style="font-size:12px;margin:2px 0 10px">Trình duyệt này chưa hỗ trợ nhận diện giọng nói để Tom kiểm tra — thử Chrome nhé.</div>`}
-        <button class="btn block" id="read-done">Mình đã đọc xong</button>
-      </div>`;
-    panel.querySelectorAll("[data-t]").forEach((b) => b.addEventListener("click", () => speak(decodeURIComponent(b.dataset.t), meta.voiceLang)));
-    if (sttOk) {
-      panel.querySelectorAll("[data-rec]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const idx = Number(btn.dataset.rec);
-          const ex = w.exampleList[idx];
-          const out = panel.querySelector(`#diff-${idx}`);
-          btn.classList.add("recording");
-          out.innerHTML = `<span class="text-muted">Đang nghe...</span>`;
-          const rec = createRecognizer(meta.sttLang, {
-            onResult: (transcript) => {
-              out.innerHTML = `<div>${diffSentence(ex.target, transcript, lang)}</div><div class="diff-transcript">Bạn đọc: "${transcript}"</div>`;
-            },
-            onError: () => { out.innerHTML = `<span class="text-muted">Không nghe rõ, thử lại nhé.</span>`; },
-            onEnd: () => btn.classList.remove("recording"),
-          });
-          rec && rec.start();
-        });
-      });
-    }
-    panel.querySelector("#read-done").addEventListener("click", async () => {
-      await Store.markSkillDone(lang, w.stt, "read");
-      onDone();
-    });
-    return;
-  }
-
-  if (skill === "write") {
-    const supportNote = "";
-    panel.innerHTML = `
-      <div class="skill-panel">
-        <div class="text-muted" style="font-size:13px">Gõ đúng ${lang === "zh" ? "Pinyin" : "phiên âm La-tinh"} của từ này:</div>
-        <div style="font-size:26px;font-weight:700;margin-top:8px">${w.target}</div>
-        <input class="type-input" id="write-input" placeholder="Gõ vào đây..." autocomplete="off"/>
-        ${lang === "zh" ? `<div class="text-muted" style="font-size:11px;margin-top:10px">Bảng chữ cái Pinyin</div>` : ""}
-        ${pinyinAlphaChips(lang)}
-        ${lang === "zh" ? `<div class="text-muted" style="font-size:11px;margin-top:8px">Nguyên âm có dấu thanh</div>` : ""}
-        ${toneHintChips(lang)}
-        <button class="btn block mt-16" id="write-check">Kiểm tra</button>
-        <div class="feedback-banner" id="fb-w"></div>
-      </div>`;
-    const input = panel.querySelector("#write-input");
-    panel.querySelectorAll(".tone-chip").forEach((c) => c.addEventListener("click", () => {
-      input.value += c.dataset.ch;
-      input.focus();
-    }));
-    panel.querySelector("#write-check").addEventListener("click", async () => {
-      const norm = (s) => s.toLowerCase().replace(/\s+/g, "");
-      const correct = norm(input.value) === norm(w.pron);
-      const fb = panel.querySelector("#fb-w");
+  // 🎧 listen quiz (always open)
+  const listenPlay = async () => {
+    const r = await speak(w.target, meta.voiceLang);
+    const warnEl = document.getElementById("voice-warn");
+    if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
+  };
+  document.getElementById("listen-play").addEventListener("click", listenPlay);
+  root.querySelectorAll(".choice-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const correct = btn.dataset.correct === "true";
+      const fb = document.getElementById("fb-listen");
       fb.classList.add("show", correct ? "good" : "retry");
-      fb.textContent = correct ? mascotSay("correct") + ` (${w.pron})` : `${mascotSay("wrong")} Đáp án: ${w.pron}`;
-      if (correct) { await Store.markSkillDone(lang, w.stt, "write"); onDone(); }
+      fb.textContent = mascotSay(correct ? "correct" : "wrong");
+      btn.classList.add(correct ? "correct" : "wrong");
+      root.querySelectorAll(".choice-btn").forEach((b) => (b.disabled = true));
+      await Store.recordListenResult(lang, w.stt, correct);
+      if (correct) await markDone("listen");
     });
-    return;
-  }
+  });
 
-  if (skill === "speak") {
-    const sttOk = isSttSupported();
-    panel.innerHTML = `
-      <div class="skill-panel">
-        <div class="row gap"><button class="btn round" id="speak-play">🔊</button><span class="text-muted">Nghe mẫu rồi bấm mic để đọc theo</span></div>
-        <div class="mic-row">
-          <button class="mic-btn" id="mic-btn">🎤</button>
-          <div id="mic-status" class="text-muted" style="font-size:13px">${sttOk ? "Sẵn sàng ghi âm" : "Trình duyệt này chưa hỗ trợ nhận diện giọng nói — thử Chrome nhé."}</div>
-        </div>
-        <div class="feedback-banner" id="fb-s"></div>
-      </div>`;
-    panel.querySelector("#speak-play").addEventListener("click", async () => {
-      const r = await speak(w.target, meta.voiceLang);
-      const statusEl = panel.querySelector("#mic-status");
-      if (!r.hadVoice && statusEl) statusEl.textContent = missingVoiceMessage(meta.label);
-    });
-    if (sttOk) {
-      const micBtn = panel.querySelector("#mic-btn");
-      const status = panel.querySelector("#mic-status");
-      const fb = panel.querySelector("#fb-s");
-      micBtn.addEventListener("click", () => {
-        micBtn.classList.add("recording");
-        status.textContent = "Đang nghe...";
+  // 📖 read examples with mic pronunciation check + flag tracking
+  root.querySelectorAll(".example-block [data-t]").forEach((b) => b.addEventListener("click", () => speak(decodeURIComponent(b.dataset.t), meta.voiceLang)));
+  if (sttOk) {
+    root.querySelectorAll(".example-block [data-rec]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.dataset.rec);
+        const ex = w.exampleList[idx];
+        const out = document.getElementById(`diff-${idx}`);
+        btn.classList.add("recording");
+        out.innerHTML = `<span class="text-muted">Đang nghe...</span>`;
         const rec = createRecognizer(meta.sttLang, {
           onResult: async (transcript) => {
-            const said = transcript.replace(/[.,。！!?？\s]/g, "");
-            const target = w.target.replace(/[.,。！!?？\s]/g, "");
-            const close = said.includes(target) || target.includes(said);
-            fb.classList.add("show", "good");
-            fb.textContent = close
-              ? `Nghe được: "${transcript}" — ${mascotSay("correct")}`
-              : `Nghe được: "${transcript}" — gần đúng rồi, thử lại xem sao? Nếu muốn AI nhận xét phát âm chi tiết hơn, cần thêm API key.`;
-            status.textContent = "Sẵn sàng ghi âm";
-            micBtn.classList.remove("recording");
-            await Store.markSkillDone(lang, w.stt, "speak");
-            onDone();
+            const strip = (t) => t.replace(/[\s.,。！!?？、，]/g, "");
+            const isCorrect = strip(transcript) === strip(ex.target);
+            out.innerHTML = `<div>${diffSentence(ex.target, transcript, lang)}</div><div class="diff-transcript">Bạn đọc: "${transcript}"</div>`;
+            const rp = await Store.recordReadResult(lang, w.stt, isCorrect);
+            if (isCorrect) await markDone("read");
+            if (rp.readFlag && !p.readFlag) renderWordDetail(root, ctx, stt);
           },
-          onError: () => { status.textContent = "Không nghe rõ, thử lại nhé."; micBtn.classList.remove("recording"); },
-          onEnd: () => micBtn.classList.remove("recording"),
+          onError: () => { out.innerHTML = `<span class="text-muted">Không nghe rõ, thử lại nhé.</span>`; },
+          onEnd: () => btn.classList.remove("recording"),
         });
         rec && rec.start();
       });
-    }
-    return;
+    });
   }
+  document.getElementById("btn-unflag-read")?.addEventListener("click", async () => {
+    await Store.clearReadFlag(lang, w.stt);
+    renderWordDetail(root, ctx, stt);
+  });
 }

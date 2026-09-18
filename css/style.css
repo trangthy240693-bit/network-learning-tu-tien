@@ -489,28 +489,17 @@ body { overflow-x: hidden; }
 .example-block .ex-pron { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 .example-block .ex-vi { font-size: 13px; margin-top: 4px; }
 
-.skill-tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin: 18px 0 6px;
-  width: 100%;
-}
-.skill-tab {
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-  border-radius: var(--radius-sm);
-  padding: 12px 4px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-.skill-tab .emoji { font-size: 20px; display: block; margin-bottom: 4px; }
-.skill-tab.done { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
-.skill-tab.active { border-color: var(--primary); color: var(--primary); }
+.section-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.section-check { font-size: 11px; font-weight: 600; color: var(--primary); margin-left: 8px; text-transform: none; letter-spacing: 0; }
 
 .skill-panel {
+  margin-top: 8px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.write-panel {
   margin-top: 14px;
   padding: 16px;
   background: var(--surface);
@@ -635,6 +624,7 @@ body { overflow-x: hidden; }
 .review-tile.c2 { background: var(--accent-soft); }
 .review-tile.c3 { background: var(--blue-soft); }
 .review-tile.c4 { background: var(--purple-soft); }
+.review-tile.c5 { background: var(--danger-soft); }
 .review-back {
   display: inline-block;
   text-decoration: none;
