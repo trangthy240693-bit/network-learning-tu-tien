@@ -12,7 +12,6 @@ const SUBTABS = [
   { id: "flash", label: "Flashcard", emoji: "🗂️", desc: "Lật thẻ ôn nhanh", cls: "c2" },
   { id: "listen", label: "Nghe chọn từ", emoji: "🎧", desc: "Nghe rồi chọn đúng nghĩa", cls: "c3" },
   { id: "story", label: "Chuyện chêm", emoji: "📖", desc: "Đọc chuyện xen từ đã học", cls: "c4" },
-  { id: "readflag", label: "Ôn đọc", emoji: "🚩", desc: "Câu đọc sai nhiều lần", cls: "c5" },
 ];
 
 export async function renderReview(root, ctx, sub) {
@@ -20,14 +19,11 @@ export async function renderReview(root, ctx, sub) {
     const progressAll = await Store.getAllProgress(ctx.lang);
     const now = Date.now();
     const dueCount = progressAll.filter((p) => (p.srs?.due ?? 0) <= now).length;
-    const readFlagCount = progressAll.filter((p) => p.readFlag).length;
 
     let html = `<h2 style="margin:0 0 4px">Ôn tập</h2><p class="text-muted" style="font-size:13px;margin:0 0 14px">Chọn một mục để ôn tập nhé!</p>`;
     html += `<div class="review-hub">`;
     SUBTABS.forEach((t) => {
-      let desc = t.desc;
-      if (t.id === "listen" && dueCount > 0) desc = `${dueCount} từ cần ôn hôm nay`;
-      if (t.id === "readflag") desc = readFlagCount > 0 ? `${readFlagCount} từ đang gắn cờ` : "Chưa có từ nào bị gắn cờ";
+      const desc = t.id === "listen" && dueCount > 0 ? `${dueCount} từ cần ôn hôm nay` : t.desc;
       html += `<a href="#/review/${t.id}" class="review-tile ${t.cls}"><span class="emoji">${t.emoji}</span><strong>${t.label}</strong><span>${desc}</span></a>`;
     });
     html += `</div>`;
@@ -43,12 +39,31 @@ export async function renderReview(root, ctx, sub) {
   if (sub === "flash") return renderFlash(body, ctx);
   if (sub === "listen") return renderListenQuiz(body, ctx);
   if (sub === "story") return renderStory(body, ctx);
-  if (sub === "readflag") return renderReadFlags(body, ctx);
 }
 
-async function renderList(root, ctx) {
-  const { lang, words } = ctx;
+// "Danh sách" has two panes side by side: "Ôn từ" (the original đã học/đang
+// học word list) and "Ôn đọc" (sentences flagged from the Đọc skill —
+// auto-flagged at 5 misses, or flagged/unflagged by hand).
+async function renderList(root, ctx, innerSub = "words") {
+  const { lang } = ctx;
   const progressAll = await Store.getAllProgress(lang);
+  const readFlagCount = progressAll.reduce((sum, p) => sum + (p.readFlags?.length || 0), 0);
+
+  let html = `<div class="subtab-row">
+    <button data-inner="words" class="${innerSub === "words" ? "active" : ""}">Ôn từ</button>
+    <button data-inner="read" class="${innerSub === "read" ? "active" : ""}">🚩 Ôn đọc${readFlagCount ? ` (${readFlagCount})` : ""}</button>
+  </div>
+  <div id="list-inner"></div>`;
+  root.innerHTML = html;
+  root.querySelectorAll("[data-inner]").forEach((b) => b.addEventListener("click", () => renderList(root, ctx, b.dataset.inner)));
+
+  const inner = document.getElementById("list-inner");
+  if (innerSub === "read") return renderReadFlags(inner, ctx);
+  return renderWordList(inner, ctx, progressAll);
+}
+
+async function renderWordList(root, ctx, progressAll) {
+  const { words } = ctx;
   const progressMap = new Map(progressAll.map((p) => [p.stt, p]));
 
   const learned = words.filter((w) => progressMap.get(w.stt)?.status === "learned").sort((a, b) => (progressMap.get(b.stt)?.lastSeen || 0) - (progressMap.get(a.stt)?.lastSeen || 0));
@@ -291,43 +306,51 @@ async function renderStory(root, ctx) {
   draw();
 }
 
-// "Ôn đọc" — words auto-flagged after 5 mispronounced reading attempts (or
-// manually cleared by the learner). Lets them re-practice just the example
-// sentences that gave them trouble, with the same mic diff-check as the
-// word-detail page.
+// "Ôn đọc" — individual sentences, auto-flagged after 5 mispronounced
+// attempts on THAT sentence, or flagged/unflagged by hand from the Từ vựng
+// page. Sentence-level, not word-level: a word can have some examples
+// flagged and others not.
 async function renderReadFlags(root, ctx) {
   const { lang, words } = ctx;
   const meta = LANG_META[lang];
   const progressAll = await Store.getAllProgress(lang);
-  const flaggedStt = new Set(progressAll.filter((p) => p.readFlag).map((p) => p.stt));
-  const flaggedWords = words.filter((w) => flaggedStt.has(w.stt));
+  const progressMap = new Map(progressAll.map((p) => [p.stt, p]));
 
-  if (!flaggedWords.length) {
-    root.innerHTML = `<div class="empty-state"><div class="big-emoji">🚩</div>Chưa có từ nào bị gắn cờ đọc — cứ đọc sai một câu ví dụ quá 5 lần ở Tab Từ vựng thì từ đó sẽ xuất hiện ở đây để ôn lại.</div>`;
+  const entries = [];
+  words.forEach((w) => {
+    (progressMap.get(w.stt)?.readFlags || []).forEach((idx) => {
+      if (w.exampleList[idx]) entries.push({ w, idx });
+    });
+  });
+
+  if (!entries.length) {
+    root.innerHTML = `<div class="empty-state"><div class="big-emoji">🚩</div>Chưa có câu nào bị gắn cờ — đọc sai 1 câu quá 5 lần, hoặc tự bấm 🚩 cạnh câu ví dụ ở Tab Từ vựng để đánh dấu câu cần ôn lại.</div>`;
     return;
   }
 
   const sttOk = isSttSupported();
-  root.innerHTML = flaggedWords.map((w) => `
-    <div class="card mt-16">
-      <div class="row between">
-        <strong>${w.target} <span class="text-muted" style="font-weight:400">(${w.pron}) — ${w.meaning}</span></strong>
-        <button class="btn ghost" data-unflag="${w.stt}" style="font-size:12px;padding:5px 10px;color:var(--danger);border-color:var(--danger)">🚩 Bỏ cờ</button>
-      </div>
-      ${w.exampleList.map((ex, i) => `
-        <div class="example-block mt-8">
-          <div class="ex-target">${ex.target} <button class="speak-btn small" data-t="${encodeURIComponent(ex.target)}">🔊</button>${sttOk ? ` <button class="speak-btn small" data-rec="${w.stt}-${i}">🎤</button>` : ""}</div>
-          <div class="ex-pron">${ex.pron}</div>
-          <div class="ex-vi">${ex.vi}</div>
-          <div class="diff-result" id="diff-${w.stt}-${i}"></div>
-        </div>`).join("")}
-    </div>`).join("");
+  root.innerHTML = entries.map(({ w, idx }) => {
+    const ex = w.exampleList[idx];
+    return `
+      <div class="example-block flagged mt-8" id="rf-${w.stt}-${idx}">
+        <div class="ex-target">${ex.target}
+          <button class="speak-btn small" data-t="${encodeURIComponent(ex.target)}">🔊</button>
+          ${sttOk ? ` <button class="speak-btn small" data-rec="${w.stt}-${idx}">🎤</button>` : ""}
+          <button class="flag-toggle-btn active" data-unflag="${w.stt}-${idx}" title="Bỏ cờ">🚩</button>
+        </div>
+        <div class="ex-pron">${ex.pron}</div>
+        <div class="ex-vi">${ex.vi}</div>
+        <div class="text-muted" style="font-size:12px;margin-top:4px">Từ: ${w.target} (${w.pron}) — ${w.meaning}</div>
+        <div class="diff-result" id="diff-${w.stt}-${idx}"></div>
+      </div>`;
+  }).join("");
 
   root.querySelectorAll("[data-t]").forEach((b) => b.addEventListener("click", () => speak(decodeURIComponent(b.dataset.t), meta.voiceLang)));
 
   root.querySelectorAll("[data-unflag]").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      await Store.clearReadFlag(lang, Number(btn.dataset.unflag));
+      const [sttStr, idxStr] = btn.dataset.unflag.split("-");
+      await Store.clearReadFlag(lang, Number(sttStr), Number(idxStr));
       renderReadFlags(root, ctx);
     });
   });
@@ -336,8 +359,8 @@ async function renderReadFlags(root, ctx) {
     root.querySelectorAll("[data-rec]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const [sttStr, idxStr] = btn.dataset.rec.split("-");
-        const w = flaggedWords.find((x) => x.stt === Number(sttStr));
-        const ex = w.exampleList[Number(idxStr)];
+        const entry = entries.find((e) => e.w.stt === Number(sttStr) && e.idx === Number(idxStr));
+        const ex = entry.w.exampleList[Number(idxStr)];
         const out = document.getElementById(`diff-${sttStr}-${idxStr}`);
         btn.classList.add("recording");
         out.innerHTML = `<span class="text-muted">Đang nghe...</span>`;
@@ -346,7 +369,7 @@ async function renderReadFlags(root, ctx) {
             const strip = (t) => t.replace(/[\s.,。！!?？、，]/g, "");
             const isCorrect = strip(transcript) === strip(ex.target);
             out.innerHTML = `<div>${diffSentence(ex.target, transcript, lang)}</div><div class="diff-transcript">Bạn đọc: "${transcript}"</div>`;
-            await Store.recordReadResult(lang, w.stt, isCorrect);
+            await Store.recordReadResult(lang, Number(sttStr), Number(idxStr), isCorrect);
           },
           onError: () => { out.innerHTML = `<span class="text-muted">Không nghe rõ, thử lại nhé.</span>`; },
           onEnd: () => btn.classList.remove("recording"),

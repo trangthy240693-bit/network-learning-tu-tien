@@ -92,8 +92,8 @@ export const Store = {
         flag: false,
         listenStreakCorrect: 0,
         listenStreakWrong: 0,
-        readWrongCount: 0,
-        readFlag: false,
+        readWrongCounts: {}, // { exampleIndex: wrongCount }
+        readFlags: [],       // [exampleIndex, ...] currently flagged for "Ôn đọc"
         skills: { listen: false, speak: false, read: false, write: false },
         srs: { ease: 2.5, interval: 0, reps: 0, due: Date.now() },
         lastSeen: Date.now(),
@@ -140,27 +140,43 @@ export const Store = {
     return p;
   },
 
-  // Reading (mic pronunciation check on example sentences): 5 mispronounced
-  // attempts auto-flags the word for the "Ôn đọc" review list; a correct
-  // read resets the counter. Separate from the listen-quiz flag since it
-  // tracks a different skill.
-  async recordReadResult(lang, stt, correct) {
+  // Reading (mic pronunciation check on one example sentence): 5 mispronounced
+  // attempts on THAT sentence auto-flags it into "Ôn đọc"; a correct read
+  // resets its counter. Per-sentence, not per-word — a word can have some
+  // flagged examples and some not.
+  async recordReadResult(lang, stt, exampleIndex, correct) {
     const p = await this.ensureProgress(lang, stt);
+    p.readWrongCounts = p.readWrongCounts || {};
+    p.readFlags = p.readFlags || [];
     if (correct) {
-      p.readWrongCount = 0;
+      p.readWrongCounts[exampleIndex] = 0;
     } else {
-      p.readWrongCount = (p.readWrongCount || 0) + 1;
-      if (p.readWrongCount >= 5) p.readFlag = true;
+      p.readWrongCounts[exampleIndex] = (p.readWrongCounts[exampleIndex] || 0) + 1;
+      if (p.readWrongCounts[exampleIndex] >= 5 && !p.readFlags.includes(exampleIndex)) {
+        p.readFlags.push(exampleIndex);
+      }
     }
     p.lastSeen = Date.now();
     await this.putProgress(p);
     return p;
   },
 
-  async clearReadFlag(lang, stt) {
+  // Manual flag toggle — the learner can flag/unflag any example sentence
+  // themselves, independent of the auto-flag-at-5-misses rule.
+  async toggleReadFlag(lang, stt, exampleIndex) {
     const p = await this.ensureProgress(lang, stt);
-    p.readFlag = false;
-    p.readWrongCount = 0;
+    p.readFlags = p.readFlags || [];
+    const i = p.readFlags.indexOf(exampleIndex);
+    if (i >= 0) p.readFlags.splice(i, 1);
+    else p.readFlags.push(exampleIndex);
+    await this.putProgress(p);
+    return p;
+  },
+
+  async clearReadFlag(lang, stt, exampleIndex) {
+    const p = await this.ensureProgress(lang, stt);
+    p.readFlags = (p.readFlags || []).filter((i) => i !== exampleIndex);
+    if (p.readWrongCounts) p.readWrongCounts[exampleIndex] = 0;
     await this.putProgress(p);
     return p;
   },

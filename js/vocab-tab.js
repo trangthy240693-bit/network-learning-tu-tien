@@ -204,7 +204,7 @@ export async function renderBatch(root, ctx, batchIndex) {
     const p = progressMap.get(w.stt);
     html += `
       <div class="word-tile" data-nav="#/word/${w.stt}">
-        ${(p?.flag || p?.readFlag) ? `<span class="flag-icon">🚩</span>` : ""}
+        ${(p?.flag || (p?.readFlags && p.readFlags.length > 0)) ? `<span class="flag-icon">🚩</span>` : ""}
         <span class="status-dot ${statusClass(p)}"></span>
         <div class="target">${w.target}</div>
         <div class="pron">${w.pron}</div>
@@ -294,19 +294,12 @@ export function diffSentence(expected, recognized, lang) {
   return exp.map((word, i) => `<span class="${rec[i] === word ? "diff-ok" : "diff-wrong"}">${word}</span>`).join(" ");
 }
 
-function pickDistractors(words, correct, n = 3) {
-  const pool = words.filter((w) => w.stt !== correct.stt);
-  const picked = [];
-  while (picked.length < n && pool.length) {
-    const idx = Math.floor(Math.random() * pool.length);
-    picked.push(pool.splice(idx, 1)[0]);
-  }
-  return picked;
-}
-
-// One unified page — every task (nghe/nói/đọc/viết) visible and usable at
-// once, no tab-clicking. "Nói" lives next to the 🔊 button, "Viết" lives
-// next to the stroke box, "Nghe" and "Đọc" are always-open sections below.
+// One unified page — every task (nói/đọc/viết) visible and usable at once,
+// no tab-clicking. "Nghe & đoán nghĩa" is deliberately NOT duplicated here —
+// that quiz already lives in Ôn tập ▸ Nghe chọn từ, so it isn't repeated
+// twice and doesn't cost the learner extra time on this screen.
+// "Nói" lives next to the 🔊 button, "Viết" lives next to the stroke box,
+// "Đọc" (with per-sentence flagging) is an always-open section below.
 export async function renderWordDetail(root, ctx, stt) {
   const { lang, words } = ctx;
   const w = words.find((x) => x.stt === Number(stt));
@@ -314,9 +307,9 @@ export async function renderWordDetail(root, ctx, stt) {
   if (!w) { root.innerHTML = `<div class="empty-state">Không tìm thấy từ này.</div>`; return; }
   const p = await Store.ensureProgress(lang, w.stt);
   const sttOk = isSttSupported();
+  const readFlags = p.readFlags || [];
 
   const batchIndex = Math.floor((w.stt - 1) / BATCH_SIZE);
-  const choices = [w, ...pickDistractors(words, w, 3)].sort(() => Math.random() - 0.5);
 
   let html = `<a href="#/batch/${batchIndex}" class="text-muted" style="text-decoration:none;font-size:13px">← Quay lại nhóm từ</a>`;
   html += `
@@ -370,25 +363,15 @@ export async function renderWordDetail(root, ctx, stt) {
     </div>
 
     <div class="info-block">
-      <h4>🎧 Nghe & đoán nghĩa ${p.skills.listen ? '<span class="section-check">✓ đã luyện</span>' : ""}</h4>
-      <div class="skill-panel">
-        <div class="row gap"><button class="btn round" id="listen-play">🔊</button><span class="text-muted">Nghe rồi chọn đúng nghĩa</span></div>
-        <div class="choice-list">
-          ${choices.map((c) => `<button class="choice-btn" data-correct="${c.stt === w.stt}">${c.meaning}</button>`).join("")}
-        </div>
-        <div class="feedback-banner" id="fb-listen"></div>
-      </div>
-    </div>
-
-    <div class="info-block">
-      <div class="section-title-row">
-        <h4 style="margin:0">📖 Đọc câu ví dụ ${p.skills.read ? '<span class="section-check">✓ đã luyện</span>' : ""}</h4>
-        ${p.readFlag ? `<button class="btn ghost" id="btn-unflag-read" style="font-size:12px;padding:5px 10px;color:var(--danger);border-color:var(--danger)">🚩 Bỏ cờ</button>` : ""}
-      </div>
-      <div class="text-muted" style="font-size:13px;margin-bottom:6px">Bấm 🔊 để nghe mẫu${sttOk ? ", bấm 🎤 để kiểm tra bạn đọc đúng chưa" : ""}</div>
+      <h4>📖 Đọc câu ví dụ ${p.skills.read ? '<span class="section-check">✓ đã luyện</span>' : ""}</h4>
+      <div class="text-muted" style="font-size:13px;margin-bottom:6px">Bấm 🔊 để nghe mẫu${sttOk ? ", bấm 🎤 để kiểm tra bạn đọc đúng chưa" : ""}, bấm 🚩 để tự đánh dấu câu cần ôn lại.</div>
       ${w.exampleList.map((ex, i) => `
-        <div class="example-block">
-          <div class="ex-target">${ex.target} <button class="speak-btn small" data-t="${encodeURIComponent(ex.target)}">🔊</button>${sttOk ? ` <button class="speak-btn small" data-rec="${i}">🎤</button>` : ""}</div>
+        <div class="example-block ${readFlags.includes(i) ? "flagged" : ""}" id="ex-block-${i}">
+          <div class="ex-target">${ex.target}
+            <button class="speak-btn small" data-t="${encodeURIComponent(ex.target)}">🔊</button>
+            ${sttOk ? ` <button class="speak-btn small" data-rec="${i}">🎤</button>` : ""}
+            <button class="flag-toggle-btn ${readFlags.includes(i) ? "active" : ""}" data-flag="${i}" title="Gắn/bỏ cờ câu này">🚩</button>
+          </div>
           <div class="ex-pron">${ex.pron}</div>
           <div class="ex-vi">${ex.vi}</div>
           <div class="diff-result" id="diff-${i}"></div>
@@ -473,28 +456,18 @@ export async function renderWordDetail(root, ctx, stt) {
     }
   }
 
-  // 🎧 listen quiz (always open)
-  const listenPlay = async () => {
-    const r = await speak(w.target, meta.voiceLang);
-    const warnEl = document.getElementById("voice-warn");
-    if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
-  };
-  document.getElementById("listen-play").addEventListener("click", listenPlay);
-  root.querySelectorAll(".choice-btn").forEach((btn) => {
+  // 📖 read examples with mic pronunciation check + per-sentence flag tracking
+  root.querySelectorAll(".example-block [data-t]").forEach((b) => b.addEventListener("click", () => speak(decodeURIComponent(b.dataset.t), meta.voiceLang)));
+
+  root.querySelectorAll(".flag-toggle-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      const correct = btn.dataset.correct === "true";
-      const fb = document.getElementById("fb-listen");
-      fb.classList.add("show", correct ? "good" : "retry");
-      fb.textContent = mascotSay(correct ? "correct" : "wrong");
-      btn.classList.add(correct ? "correct" : "wrong");
-      root.querySelectorAll(".choice-btn").forEach((b) => (b.disabled = true));
-      await Store.recordListenResult(lang, w.stt, correct);
-      if (correct) await markDone("listen");
+      const idx = Number(btn.dataset.flag);
+      await Store.toggleReadFlag(lang, w.stt, idx);
+      btn.classList.toggle("active");
+      document.getElementById(`ex-block-${idx}`).classList.toggle("flagged");
     });
   });
 
-  // 📖 read examples with mic pronunciation check + flag tracking
-  root.querySelectorAll(".example-block [data-t]").forEach((b) => b.addEventListener("click", () => speak(decodeURIComponent(b.dataset.t), meta.voiceLang)));
   if (sttOk) {
     root.querySelectorAll(".example-block [data-rec]").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -508,9 +481,10 @@ export async function renderWordDetail(root, ctx, stt) {
             const strip = (t) => t.replace(/[\s.,。！!?？、，]/g, "");
             const isCorrect = strip(transcript) === strip(ex.target);
             out.innerHTML = `<div>${diffSentence(ex.target, transcript, lang)}</div><div class="diff-transcript">Bạn đọc: "${transcript}"</div>`;
-            const rp = await Store.recordReadResult(lang, w.stt, isCorrect);
+            const wasFlagged = readFlags.includes(idx);
+            const rp = await Store.recordReadResult(lang, w.stt, idx, isCorrect);
             if (isCorrect) await markDone("read");
-            if (rp.readFlag && !p.readFlag) renderWordDetail(root, ctx, stt);
+            if (rp.readFlags.includes(idx) && !wasFlagged) renderWordDetail(root, ctx, stt);
           },
           onError: () => { out.innerHTML = `<span class="text-muted">Không nghe rõ, thử lại nhé.</span>`; },
           onEnd: () => btn.classList.remove("recording"),
@@ -519,8 +493,4 @@ export async function renderWordDetail(root, ctx, stt) {
       });
     });
   }
-  document.getElementById("btn-unflag-read")?.addEventListener("click", async () => {
-    await Store.clearReadFlag(lang, w.stt);
-    renderWordDetail(root, ctx, stt);
-  });
 }
