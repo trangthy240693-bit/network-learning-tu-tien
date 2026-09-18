@@ -1,7 +1,7 @@
 import { Store } from "./db.js";
 import { speak, missingVoiceMessage } from "./tts.js";
 import { createRecognizer, isSttSupported } from "./stt.js";
-import { mascotSay } from "./mascot.js";
+import { mascotSay, mascotBubble } from "./mascot.js";
 import { LANG_META } from "./data.js";
 import { diffSentence } from "./vocab-tab.js";
 
@@ -328,7 +328,7 @@ async function renderReadFlags(root, ctx) {
   });
 
   if (!entries.length) {
-    root.innerHTML = `<div class="empty-state"><div class="big-emoji">🚩</div>Chưa có câu nào bị gắn cờ — đọc sai 1 câu quá 5 lần, hoặc tự bấm 🚩 cạnh câu ví dụ ở Tab Từ vựng để đánh dấu câu cần ôn lại.</div>`;
+    root.innerHTML = mascotBubble("readFlagsEmpty");
     return;
   }
 

@@ -29,6 +29,9 @@ const TOM_MESSAGES = {
   skip: ["Ok, bỏ qua từ này, ký chủ học từ khác trước nhé!", "Không sao, em để dành từ này lại sau."],
   flagSet: ["Từ này em sẽ nhắc ký chủ ôn lại thêm vài lần nhé."],
   flagCleared: ["Ký chủ nhớ từ này rồi đó! Em gỡ cờ nha 🚩➡️✅"],
+  readFlagsEmpty: [
+    "Ký chủ chưa có câu nào cần ôn đọc cả, đỉnh quá! Câu nào đọc sai tới 5 lần em sẽ tự nhắc ký chủ ôn lại ở đây, hoặc ký chủ cứ bấm 🚩 cạnh câu ví dụ bên Tab Từ vựng để tự đánh dấu cũng được nha.",
+  ],
   freetalkDone: ["Nói chuyện vui ghê! Những từ ký chủ dùng đúng, em đã đánh dấu là thuộc rồi."],
   encourageGeneric: ["Cứ từ từ, mỗi ngày một chút là ổn rồi ký chủ ơi!", "Ký chủ đang làm rất tốt đó!"],
 };
