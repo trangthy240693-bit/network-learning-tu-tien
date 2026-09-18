@@ -127,8 +127,8 @@ async function renderFlash(root, ctx) {
       <div class="card flash-card" id="flash-card">
         ${p?.flag ? `<span style="position:absolute;top:14px;left:14px">🚩</span>` : ""}
         ${!flipped
-          ? `<div class="big">${w.en}</div><div class="hint">Bấm thẻ để lật</div>`
-          : `<div class="big">${w.target}</div><div class="sub">${w.pron} · ${w.meaning}</div><div class="hint">Bấm thẻ để lật lại</div>`}
+          ? `<div class="big">${w.meaning}</div><div class="hint">Bấm thẻ để lật</div>`
+          : `<div class="big">${w.target}</div><div class="sub">${w.pron}</div><div class="hint">Bấm thẻ để lật lại</div>`}
       </div>
       <div class="row" style="justify-content:center;margin:6px 0"><button class="speak-btn" id="flash-speak">🔊</button></div>
       <div class="flash-nav">
