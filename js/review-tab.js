@@ -49,9 +49,13 @@ async function renderList(root, ctx, innerSub = "words") {
   const progressAll = await Store.getAllProgress(lang);
   const readFlagCount = progressAll.reduce((sum, p) => sum + (p.readFlags?.length || 0), 0);
 
-  let html = `<div class="subtab-row">
-    <button data-inner="words" class="${innerSub === "words" ? "active" : ""}">Ôn từ</button>
-    <button data-inner="read" class="${innerSub === "read" ? "active" : ""}">🚩 Ôn đọc${readFlagCount ? ` (${readFlagCount})` : ""}</button>
+  let html = `<div class="list-toggle-row">
+    <button data-inner="words" class="list-toggle-tile c1 ${innerSub === "words" ? "active" : ""}">
+      <span class="emoji">📚</span><strong>Ôn từ</strong><span>Đã học &amp; đang học</span>
+    </button>
+    <button data-inner="read" class="list-toggle-tile c3 ${innerSub === "read" ? "active" : ""}">
+      <span class="emoji">🚩</span><strong>Ôn đọc</strong><span>${readFlagCount ? `${readFlagCount} câu cần ôn` : "Chưa có câu nào"}</span>
+    </button>
   </div>
   <div id="list-inner"></div>`;
   root.innerHTML = html;
