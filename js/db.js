@@ -24,8 +24,27 @@ function openDb() {
 
 let dbPromise = null;
 function getDb() {
-  if (!dbPromise) dbPromise = openDb();
+  if (!dbPromise) {
+    dbPromise = openDb();
+    // Ask the browser not to evict our data under storage pressure.
+    try { navigator.storage?.persist?.(); } catch { /* unsupported */ }
+  }
   return dbPromise;
+}
+
+// Automatic safety-net backup: every progress write is mirrored into
+// localStorage (debounced). If IndexedDB ever comes back empty (cleared
+// site data, eviction), Store.restoreIfEmpty() rebuilds it from here.
+const MIRROR_KEY = "nl_auto_backup_v1";
+let mirrorTimer = null;
+function scheduleMirror() {
+  clearTimeout(mirrorTimer);
+  mirrorTimer = setTimeout(async () => {
+    try {
+      const data = await Store.exportAll();
+      localStorage.setItem(MIRROR_KEY, JSON.stringify(data));
+    } catch { /* quota or private mode — ignore */ }
+  }, 400);
 }
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -76,9 +95,42 @@ export const Store = {
     const store = await tx("progress", "readwrite");
     return new Promise((resolve, reject) => {
       const req = store.put(p);
-      req.onsuccess = () => resolve();
+      req.onsuccess = () => { scheduleMirror(); resolve(); };
       req.onerror = () => reject(req.error);
     });
+  },
+
+  async restoreIfEmpty() {
+    try {
+      const store = await tx("progress", "readonly");
+      const count = await new Promise((resolve, reject) => {
+        const req = store.count();
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+      if (count > 0) return false;
+      const raw = localStorage.getItem(MIRROR_KEY);
+      if (!raw) return false;
+      await this.importAll(JSON.parse(raw));
+      return true;
+    } catch { return false; }
+  },
+
+  // Learner's own verdict at the end of a word: "learning" (⭐) or
+  // "learned" (already knew it / skip).
+  async setStatus(lang, stt, status) {
+    const p = await this.ensureProgress(lang, stt);
+    p.status = status;
+    if (status === "learned") {
+      p.flag = false;
+      p.srs = scheduleSM2(p.srs, true);
+    } else {
+      p.srs = { ...(p.srs || {}), due: Date.now() };
+    }
+    p.lastSeen = Date.now();
+    await this.putProgress(p);
+    window.dispatchEvent(new CustomEvent("nl:progress-changed", { detail: { lang } }));
+    return p;
   },
 
   async ensureProgress(lang, stt) {
@@ -258,5 +310,6 @@ export const Store = {
         t.onerror = () => reject(t.error);
       });
     }
+    scheduleMirror();
   },
 };

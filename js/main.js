@@ -1,4 +1,5 @@
 import { loadWords, LANG_META } from "./data.js";
+import { Store } from "./db.js";
 import { renderBatchList, renderBatch, renderWordDetail } from "./vocab-tab.js";
 import { renderReview } from "./review-tab.js";
 import { renderFreeTalk, renderTalkWithGao } from "./freetalk.js";
@@ -71,6 +72,7 @@ async function route() {
 
 async function boot() {
   root.innerHTML = `<div class="empty-state">Đang tải dữ liệu...</div>`;
+  await Store.restoreIfEmpty();
   ctx.words = await loadWords(lang);
   await ensureRankBaseline(lang);
   initRankTracker();

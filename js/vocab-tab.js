@@ -378,8 +378,31 @@ export async function renderWordDetail(root, ctx, stt) {
         </div>`).join("")}
       ${sttOk ? "" : `<div class="text-muted" style="font-size:12px;margin:2px 0 10px">Trình duyệt này chưa hỗ trợ nhận diện giọng nói để kiểm tra — thử Chrome nhé.</div>`}
     </div>
+
+    <div class="word-verdict">
+      <button class="verdict-btn star ${p.status === "learning" ? "on" : ""}" id="verdict-learning">
+        <span class="v-icon">⭐</span><strong>Đang học</strong><span class="v-sub">Chưa thuộc, để ôn tiếp</span>
+      </button>
+      <button class="verdict-btn known ${p.status === "learned" ? "on" : ""}" id="verdict-known">
+        <span class="v-icon">⏭</span><strong>Biết rồi</strong><span class="v-sub">Chuyển vào Đã học</span>
+      </button>
+    </div>
   `;
   root.innerHTML = html;
+
+  const goNext = () => {
+    const nextStt = w.stt + 1;
+    const batchEnd = (batchIndex + 1) * BATCH_SIZE;
+    location.hash = nextStt <= batchEnd && nextStt <= words.length ? `#/word/${nextStt}` : `#/batch/${batchIndex}`;
+  };
+  document.getElementById("verdict-learning").addEventListener("click", async () => {
+    await Store.setStatus(lang, w.stt, "learning");
+    goNext();
+  });
+  document.getElementById("verdict-known").addEventListener("click", async () => {
+    await Store.setStatus(lang, w.stt, "learned");
+    goNext();
+  });
 
   const markDone = (skill) => Store.markSkillDone(lang, w.stt, skill);
 

@@ -584,27 +584,30 @@ body { overflow-x: hidden; }
 }
 
 /* ---------- Skip button (fixed) ---------- */
-.skip-fab {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 20;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  color: var(--text-muted);
-  border-radius: 999px;
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: var(--shadow-lg);
+.word-verdict {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 18px 0 90px;
+}
+.verdict-btn {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  padding: 16px 10px;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  color: var(--text);
+  box-shadow: var(--shadow);
 }
-@media (min-width: 760px) {
-  .skip-fab { right: calc(50% - 360px + 18px); }
-}
+.verdict-btn .v-icon { font-size: 30px; }
+.verdict-btn strong { font-size: 16px; }
+.verdict-btn .v-sub { font-size: 12px; color: var(--text-muted); }
+.verdict-btn.star { background: var(--accent-soft); }
+.verdict-btn.known { background: var(--primary-soft); }
+.verdict-btn.on { border-color: var(--primary); }
 
 /* ---------- Review hub ---------- */
 .review-hub {

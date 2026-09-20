@@ -32,30 +32,8 @@
 
   <div class="main-content" id="main-content"></div>
 
-  <button class="skip-fab" id="skip-btn" style="display:none">Bỏ qua ⏭</button>
 </div>
 
 <script type="module" src="js/main.js"></script>
-<script>
-  // Skip button: only visible on word-detail screens, jumps to next word in batch.
-  function updateSkip() {
-    const btn = document.getElementById('skip-btn');
-    const m = location.hash.match(/^#\/word\/(\d+)/);
-    if (m) {
-      btn.style.display = 'flex';
-      btn.onclick = () => {
-        const stt = Number(m[1]);
-        const batchIdx = Math.floor((stt - 1) / 20);
-        const nextStt = stt + 1;
-        const batchEnd = (batchIdx + 1) * 20;
-        location.hash = nextStt <= batchEnd ? `#/word/${nextStt}` : `#/batch/${batchIdx}`;
-      };
-    } else {
-      btn.style.display = 'none';
-    }
-  }
-  window.addEventListener('hashchange', updateSkip);
-  window.addEventListener('load', updateSkip);
-</script>
 </body>
 </html>

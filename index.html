@@ -57,7 +57,7 @@
 
     <div class="card mt-16">
       <strong>💾 Sao lưu tiến độ</strong>
-      <p class="text-muted" style="font-size:13px">Tải file về máy để không mất tiến độ nếu xóa cache trình duyệt hoặc đổi máy — nhập lại file này để khôi phục.</p>
+      <p class="text-muted" style="font-size:13px">Tiến độ tự động được lưu trên trình duyệt này (kèm bản sao dự phòng). Muốn chuyển sang điện thoại / máy khác hoặc phòng khi xóa dữ liệu trình duyệt: tải file về rồi nhập lại ở thiết bị kia.</p>
       <div class="row gap">
         <button class="btn secondary" id="btn-export">Xuất file sao lưu</button>
         <button class="btn ghost" id="btn-import">Nhập từ file</button>
@@ -84,8 +84,10 @@ async function loadProgress(lang, fillId, pctId, countId) {
   document.getElementById(pctId).textContent = pct + "%";
   document.getElementById(countId).textContent = `${learned} / 625 từ đã thuộc`;
 }
-loadProgress("zh", "zh-fill", "zh-pct", "zh-count");
-loadProgress("ko", "ko-fill", "ko-pct", "ko-count");
+Store.restoreIfEmpty().then(() => {
+  loadProgress("zh", "zh-fill", "zh-pct", "zh-count");
+  loadProgress("ko", "ko-fill", "ko-pct", "ko-count");
+});
 
 document.getElementById("btn-export").addEventListener("click", async () => {
   const data = await Store.exportAll();
