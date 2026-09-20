@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 <title>Network Learning — Trung / Hàn</title>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f7a5a" />
+<link rel="apple-touch-icon" href="assets/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 <body>
 <div class="app-shell">
@@ -15,6 +19,13 @@
     </div>
   </div>
   <div class="main-content">
+    <div class="profile-bar">
+      <span class="profile-label">👤 Người học:</span>
+      <select id="profile-select" class="profile-select"></select>
+      <button class="btn ghost profile-btn" id="profile-add" title="Thêm người học mới">＋ Thêm</button>
+      <button class="btn ghost profile-btn" id="profile-rename" title="Đổi tên">✏️</button>
+      <button class="btn ghost profile-btn" id="profile-delete" title="Xóa người học này">🗑️</button>
+    </div>
     <div class="mascot-bubble" id="mascot-slot"></div>
     <h2 style="margin:6px 0 2px">Hai thế giới tu tiên</h2>
     <p class="text-muted" style="margin-top:0;font-size:13px">625 từ vựng nền tảng mỗi nhánh · học song song hoặc chỉ 1 nhánh, tiến độ lưu riêng từng thế giới</p>
@@ -67,9 +78,44 @@
   </div>
 </div>
 
+<script>
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+  }
+</script>
 <script type="module">
 import { gaoAvatar, gaoSay } from "./js/mascot.js";
 import { Store } from "./js/db.js";
+import { listProfiles, currentProfileId, addProfile, renameProfile, deleteProfile, setCurrentProfile } from "./js/profiles.js";
+
+const profileSelect = document.getElementById("profile-select");
+function drawProfiles() {
+  const cur = currentProfileId();
+  profileSelect.innerHTML = listProfiles().map((p) => `<option value="${p.id}" ${p.id === cur ? "selected" : ""}>${p.name.replace(/</g, "&lt;")}</option>`).join("");
+}
+drawProfiles();
+profileSelect.addEventListener("change", () => { setCurrentProfile(profileSelect.value); location.reload(); });
+document.getElementById("profile-add").addEventListener("click", () => {
+  const name = prompt("Tên người học mới:");
+  if (name === null) return;
+  addProfile(name);
+  location.reload();
+});
+document.getElementById("profile-rename").addEventListener("click", () => {
+  const cur = listProfiles().find((p) => p.id === currentProfileId());
+  const name = prompt("Đổi tên người học:", cur.name);
+  if (name === null) return;
+  renameProfile(cur.id, name);
+  drawProfiles();
+});
+document.getElementById("profile-delete").addEventListener("click", async () => {
+  const list = listProfiles();
+  if (list.length <= 1) { alert("Cần giữ lại ít nhất một người học."); return; }
+  const cur = list.find((p) => p.id === currentProfileId());
+  if (!confirm(`Xóa "${cur.name}" cùng toàn bộ tiến độ của người này? Không thể hoàn tác (nên xuất file sao lưu trước).`)) return;
+  await deleteProfile(cur.id);
+  location.reload();
+});
 
 document.getElementById("mascot-slot").innerHTML = `
   <div class="mascot-img">${gaoAvatar(52)}</div>
@@ -95,7 +141,7 @@ document.getElementById("btn-export").addEventListener("click", async () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `network-learning-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = `network-learning-${listProfiles().find((p) => p.id === currentProfileId()).name.replace(/[^\w\-]+/g, "_")}-${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
 });
@@ -108,7 +154,7 @@ document.getElementById("import-file").addEventListener("change", async (e) => {
     const data = JSON.parse(await file.text());
     if (!confirm("Nhập file này sẽ ghi đè tiến độ hiện tại trên máy. Ký chủ chắc chắn chứ?")) { e.target.value = ""; return; }
     await Store.importAll(data);
-    alert("Đã khôi phục tiến độ! Trang sẽ tải lại.");
+    alert("Đã khôi phục tiến độ cho người học đang chọn! Trang sẽ tải lại.");
     location.reload();
   } catch (err) {
     alert("Lỗi khôi phục: " + err.message);

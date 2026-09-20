@@ -1,10 +1,11 @@
 // Minimal promise-based IndexedDB wrapper for persistent per-branch progress.
-const DB_NAME = "nl_app_db";
+import { currentProfileId, dbNameFor, mirrorKeyFor } from "./profiles.js";
+
 const DB_VERSION = 1;
 
 function openDb() {
   return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    const req = indexedDB.open(dbNameFor(currentProfileId()), DB_VERSION);
     req.onupgradeneeded = (e) => {
       const db = e.target.result;
       if (!db.objectStoreNames.contains("progress")) {
@@ -35,7 +36,7 @@ function getDb() {
 // Automatic safety-net backup: every progress write is mirrored into
 // localStorage (debounced). If IndexedDB ever comes back empty (cleared
 // site data, eviction), Store.restoreIfEmpty() rebuilds it from here.
-const MIRROR_KEY = "nl_auto_backup_v1";
+const MIRROR_KEY = mirrorKeyFor(currentProfileId());
 let mirrorTimer = null;
 function scheduleMirror() {
   clearTimeout(mirrorTimer);

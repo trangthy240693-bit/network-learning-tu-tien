@@ -1,5 +1,6 @@
 import { loadWords, LANG_META } from "./data.js";
 import { Store } from "./db.js";
+import { currentProfile } from "./profiles.js";
 import { renderBatchList, renderBatch, renderWordDetail } from "./vocab-tab.js";
 import { renderReview } from "./review-tab.js";
 import { renderFreeTalk, renderTalkWithGao } from "./freetalk.js";
@@ -12,6 +13,7 @@ const lang = params.get("lang") === "ko" ? "ko" : "zh";
 const meta = LANG_META[lang];
 
 document.getElementById("lang-badge").textContent = meta.label;
+document.getElementById("profile-chip").textContent = `👤 ${currentProfile().name}`;
 document.title = `${meta.label} · Network Learning`;
 
 const ctx = { lang, words: [] };

@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 <title>Network Learning</title>
 <link rel="stylesheet" href="css/style.css" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1f7a5a" />
+<link rel="apple-touch-icon" href="assets/icon-192.png" />
 <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3/dist/index.js"></script>
 </head>
 <body>
@@ -12,7 +15,7 @@
   <div class="topbar">
     <a href="index.html" class="icon-btn" title="Về trang chọn ngôn ngữ" style="text-decoration:none;font-size:18px">←</a>
     <div class="brand"><span id="lang-badge" class="lang-badge"></span></div>
-    <div style="width:32px"></div>
+    <div class="profile-chip" id="profile-chip"></div>
   </div>
 
   <div class="tabbar">
@@ -35,5 +38,10 @@
 </div>
 
 <script type="module" src="js/main.js"></script>
+<script>
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+  }
+</script>
 </body>
 </html>
