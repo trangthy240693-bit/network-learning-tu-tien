@@ -29,7 +29,7 @@
         "hanviet":  "—",
         "meaning":  "chúng tôi / chúng ta",
         "note":  "我 (tôi) + 们 (hậu tố số nhiều, dùng cho người) — ghép thành \"nhóm nhiều cái tôi\". 们 gắn sau đại từ/danh từ chỉ người để chỉ số nhiều.",
-        "examples":  "1. 我们是同事。\nWǒmen shì tóngshì.\nChúng tôi là đồng nghiệp.\n──────────\n2. 我们一起去吃饭吧。\nWǒmen yìqǐ qù chīfàn ba.\nChúng ta cùng đi ăn cơm nhé.\n──────────\n3. 我们下周再联系。\nWǒmen xiàzhōu zài liánxì.\nTuần sau chúng ta liên lạc lại.\n──────────\n4. 我们公司在市中心。\nWǒmen gōngsī zài shì zhōngxīn.\nCông ty chúng tôi ở trung tâm thành phố.\n──────────\n5. 我们已经等了半个小时了。\nWǒmen yǐjīng děngle bàn gè xiǎoshí le.\nChúng tôi đã đợi nửa tiếng rồi.\n──────────\n6. 我们能不能便宜一点？\nWǒmen néng bù néng piányi yìdiǎn?\nChúng tôi bớt chút được không?\n──────────\n7. 我们明天几点出发？\nWǒmen míngtiān jǐ diǎn chūfā?\nNgày mai chúng ta xuất phát mấy giờ?\n──────────\n8. 这件事我们再商量一下。\nZhè jiàn shì wǒmen zài shāngliang yíxià.\nViệc này chúng ta bàn thêm chút nữa.",
+        "examples":  "1. 我们是同事。\nWǒmen shì tóngshì.\nChúng tôi là đồng nghiệp.\n──────────\n2. 我们一起去吃饭吧。\nWǒmen yìqǐ qù chīfàn ba.\nChúng ta cùng đi ăn cơm nhé.\n──────────\n3. 我们下周再联系。\nWǒmen xiàzhōu zài liánxì.\nTuần sau chúng ta liên lạc lại.\n──────────\n4. 我们公司在市中心。\nWǒmen gōngsī zài shì zhōngxīn.\nCông ty chúng tôi ở trung tâm thành phố.\n──────────\n5. 我们已经等了半个小时了。\nWǒmen yǐjīng děngle bàn gè xiǎoshí le.\nChúng tôi đã đợi nửa tiếng rồi.\n──────────\n6. 我们买得多，能不能便宜一点？\nWǒmen mǎi de duō, néng bù néng piányi yìdiǎn?\nChúng tôi mua nhiều, có thể bớt chút được không?\n──────────\n7. 我们明天几点出发？\nWǒmen míngtiān jǐ diǎn chūfā?\nNgày mai chúng ta xuất phát mấy giờ?\n──────────\n8. 这件事我们再商量一下。\nZhè jiàn shì wǒmen zài shāngliang yíxià.\nViệc này chúng ta bàn thêm chút nữa.",
         "expand":  "你们 (các bạn), 他们 (họ), 们 (hậu tố số nhiều)"
     },
     {
@@ -72,7 +72,7 @@
         "pron":  "tā",
         "hanviet":  "—",
         "meaning":  "nó (vật/con vật)",
-        "note":  "它 = bộ miên 宀(mái nhà) + 匕 — nguyên chỉ vật nuôi trong nhà, nay dùng chung cho vật/con vật không phải người.",
+        "note":  "它 vốn là chữ tượng hình con rắn (蛇 là chữ sau này thêm bộ trùng 虫) — sau mượn để chỉ ngôi thứ ba là vật/con vật, không dùng cho người. Ghi nhớ: 宀 + 匕 chỉ là hình dạng chữ, không có logic hình-nghĩa trực tiếp.",
         "examples":  "1. 这只猫很可爱，它叫什么名字？\nZhè zhī māo hěn kě\u0027ài, tā jiào shénme míngzi?\nCon mèo này dễ thương quá, nó tên gì?\n──────────\n2. 手机没电了，它需要充电。\nShǒujī méi diàn le, tā xūyào chōngdiàn.\nĐiện thoại hết pin rồi, nó cần sạc.\n──────────\n3. 这个包很好看，但是它太贵了。\nZhège bāo hěn hǎokàn, dànshì tā tài guì le.\nCái túi này đẹp đấy, nhưng nó đắt quá.\n──────────\n4. 这辆车很旧了，它还能开吗？\nZhè liàng chē hěn jiù le, tā hái néng kāi ma?\nXe này cũ rồi, nó còn chạy được không?\n──────────\n5. 那只狗很怕生，它不认识你。\nNà zhī gǒu hěn pàshēng, tā bú rènshi nǐ.\nCon chó đó nhát người lạ, nó không quen bạn.",
         "expand":  "它们 (chúng nó)"
     },
@@ -139,7 +139,7 @@
         "hanviet":  "thập ma",
         "meaning":  "cái gì",
         "note":  "什 (đơn vị/tạp) + 么 (trợ từ nghi vấn) — ghép thành từ hỏi phổ biến nhất, đứng trước danh từ để hỏi.",
-        "examples":  "1. 你在做什么？\nNǐ zài zuò shénme?\nBạn đang làm gì vậy?\n──────────\n2. 这是什么意思？\nZhè shì shénme yìsi?\nCái này nghĩa là gì?\n──────────\n3. 你想吃点什么？\nNǐ xiǎng chī diǎn shénme?\nBạn muốn ăn gì không?\n──────────\n4. 发生什么事了？\nFāshēng shénme shì le?\nCó chuyện gì xảy ra vậy?\n──────────\n5. 你叫什么名字？\nNǐ jiào shénme míngzi?\nBạn tên là gì?\n──────────\n6. 有什么问题可以问我。\nYǒu shénme wèntí kěyǐ wèn wǒ.\nCó vấn đề gì thì hỏi tôi.\n──────────\n7. 今天天气怎么这么热，怎么回事？\nJīntiān tiānqì zěnme zhème rè, zěnme huí shì?\nHôm nay sao nóng thế, chuyện gì vậy?\n──────────\n8. 你需要什么帮助吗？\nNǐ xūyào shénme bāngzhù ma?\nBạn cần giúp đỡ gì không?",
+        "examples":  "1. 你在做什么？\nNǐ zài zuò shénme?\nBạn đang làm gì vậy?\n──────────\n2. 这是什么意思？\nZhè shì shénme yìsi?\nCái này nghĩa là gì?\n──────────\n3. 你想吃点什么？\nNǐ xiǎng chī diǎn shénme?\nBạn muốn ăn gì không?\n──────────\n4. 发生什么事了？\nFāshēng shénme shì le?\nCó chuyện gì xảy ra vậy?\n──────────\n5. 你叫什么名字？\nNǐ jiào shénme míngzi?\nBạn tên là gì?\n──────────\n6. 有什么问题可以问我。\nYǒu shénme wèntí kěyǐ wèn wǒ.\nCó vấn đề gì thì hỏi tôi.\n──────────\n7. 今天为什么这么热？\nJīntiān wèishénme zhème rè?\nHôm nay sao lại nóng thế này?\n──────────\n8. 你需要什么帮助吗？\nNǐ xūyào shénme bāngzhù ma?\nBạn cần giúp đỡ gì không?",
         "expand":  "为什么 (tại sao), 什么时候 (khi nào), 没什么 (không có gì)"
     },
     {
@@ -294,7 +294,7 @@
         "meaning":  "cần",
         "note":  "需 (nhu) = 雨(mưa) + 而 — nghĩa gốc chờ mưa tạnh (cần thiết phải chờ); 要 (yếu) = cần. Ghép thành \"nhu yếu\" — thứ cần thiết.",
         "examples":  "1. 我需要你的帮助。\nWǒ xūyào nǐ de bāngzhù.\nTôi cần sự giúp đỡ của bạn.\n──────────\n2. 这件事需要时间。\nZhè jiàn shì xūyào shíjiān.\nViệc này cần thời gian.\n──────────\n3. 你需要休息一下。\nNǐ xūyào xiūxi yíxià.\nBạn cần nghỉ ngơi một chút.\n──────────\n4. 办签证需要什么材料？\nBàn qiānzhèng xūyào shénme cáiliào?\nLàm visa cần giấy tờ gì?\n──────────\n5. 如果需要，随时打给我。\nRúguǒ xūyào, suíshí dǎ gěi wǒ.\nNếu cần thì gọi cho tôi bất cứ lúc nào.\n──────────\n6. 我不需要那么多。\nWǒ bù xūyào nàme duō.\nTôi không cần nhiều như vậy.\n──────────\n7. 这个伤口需要缝针吗？\nZhège shāngkǒu xūyào féngzhēn ma?\nVết thương này có cần khâu không?\n──────────\n8. 完成这个项目还需要多少预算？\nWánchéng zhège xiàngmù hái xūyào duōshao yùsuàn?\nHoàn thành dự án này còn cần bao nhiêu ngân sách?",
-        "expand":  "需求 (nhu cầu), 不需要 (không cần), 必需 (tất yếu — bắt buộc phải có)"
+        "expand":  "需求 (nhu cầu), 不需要 (không cần), 必需 (tất nhu — bắt buộc phải có)"
     },
     {
         "stt":  28,
@@ -523,7 +523,7 @@
         "pron":  "mǎi",
         "hanviet":  "mãi",
         "meaning":  "mua",
-        "note":  "买 giản thể là hình cái giỏ 头 đặt trên 贝 (bối, vỏ sò — tiền cổ) — dùng tiền để mua đồ bỏ vào giỏ.",
+        "note":  "买 phồn thể 買 = 网 (lưới) trên 贝 (bối, vỏ sò — tiền cổ): dùng tiền để \u0027vớt\u0027 hàng về. Giản thể 买 là dạng viết gọn, không còn nguyên hình 贝.",
         "examples":  "1. 我要买一件衣服。\nWǒ yào mǎi yí jiàn yīfu.\nTôi muốn mua một chiếc áo.\n──────────\n2. 这个多少钱？我想买。\nZhège duōshao qián? Wǒ xiǎng mǎi.\nCái này bao nhiêu tiền? Tôi muốn mua.\n──────────\n3. 你在哪儿买的这个包？\nNǐ zài nǎr mǎi de zhège bāo?\nBạn mua cái túi này ở đâu vậy?\n──────────\n4. 我们一起去买菜吧。\nWǒmen yìqǐ qù mǎi cài ba.\nChúng ta cùng đi mua rau đi.\n──────────\n5. 能不能便宜点，我就买了。\nNéng bù néng piányi diǎn, wǒ jiù mǎi le.\nBớt chút được không, tôi mua ngay.\n──────────\n6. 我买错了尺码，能换吗？\nWǒ mǎi cuòle chǐmǎ, néng huàn ma?\nTôi mua nhầm cỡ rồi, đổi được không?\n──────────\n7. 网上买东西更方便。\nWǎngshàng mǎi dōngxi gèng fāngbiàn.\nMua đồ trên mạng tiện hơn.",
         "expand":  "买单 (thanh toán), 购买 (mua sắm), 买东西 (mua đồ)"
     },
@@ -579,7 +579,7 @@
         "hanviet":  "ký",
         "meaning":  "gửi",
         "note":  "寄 = bộ miên 宀(mái nhà) + 奇 (kỳ, lạ) — gửi gắm vật lạ đến một mái nhà khác, nghĩa mở rộng thành \"gửi đi\".",
-        "examples":  "1. 我要寄一个包裹。\nWǒ yào jì yí gè bāoguǒ.\nTôi muốn gửi một kiện hàng.\n──────────\n2. 这封信寄到越南要多久？\nZhè fēng xìn jì dào Yuènán yào duōjiǔ?\nLá thư này gửi đến Việt Nam mất bao lâu?\n──────────\n3. 能帮我寄一下这个吗？\nNéng bāng wǒ jì yíxià zhège ma?\nBạn gửi giúp tôi cái này được không?\n──────────\n4. 我把文件发给你了，看看邮箱。\nWǒ bǎ wénjiàn fā gěi nǐ le, kànkan yóuxiāng.\nTôi gửi tài liệu cho bạn rồi, xem hộp mail đi.\n──────────\n5. 到了以后请给我发消息。\nDàole yǐhòu qǐng gěi wǒ fā xiāoxi.\nĐến nơi rồi nhớ nhắn tin cho tôi.",
+        "examples":  "1. 我要寄一个包裹。\nWǒ yào jì yí gè bāoguǒ.\nTôi muốn gửi một kiện hàng.\n──────────\n2. 这封信寄到越南要多久？\nZhè fēng xìn jì dào Yuènán yào duōjiǔ?\nLá thư này gửi đến Việt Nam mất bao lâu?\n──────────\n3. 能帮我寄一下这个吗？\nNéng bāng wǒ jì yíxià zhège ma?\nBạn gửi giúp tôi cái này được không?\n──────────\n4. 我上周寄给你的信收到了吗？\nWǒ shàngzhōu jì gěi nǐ de xìn shōudào le ma?\nLá thư tuần trước tôi gửi cho bạn, bạn nhận được chưa?\n──────────\n5. 到了以后请给我寄张明信片。\nDàole yǐhòu qǐng gěi wǒ jì zhāng míngxìnpiàn.\nĐến nơi rồi nhớ gửi cho tôi một tấm bưu thiếp.",
         "expand":  "寄信 (gửi thư), 寄快递 (gửi chuyển phát nhanh), 发送 (phát tống — gửi đi, dùng cho tin nhắn/email)"
     },
     {
@@ -601,7 +601,7 @@
         "hanviet":  "ác",
         "meaning":  "cầm / nắm chặt",
         "note":  "握 = 手(tay) + 屋 (ốc, nhà, âm mượn) — bàn tay khép chặt lại như một căn nhà nhỏ ôm lấy vật.",
-        "examples":  "1. 请握紧扶手。\nQǐng wò jǐn fúshǒu.\nXin nắm chặt tay vịn.\n──────────\n2. 他紧紧握着我的手。\nTā jǐnjǐn wòzhe wǒ de shǒu.\nAnh ấy nắm chặt tay tôi.\n──────────\n3. 两人握手表示友好。\nLiǎng rén wòshǒu biǎoshì yǒuhǎo.\nHai người bắt tay thể hiện thiện chí.\n──────────\n4. 请帮我拿着，握好了。\nQǐng bāng wǒ názhe, wò hǎo le.\nCầm giúp tôi, nắm chắc vào.\n──────────\n5. 他握着方向盘，很紧张。\nTā wòzhe fāngxiàngpán, hěn jǐnzhāng.\nAnh ấy nắm chặt vô lăng, rất căng thẳng.",
+        "examples":  "1. 请握紧扶手。\nQǐng wò jǐn fúshǒu.\nXin nắm chặt tay vịn.\n──────────\n2. 他紧紧握着我的手。\nTā jǐnjǐn wòzhe wǒ de shǒu.\nAnh ấy nắm chặt tay tôi.\n──────────\n3. 两人握手表示友好。\nLiǎng rén wòshǒu biǎoshì yǒuhǎo.\nHai người bắt tay thể hiện thiện chí.\n──────────\n4. 他握紧拳头，一句话也没说。\nTā wò jǐn quántou, yí jù huà yě méi shuō.\nAnh ấy nắm chặt nắm đấm, không nói một lời.\n──────────\n5. 他握着方向盘，很紧张。\nTā wòzhe fāngxiàngpán, hěn jǐnzhāng.\nAnh ấy nắm chặt vô lăng, rất căng thẳng.",
         "expand":  "握手 (bắt tay), 掌握 (nắm vững)"
     },
     {
@@ -678,7 +678,7 @@
         "hanviet":  "đình",
         "meaning":  "dừng lại",
         "note":  "停 = bộ nhân 亻(người) + 亭 (đình, cái đình) — người dừng chân nghỉ ở một cái đình.",
-        "examples":  "1. 请在这里停车。\nQǐng zài zhèlǐ tíngchē.\nXin đỗ xe ở đây.\n──────────\n2. 雨停了吗？\nYǔ tíng le ma?\nMưa tạnh chưa?\n──────────\n3. 车停在楼下。\nChē tíng zài lóuxià.\nXe đỗ ở dưới lầu.\n──────────\n4. 能不能停一下，我要下车。\nNéng bù néng tíng yíxià, wǒ yào xiàchē?\nDừng lại chút được không, tôi muốn xuống xe.\n──────────\n5. 医生让我停止吃辣的。\nYīshēng ràng wǒ tíngzhǐ chī là de.\nBác sĩ bảo tôi ngừng ăn cay.",
+        "examples":  "1. 请在这里停车。\nQǐng zài zhèlǐ tíngchē.\nXin đỗ xe ở đây.\n──────────\n2. 雨停了吗？\nYǔ tíng le ma?\nMưa tạnh chưa?\n──────────\n3. 车停在楼下。\nChē tíng zài lóuxià.\nXe đỗ ở dưới lầu.\n──────────\n4. 能不能停一下，我要下车。\nNéng bù néng tíng yíxià, wǒ yào xiàchē.\nDừng lại chút được không, tôi muốn xuống xe.\n──────────\n5. 医生让我停止吃辣的。\nYīshēng ràng wǒ tíngzhǐ chī là de.\nBác sĩ bảo tôi ngừng ăn cay.",
         "expand":  "停车 (đỗ xe), 停止 (dừng lại), 不停 (không ngừng)"
     },
     {
@@ -743,7 +743,7 @@
         "pron":  "jiào",
         "hanviet":  "khiếu",
         "meaning":  "gọi",
-        "note":  "叫 = bộ khẩu 口(miệng) + 니 (âm mượn) — mở miệng phát ra tiếng gọi.",
+        "note":  "叫 = bộ khẩu 口(miệng) + 丩 (củ, âm gần \u0027jiū\u0027) — mở miệng phát ra tiếng gọi, kêu.",
         "examples":  "1. 你叫什么名字？\nNǐ jiào shénme míngzi?\nBạn tên là gì?\n──────────\n2. 请叫一下出租车。\nQǐng jiào yíxià chūzūchē.\nXin gọi giúp một chiếc taxi.\n──────────\n3. 大家都叫他老王。\nDàjiā dōu jiào tā Lǎo Wáng.\nMọi người đều gọi anh ấy là Lão Vương.\n──────────\n4. 有人在叫你。\nYǒurén zài jiào nǐ.\nCó người đang gọi bạn kìa.\n──────────\n5. 到了记得叫醒我。\nDàole jìde jiàoxǐng wǒ.\nĐến nơi nhớ gọi tôi dậy.",
         "expand":  "叫做 (gọi là), 叫醒 (gọi dậy), 打电话 (gọi điện thoại)"
     },
@@ -755,7 +755,7 @@
         "hanviet":  "hảo",
         "meaning":  "tốt",
         "note":  "好 = 女(nữ) + 子 (tử, con) — người mẹ bên cạnh con là hình ảnh tốt đẹp, viên mãn.",
-        "examples":  "1. 你好！\nNǐ hǎo!\nXin chào!\n──────────\n2. 这家餐厅很好。\nZhè jiā cāntīng hěn hǎo.\nNhà hàng này rất tốt.\n──────────\n3. 今天天气很好。\nJīntiān tiānqì hěn hǎo.\nHôm nay thời tiết đẹp.\n──────────\n4. 你做得很好。\nNǐ zuò de hěn hǎo.\nBạn làm rất tốt.\n──────────\n5. 这个主意不太好。\nZhège zhǔyì bú tài hǎo.\nÝ này không tốt lắm.\n──────────\n6. 好，就这么定了。\nHǎo, jiù zhème dìng le.\nĐược, quyết định vậy đi.\n──────────\n7. 身体好点了吗？\nShēntǐ hǎo diǎn le ma?\nSức khỏe đỡ hơn chưa?\n──────────\n8. 这个手机质量很好用。\nZhège shǒujī zhìliàng hěn hǎoyòng.\nĐiện thoại này chất lượng dùng rất tốt.",
+        "examples":  "1. 你好！\nNǐ hǎo!\nXin chào!\n──────────\n2. 这家餐厅很好。\nZhè jiā cāntīng hěn hǎo.\nNhà hàng này rất tốt.\n──────────\n3. 今天天气很好。\nJīntiān tiānqì hěn hǎo.\nHôm nay thời tiết đẹp.\n──────────\n4. 你做得很好。\nNǐ zuò de hěn hǎo.\nBạn làm rất tốt.\n──────────\n5. 这个主意不太好。\nZhège zhǔyì bú tài hǎo.\nÝ này không tốt lắm.\n──────────\n6. 好，就这么定了。\nHǎo, jiù zhème dìng le.\nĐược, quyết định vậy đi.\n──────────\n7. 身体好点了吗？\nShēntǐ hǎo diǎn le ma?\nSức khỏe đỡ hơn chưa?\n──────────\n8. 这个手机很好用。\nZhège shǒujī hěn hǎoyòng.\nĐiện thoại này dùng rất tốt.",
         "expand":  "好吃 (ngon), 好看 (đẹp), 你好 (xin chào), 好像 (hình như)"
     },
     {
@@ -766,7 +766,7 @@
         "hanviet":  "hoại",
         "meaning":  "tồi tệ / hỏng",
         "note":  "坏 giản thể = 土(đất) + 不 (không tốt, âm giản hoá từ 褱) — mang nghĩa hư hỏng, xấu.",
-        "examples":  "1. 这个消息太坏了。\nZhège xiāoxi tài huài le.\nTin này tệ quá.\n──────────\n2. 我的手机坏了。\nWǒ de shǒujī huài le.\nĐiện thoại của tôi bị hỏng rồi.\n──────────\n3. 牛奶是不是坏了？\nNiúnǎi shì bu shì huài le?\nSữa hỏng rồi phải không?\n──────────\n4. 他不是坏人。\nTā bú shì huàirén.\nAnh ấy không phải người xấu.\n──────────\n5. 今天运气有点坏。\nJīntiān yùnqi yǒudiǎn huài.\nHôm nay vận may hơi tệ.",
+        "examples":  "1. 这个消息太坏了。\nZhège xiāoxi tài huài le.\nTin này tệ quá.\n──────────\n2. 我的手机坏了。\nWǒ de shǒujī huài le.\nĐiện thoại của tôi bị hỏng rồi.\n──────────\n3. 牛奶是不是坏了？\nNiúnǎi shì bu shì huài le?\nSữa hỏng rồi phải không?\n──────────\n4. 他不是坏人。\nTā bú shì huàirén.\nAnh ấy không phải người xấu.\n──────────\n5. 他脾气很坏。\nTā píqi hěn huài.\nAnh ấy tính khí rất xấu.",
         "expand":  "坏了 (hỏng rồi), 坏人 (người xấu), 破坏 (phá hoại)"
     },
     {
@@ -799,7 +799,7 @@
         "hanviet":  "trường",
         "meaning":  "dài",
         "note":  "长 giản thể tượng hình mái tóc dài buộc lại — chữ này còn đọc là \"zhǎng\" với nghĩa \"trưởng thành, lớn lên\".",
-        "examples":  "1. 这条路很长。\nZhè tiáo lù hěn cháng.\nCon đường này rất dài.\n──────────\n2. 你的头发很长。\nNǐ de tóufa hěn cháng.\nTóc bạn dài quá.\n──────────\n3. 这次旅行多长时间？\nZhè cì lǚxíng duō cháng shíjiān?\nChuyến du lịch này dài bao lâu?\n──────────\n4. 排队的人很长。\nPáiduì de rén hěn cháng.\nHàng người xếp hàng dài lắm.\n──────────\n5. 这篇文章太长了。\nZhè piān wénzhāng tài cháng le.\nBài viết này dài quá.",
+        "examples":  "1. 这条路很长。\nZhè tiáo lù hěn cháng.\nCon đường này rất dài.\n──────────\n2. 你的头发很长。\nNǐ de tóufa hěn cháng.\nTóc bạn dài quá.\n──────────\n3. 这次旅行多长时间？\nZhè cì lǚxíng duō cháng shíjiān?\nChuyến du lịch này dài bao lâu?\n──────────\n4. 队排得很长。\nDuì pái de hěn cháng.\nHàng xếp rất dài.\n──────────\n5. 这篇文章太长了。\nZhè piān wénzhāng tài cháng le.\nBài viết này dài quá.",
         "expand":  "长期 (dài hạn), 长大 (lớn lên/zhǎng dà), 长度 (độ dài)"
     },
     {
@@ -820,7 +820,7 @@
         "pron":  "gāo",
         "hanviet":  "cao",
         "meaning":  "cao (người/vật)",
-        "note":  "高 tượng hình một tòa lầu cao có mái — vừa chỉ chiều cao con người/vật, vừa chỉ độ cao vị trí (xem thêm mục \"high\" — tiếng Trung dùng chung 1 chữ cho cả 2 khái niệm tiếng Anh này, tiết kiệm công học!",
+        "note":  "高 tượng hình một tòa lầu cao có mái — vừa chỉ chiều cao con người/vật, vừa chỉ độ cao vị trí (xem thêm mục \"high\"). Tiếng Trung dùng chung 1 chữ cho cả 2 khái niệm tiếng Anh này, tiết kiệm công học!",
         "examples":  "1. 他个子很高。\nTā gèzi hěn gāo.\nAnh ấy dáng người cao.\n──────────\n2. 这栋楼很高。\nZhè dòng lóu hěn gāo.\nTòa nhà này rất cao.\n──────────\n3. 你比我高一点。\nNǐ bǐ wǒ gāo yìdiǎn.\nBạn cao hơn tôi một chút.\n──────────\n4. 这双鞋跟太高了，不好走路。\nZhè shuāng xié gēn tài gāo le, bù hǎo zǒulù.\nĐôi giày này gót cao quá, đi khó lắm.\n──────────\n5. 我儿子长得很高。\nWǒ érzi zhǎng de hěn gāo.\nCon trai tôi cao lớn lắm.",
         "expand":  "高个子 (người cao), 长高 (cao lên), 高中 (trung học phổ thông)"
     },
@@ -931,7 +931,7 @@
         "hanviet":  "cao hứng",
         "meaning":  "vui",
         "note":  "高 (cao) + 兴 (hứng, phấn khởi) — hứng thú dâng cao là niềm vui.",
-        "examples":  "1. 认识你很高兴。\nRènshi nǐ hěn gāoxìng.\nRất vui được quen bạn.\n──────────\n2. 听到这个消息我很高兴。\nTīngdào zhège xiāoxi wǒ hěn gāoxìng.\nNghe tin này tôi rất vui.\n──────────\n3. 他今天看起来很高兴。\nTā jīntiān kànqǐlái hěn gāoxìng.\nHôm nay anh ấy trông rất vui.\n──────────\n4. 我很高兴能帮上忙。\nWǒ hěn gāoxìng néng bāng shàng máng.\nTôi rất vui vì giúp được.\n──────────\n5. 祝你生日快乐，每天都开开心心。\nZhù nǐ shēngrì kuàilè, měitiān dōu kāikāixīnxīn.\nChúc bạn sinh nhật vui vẻ, ngày nào cũng vui vẻ.",
+        "examples":  "1. 认识你很高兴。\nRènshi nǐ hěn gāoxìng.\nRất vui được quen bạn.\n──────────\n2. 听到这个消息我很高兴。\nTīngdào zhège xiāoxi wǒ hěn gāoxìng.\nNghe tin này tôi rất vui.\n──────────\n3. 他今天看起来很高兴。\nTā jīntiān kànqǐlái hěn gāoxìng.\nHôm nay anh ấy trông rất vui.\n──────────\n4. 我很高兴能帮上忙。\nWǒ hěn gāoxìng néng bāng shàng máng.\nTôi rất vui vì giúp được.\n──────────\n5. 看到你这么开心，我也很高兴。\nKàndào nǐ zhème kāixīn, wǒ yě hěn gāoxìng.\nThấy bạn vui như vậy, tôi cũng rất vui.",
         "expand":  "开心 (vui vẻ), 高兴 (vui/cao hứng), 快乐 (khoái lạc — vui vẻ)"
     },
     {
@@ -996,7 +996,7 @@
         "pron":  "ruǎn",
         "hanviet":  "nhuyễn",
         "meaning":  "mềm",
-        "note":  "软 = 车(xe) + 欠 (khiếm, thiếu) — xe thiếu độ cứng thì mềm, dễ lún.",
+        "note":  "软 = 车(xe) + 欠 — giản thể của 軟 (bên phải vốn là 耎 làm âm đọc, nay rút gọn thành 欠); nghĩa \"mềm\", đối lập với 硬 (cứng).",
         "examples":  "1. 这个枕头很软。\nZhège zhěntou hěn ruǎn.\nCái gối này rất mềm.\n──────────\n2. 这块布摸起来很软。\nZhè kuài bù mō qǐlái hěn ruǎn.\nMiếng vải này sờ vào rất mềm.\n──────────\n3. 我喜欢软一点的床垫。\nWǒ xǐhuan ruǎn yìdiǎn de chuángdiàn.\nTôi thích đệm mềm một chút.\n──────────\n4. 这个面包很软，很好吃。\nZhège miànbāo hěn ruǎn, hěn hǎochī.\nBánh mì này mềm, rất ngon.\n──────────\n5. 他心肠很软。\nTā xīncháng hěn ruǎn.\nAnh ấy lòng dạ mềm yếu (dễ mủi lòng).",
         "expand":  "软件 (phần mềm), 柔软 (nhu nhuyễn — mềm mại)"
     },
@@ -1084,7 +1084,7 @@
         "pron":  "cuò",
         "hanviet":  "thác",
         "meaning":  "sai",
-        "note":  "错 = 钅(kim loại) + 昔 (tích, xưa) — mạ vàng bạc lâu ngày sai màu, nghĩa mở rộng thành \"sai lầm\".",
+        "note":  "错 = 钅(kim loại) + 昔 (tích, phần biểu âm) — nghĩa gốc là khảm/mạ kim loại (错金), sau mở rộng thành \"sai lầm, nhầm lẫn\".",
         "examples":  "1. 我错了。\nWǒ cuò le.\nTôi sai rồi.\n──────────\n2. 这个字写错了。\nZhège zì xiě cuò le.\nChữ này viết sai rồi.\n──────────\n3. 你拿错东西了。\nNǐ ná cuò dōngxi le.\nBạn cầm nhầm đồ rồi.\n──────────\n4. 是不是我记错了？\nShì bu shì wǒ jì cuò le?\nCó phải tôi nhớ nhầm rồi không?\n──────────\n5. 没错，就是这样。\nMéi cuò, jiùshì zhèyàng.\nĐúng vậy, chính là như thế.",
         "expand":  "错误 (sai lầm), 弄错 (làm sai), 没错 (đúng vậy)"
     },
@@ -1129,7 +1129,7 @@
         "hanviet":  "số tự",
         "meaning":  "con số",
         "note":  "数 (số) = đếm + 字 (tự) = chữ — chữ dùng để đếm, biểu thị số lượng.",
-        "examples":  "1. 你的电话号码是多少？\nNǐ de diànhuà hàomǎ shì duōshao?\nSố điện thoại của bạn là bao nhiêu?\n──────────\n2. 请给我这个数字。\nQǐng gěi wǒ zhège shùzì.\nCho tôi con số này.\n──────────\n3. 这个数字不对。\nZhège shùzì bú duì.\nCon số này không đúng.\n──────────\n4. 房间号是多少？\nFángjiān hào shì duōshao?\nSố phòng là bao nhiêu?\n──────────\n5. 中国人喜欢数字八。\nZhōngguórén xǐhuan shùzì bā.\nNgười Trung Quốc thích con số tám.",
+        "examples":  "1. 这个数字怎么读？\nZhège shùzì zěnme dú?\nCon số này đọc thế nào?\n──────────\n2. 请给我这个数字。\nQǐng gěi wǒ zhège shùzì.\nCho tôi con số này.\n──────────\n3. 这个数字不对。\nZhège shùzì bú duì.\nCon số này không đúng.\n──────────\n4. 请把数字写清楚。\nQǐng bǎ shùzì xiě qīngchu.\nXin viết rõ các con số.\n──────────\n5. 中国人喜欢数字八。\nZhōngguórén xǐhuan shùzì bā.\nNgười Trung Quốc thích con số tám.",
         "expand":  "号码 (số hiệu), 数量 (số lượng)"
     },
     {
@@ -1272,7 +1272,7 @@
         "hanviet":  "tưởng pháp",
         "meaning":  "ý tưởng / suy nghĩ",
         "note":  "想 (tưởng) = suy nghĩ + 法 (pháp) = cách thức — cách suy nghĩ về một việc gì đó.",
-        "examples":  "1. 这是个好想法。\nZhè shì gè hǎo xiǎngfǎ.\nĐây là một ý tưởng hay.\n──────────\n2. 你有什么想法？\nNǐ yǒu shénme xiǎngfǎ?\nBạn có ý tưởng gì không?\n──────────\n3. 我改变主意了。\nWǒ gǎibiàn zhǔyi le.\nTôi đổi ý rồi.\n──────────\n4. 他的想法跟我不一样。\nTā de xiǎngfǎ gēn wǒ bù yíyàng.\nSuy nghĩ của anh ấy khác tôi.\n──────────\n5. 说说你的想法吧。\nShuōshuo nǐ de xiǎngfǎ ba.\nNói thử ý tưởng của bạn xem.",
+        "examples":  "1. 这是个好想法。\nZhè shì gè hǎo xiǎngfǎ.\nĐây là một ý tưởng hay.\n──────────\n2. 你有什么想法？\nNǐ yǒu shénme xiǎngfǎ?\nBạn có ý tưởng gì không?\n──────────\n3. 我改变了想法。\nWǒ gǎibiàn le xiǎngfǎ.\nTôi đã thay đổi suy nghĩ.\n──────────\n4. 他的想法跟我不一样。\nTā de xiǎngfǎ gēn wǒ bù yíyàng.\nSuy nghĩ của anh ấy khác tôi.\n──────────\n5. 说说你的想法吧。\nShuōshuo nǐ de xiǎngfǎ ba.\nNói thử ý tưởng của bạn xem.",
         "expand":  "主意 (chủ ý), 看法 (quan điểm)"
     },
     {
@@ -1293,7 +1293,7 @@
         "pron":  "shíjiān",
         "hanviet":  "thời gian",
         "meaning":  "thời gian",
-        "note":  "时 (thời) = mặt trời 日 + 寸 (tấc, đo lường) — mặt trời đi được 1 tấc là 1 khoảng thời gian; 间 (gian) = khoảng giữa.",
+        "note":  "时 (thời) = 日 (mặt trời) + 寸 — giản thể của 時 (日 + 寺, 寺 làm âm đọc), chỉ thời gian theo vòng mặt trời; 间 (gian) = khoảng giữa.",
         "examples":  "1. 现在几点了？\nXiànzài jǐ diǎn le?\nBây giờ mấy giờ rồi?\n──────────\n2. 我没有时间。\nWǒ méiyǒu shíjiān.\nTôi không có thời gian.\n──────────\n3. 时间过得真快。\nShíjiān guò de zhēn kuài.\nThời gian trôi nhanh thật.\n──────────\n4. 你什么时间方便？\nNǐ shénme shíjiān fāngbiàn?\nBạn rảnh lúc nào?\n──────────\n5. 请准时到，别浪费大家的时间。\nQǐng zhǔnshí dào, bié làngfèi dàjiā de shíjiān.\nXin đến đúng giờ, đừng lãng phí thời gian mọi người.\n──────────\n6. 这需要多长时间？\nZhè xūyào duō cháng shíjiān?\nViệc này cần bao lâu?\n──────────\n7. 时间不早了，我们该走了。\nShíjiān bù zǎo le, wǒmen gāi zǒu le.\nMuộn rồi, chúng ta nên đi thôi.",
         "expand":  "时间表 (thời gian biểu), 准时 (đúng giờ), 有时间 (có thời gian/rảnh)"
     },
@@ -1359,7 +1359,7 @@
         "pron":  "wǎnshang",
         "hanviet":  "vãn thượng",
         "meaning":  "buổi tối",
-        "note":  "晚 (vãn) = mặt trời 日 + 免 (miễn, tránh) — mặt trời sắp lặn, tránh ánh sáng ban ngày; 上 (thượng) chỉ khoảng thời gian.",
+        "note":  "晚 (vãn) = 日 (mặt trời) + 免 (miễn, phần biểu âm) — lúc mặt trời xuống muộn, chỉ buổi chiều tối; 上 (thượng) ở đây là hậu tố chỉ khoảng thời gian.",
         "examples":  "1. 晚上好。\nWǎnshang hǎo.\nChào buổi tối.\n──────────\n2. 今天晚上你有空吗？\nJīntiān wǎnshang nǐ yǒu kòng ma?\nTối nay bạn có rảnh không?\n──────────\n3. 我们晚上一起吃饭吧。\nWǒmen wǎnshang yìqǐ chīfàn ba.\nTối nay chúng ta cùng ăn cơm đi.\n──────────\n4. 昨天晚上没睡好。\nZuótiān wǎnshang méi shuì hǎo.\nTối qua ngủ không ngon.\n──────────\n5. 晚上路上车少一点。\nWǎnshang lùshang chē shǎo yìdiǎn.\nBuổi tối trên đường ít xe hơn.",
         "expand":  "晚上好 (chào buổi tối), 今天晚上 (tối nay), 明天晚上 (tối mai)"
     },
@@ -1404,7 +1404,7 @@
         "hanviet":  "nhân môn",
         "meaning":  "mọi người",
         "note":  "人 (nhân) = người + 们 (hậu tố số nhiều) — số nhiều của 人, chỉ chung mọi người trong xã hội.",
-        "examples":  "1. 人们都很关心这个问题。\nRénmen dōu hěn guānxīn zhège wèntí.\nMọi người đều rất quan tâm đến vấn đề này.\n──────────\n2. 现在越来越多人们喜欢网购。\nXiànzài yuè lái yuè duō rénmen xǐhuan wǎnggòu.\nBây giờ ngày càng nhiều người thích mua sắm online.\n──────────\n3. 人们对这件事看法不同。\nRénmen duì zhè jiàn shì kànfǎ bùtóng.\nMọi người có quan điểm khác nhau về việc này.\n──────────\n4. 街上的人们都在忙着过节。\nJiēshàng de rénmen dōu zài mángzhe guòjié.\nMọi người trên phố đều đang bận rộn đón lễ.\n──────────\n5. 人们常说时间就是金钱。\nRénmen cháng shuō shíjiān jiùshì jīnqián.\nNgười ta thường nói thời gian là tiền bạc.",
+        "examples":  "1. 人们都很关心这个问题。\nRénmen dōu hěn guānxīn zhège wèntí.\nMọi người đều rất quan tâm đến vấn đề này.\n──────────\n2. 现在人们越来越喜欢网购。\nXiànzài rénmen yuè lái yuè xǐhuan wǎnggòu.\nBây giờ mọi người ngày càng thích mua sắm online.\n──────────\n3. 人们对这件事看法不同。\nRénmen duì zhè jiàn shì kànfǎ bùtóng.\nMọi người có quan điểm khác nhau về việc này.\n──────────\n4. 街上的人们都在忙着过节。\nJiēshàng de rénmen dōu zài mángzhe guòjié.\nMọi người trên phố đều đang bận rộn đón lễ.\n──────────\n5. 人们常说时间就是金钱。\nRénmen cháng shuō shíjiān jiùshì jīnqián.\nNgười ta thường nói thời gian là tiền bạc.",
         "expand":  "大家 (mọi người - thân mật hơn), 人口 (dân số)"
     },
     {
@@ -1437,7 +1437,7 @@
         "hanviet":  "nữ nhân",
         "meaning":  "phụ nữ",
         "note":  "女 (nữ) tượng hình người phụ nữ quỳ, khoanh tay — nghĩa gốc chỉ giới tính nữ; 人 (nhân) = người.",
-        "examples":  "1. 那个女人很漂亮。\nNàge nǚrén hěn piàoliang.\nNgười phụ nữ đó rất đẹp.\n──────────\n2. 她是一个独立的女人。\nTā shì yí gè dúlì de nǚrén.\nCô ấy là một phụ nữ độc lập.\n──────────\n3. 越来越多女人选择自己创业。\nYuè lái yuè duō nǚrén xuǎnzé zìjǐ chuàngyè.\nNgày càng nhiều phụ nữ chọn tự khởi nghiệp.\n──────────\n4. 这个牌子的衣服很适合女人穿。\nZhège páizi de yīfu hěn shìhé nǚrén chuān.\nQuần áo thương hiệu này rất hợp với phụ nữ mặc.\n──────────\n5. 那位女人是我们的新经理。\nNà wèi nǚrén shì wǒmen de xīn jīnglǐ.\nNgười phụ nữ đó là quản lý mới của chúng tôi.",
+        "examples":  "1. 那个女人很漂亮。\nNàge nǚrén hěn piàoliang.\nNgười phụ nữ đó rất đẹp.\n──────────\n2. 她是一个独立的女人。\nTā shì yí gè dúlì de nǚrén.\nCô ấy là một phụ nữ độc lập.\n──────────\n3. 越来越多女人选择自己创业。\nYuè lái yuè duō nǚrén xuǎnzé zìjǐ chuàngyè.\nNgày càng nhiều phụ nữ chọn tự khởi nghiệp.\n──────────\n4. 这个牌子的衣服很适合女人穿。\nZhège páizi de yīfu hěn shìhé nǚrén chuān.\nQuần áo thương hiệu này rất hợp với phụ nữ mặc.\n──────────\n5. 那个女人是我们的新经理。\nNàge nǚrén shì wǒmen de xīn jīnglǐ.\nNgười phụ nữ đó là quản lý mới của chúng tôi.",
         "expand":  "女人 (phụ nữ), 女生 (nữ sinh), 女朋友 (bạn gái)"
     },
     {
@@ -1459,7 +1459,7 @@
         "hanviet":  "bằng hữu",
         "meaning":  "bạn bè",
         "note":  "朋 (bằng) = hai chuỗi ngọc bối giống nhau — người ngang hàng, thân thiết; 友 (hữu) = bạn.",
-        "examples":  "1. 他是我最好的朋友。\nTā shì wǒ zuì hǎo de péngyou.\nAnh ấy là bạn thân nhất của tôi.\n──────────\n2. 我们是老朋友了。\nWǒmen shì lǎo péngyou le.\nChúng tôi là bạn cũ rồi.\n──────────\n3. 交朋友要真诚。\nJiāo péngyou yào zhēnchéng.\nKết bạn phải chân thành.\n──────────\n4. 我朋友介绍我来这家店的。\nWǒ péngyou jièshào wǒ lái zhè jiā diàn de.\nBạn tôi giới thiệu tôi đến quán này.\n──────────\n5. 你想加我朋友吗？\nNǐ xiǎng jiā wǒ péngyou ma?\nBạn muốn kết bạn với tôi không?",
+        "examples":  "1. 他是我最好的朋友。\nTā shì wǒ zuì hǎo de péngyou.\nAnh ấy là bạn thân nhất của tôi.\n──────────\n2. 我们是老朋友了。\nWǒmen shì lǎo péngyou le.\nChúng tôi là bạn cũ rồi.\n──────────\n3. 交朋友要真诚。\nJiāo péngyou yào zhēnchéng.\nKết bạn phải chân thành.\n──────────\n4. 我朋友介绍我来这家店的。\nWǒ péngyou jièshào wǒ lái zhè jiā diàn de.\nBạn tôi giới thiệu tôi đến quán này.\n──────────\n5. 你想加我为朋友吗？\nNǐ xiǎng jiā wǒ wéi péngyou ma?\nBạn muốn kết bạn với tôi không?",
         "expand":  "朋友 (bạn bè), 男朋友 (bạn trai), 交朋友 (kết bạn)"
     },
     {
@@ -1491,7 +1491,7 @@
         "pron":  "tóu",
         "hanviet":  "đầu",
         "meaning":  "đầu",
-        "note":  "头 giản thể tượng hình phần đầu con vật có sừng — chỉ bộ phận trên cùng cơ thể.",
+        "note":  "头 là giản thể của 頭 (vốn gồm 豆 làm âm đọc + 页 nghĩa \"đầu\"); nay viết gọn thành 头 — chỉ bộ phận trên cùng cơ thể.",
         "examples":  "1. 我头疼。\nWǒ tóuténg.\nTôi đau đầu.\n──────────\n2. 小心头上的横梁。\nXiǎoxīn tóu shàng de héngliáng.\nCẩn thận xà ngang phía trên đầu.\n──────────\n3. 他点了点头。\nTā diǎnle diǎn tóu.\nAnh ấy gật đầu.\n──────────\n4. 最近工作压力大，老是头疼。\nZuìjìn gōngzuò yālì dà, lǎoshì tóuténg.\nGần đây áp lực công việc lớn, cứ bị đau đầu.\n──────────\n5. 请把头发梳一下。\nQǐng bǎ tóufa shū yíxià.\nXin chải tóc gọn lại một chút.",
         "expand":  "头疼 (đau đầu), 头发 (tóc), 点头 (gật đầu)"
     },
@@ -1590,7 +1590,7 @@
         "pron":  "chá",
         "hanviet":  "trà",
         "meaning":  "trà",
-        "note":  "茶 = bộ thảo 艹(cỏ cây) + 余 — lá cây dùng để pha nước uống.",
+        "note":  "茶 = 艹(cỏ cây) + 人 + 木(cây) — người ngồi giữa cây cỏ thưởng trà; lá cây dùng để pha nước uống.",
         "examples":  "1. 你要喝茶吗？\nNǐ yào hē chá ma?\nBạn muốn uống trà không?\n──────────\n2. 来一杯热茶。\nLái yì bēi rè chá.\nCho một cốc trà nóng.\n──────────\n3. 中国人很喜欢喝茶。\nZhōngguórén hěn xǐhuan hē chá.\nNgười Trung Quốc rất thích uống trà.\n──────────\n4. 这是什么茶？\nZhè shì shénme chá?\nĐây là trà gì vậy?\n──────────\n5. 喝茶对身体有好处。\nHē chá duì shēntǐ yǒu hǎochù.\nUống trà tốt cho sức khỏe.",
         "expand":  "茶叶 (lá trà), 喝茶 (uống trà), 奶茶 (trà sữa)"
     },
@@ -1712,7 +1712,7 @@
         "hanviet":  "thành thị",
         "meaning":  "thành phố",
         "note":  "城 (thành) = tường thành bao quanh + 市 (thị) = chợ, nơi buôn bán — khu vực đông đúc có tường bao.",
-        "examples":  "1. 你喜欢这个城市吗？\nNǐ xǐhuan zhège chéngshì ma?\nBạn có thích thành phố này không?\n──────────\n2. 这是一座很大的城市。\nZhè shì yí zuò hěn dà de chéngshì.\nĐây là một thành phố rất lớn.\n──────────\n3. 我在这个城市住了五年。\nWǒ zài zhège chéngshì zhùle wǔ nián.\nTôi đã sống ở thành phố này năm năm.\n──────────\n4. 河内是越南的首都城市。\nHénèi shì Yuènán de shǒudū chéngshì.\nHà Nội là thành phố thủ đô của Việt Nam.\n──────────\n5. 这座城市晚上很热闹。\nZhè zuò chéngshì wǎnshang hěn rènao.\nThành phố này buổi tối rất nhộn nhịp.",
+        "examples":  "1. 你喜欢这个城市吗？\nNǐ xǐhuan zhège chéngshì ma?\nBạn có thích thành phố này không?\n──────────\n2. 这是一座很大的城市。\nZhè shì yí zuò hěn dà de chéngshì.\nĐây là một thành phố rất lớn.\n──────────\n3. 我在这个城市住了五年。\nWǒ zài zhège chéngshì zhùle wǔ nián.\nTôi đã sống ở thành phố này năm năm.\n──────────\n4. 河内是越南的首都，也是一座大城市。\nHénèi shì Yuènán de shǒudū, yě shì yí zuò dà chéngshì.\nHà Nội là thủ đô của Việt Nam, cũng là một thành phố lớn.\n──────────\n5. 这座城市晚上很热闹。\nZhè zuò chéngshì wǎnshang hěn rènao.\nThành phố này buổi tối rất nhộn nhịp.",
         "expand":  "城市 (thành phố), 首都 (thủ đô), 市中心 (trung tâm thành phố)"
     },
     {
@@ -1832,7 +1832,7 @@
         "pron":  "shū",
         "hanviet":  "thư",
         "meaning":  "sách",
-        "note":  "书 giản thể tượng hình cuộn thẻ tre có chữ viết — vật mang thông tin, tri thức.",
+        "note":  "书 giản thể là dạng rút gọn (thảo thư hóa) của 書 (bút 聿 + 者) — chỉ chữ viết được ghi lại thành sách, vật mang thông tin, tri thức.",
         "examples":  "1. 这本书很有意思。\nZhè běn shū hěn yǒu yìsi.\nQuyển sách này rất thú vị.\n──────────\n2. 你在看什么书？\nNǐ zài kàn shénme shū?\nBạn đang đọc sách gì vậy?\n──────────\n3. 我想买一本关于中国历史的书。\nWǒ xiǎng mǎi yì běn guānyú Zhōngguó lìshǐ de shū.\nTôi muốn mua một quyển sách về lịch sử Trung Quốc.\n──────────\n4. 这本书是从图书馆借的。\nZhè běn shū shì cóng túshūguǎn jiè de.\nQuyển sách này mượn từ thư viện.\n──────────\n5. 睡前看书对我有帮助。\nShuì qián kàn shū duì wǒ yǒu bāngzhù.\nĐọc sách trước khi ngủ giúp ích cho tôi.",
         "expand":  "看书 (đọc sách), 书店 (hiệu sách), 图书馆 (thư viện)"
     },
@@ -1888,7 +1888,7 @@
         "hanviet":  "khí xa",
         "meaning":  "ô tô",
         "note":  "汽 (khí) = hơi nước + 车 (xa) = xe — xe chạy bằng động cơ (khác với 车 xa nói chung dùng cho mọi loại xe).",
-        "examples":  "1. 这是我的车。\nZhè shì wǒ de chē.\nĐây là xe của tôi.\n──────────\n2. 我们开车去吧。\nWǒmen kāichē qù ba.\nChúng ta lái xe đi đi.\n──────────\n3. 前面堵车了。\nQiánmiàn dǔchē le.\nPhía trước tắc đường rồi.\n──────────\n4. 这辆车多少钱？\nZhè liàng chē duōshao qián?\nChiếc xe này giá bao nhiêu?\n──────────\n5. 请把车停在这里。\nQǐng bǎ chē tíng zài zhèlǐ.\nXin đỗ xe ở đây.\n──────────\n6. 我的车坏了，得修一下。\nWǒ de chē huài le, děi xiū yíxià.\nXe tôi hỏng rồi, phải sửa một chút.",
+        "examples":  "1. 这是我的汽车。\nZhè shì wǒ de qìchē.\nĐây là ô tô của tôi.\n──────────\n2. 我们坐汽车去吧。\nWǒmen zuò qìchē qù ba.\nChúng ta đi bằng ô tô nhé.\n──────────\n3. 路上汽车太多，堵住了。\nLùshang qìchē tài duō, dǔ zhù le.\nTrên đường có quá nhiều ô tô, bị tắc rồi.\n──────────\n4. 这辆汽车多少钱？\nZhè liàng qìchē duōshao qián?\nChiếc ô tô này giá bao nhiêu?\n──────────\n5. 请把汽车停在这里。\nQǐng bǎ qìchē tíng zài zhèlǐ.\nXin đỗ ô tô ở đây.\n──────────\n6. 我的汽车坏了，得修一下。\nWǒ de qìchē huài le, děi xiū yíxià.\nÔ tô của tôi hỏng rồi, phải sửa một chút.",
         "expand":  "开车 (lái xe), 停车 (đỗ xe), 车站 (bến xe)"
     },
     {
@@ -1943,7 +1943,7 @@
         "hanviet":  "động vật",
         "meaning":  "động vật",
         "note":  "动 (động) = chuyển động + 物 (vật) = vật thể — vật thể có thể tự chuyển động, phân biệt với thực vật.",
-        "examples":  "1. 你喜欢什么动物？\nNǐ xǐhuan shénme dòngwù?\nBạn thích động vật gì?\n──────────\n2. 动物园里有很多动物。\nDòngwùyuán lǐ yǒu hěn duō dòngwù.\nTrong sở thú có rất nhiều động vật.\n──────────\n3. 这是一种很稀有的动物。\nZhè shì yì zhǒng hěn xīyǒu de dòngwù.\nĐây là một loài động vật quý hiếm.\n──────────\n4. 请不要伤害小动物。\nQǐng bú yào shānghài xiǎo dòngwù.\nXin đừng làm hại động vật nhỏ.\n──────────\n5. 我家养了一只动物。\nWǒ jiā yǎngle yì zhī dòngwù.\nNhà tôi nuôi một con vật.",
+        "examples":  "1. 你喜欢什么动物？\nNǐ xǐhuan shénme dòngwù?\nBạn thích động vật gì?\n──────────\n2. 动物园里有很多动物。\nDòngwùyuán lǐ yǒu hěn duō dòngwù.\nTrong sở thú có rất nhiều động vật.\n──────────\n3. 这是一种很稀有的动物。\nZhè shì yì zhǒng hěn xīyǒu de dòngwù.\nĐây là một loài động vật quý hiếm.\n──────────\n4. 请不要伤害小动物。\nQǐng bú yào shānghài xiǎo dòngwù.\nXin đừng làm hại động vật nhỏ.\n──────────\n5. 他很爱护动物。\nTā hěn àihù dòngwù.\nAnh ấy rất yêu quý động vật.",
         "expand":  "动物园 (sở thú), 宠物 (thú cưng)"
     },
     {
@@ -1976,7 +1976,7 @@
         "hanviet":  "khuynh thính",
         "meaning":  "lắng nghe",
         "note":  "倾 (khuynh) = nghiêng người về phía trước + 听 (thính) = nghe — nghiêng tai chăm chú lắng nghe, sắc thái trang trọng hơn 听 thường.",
-        "examples":  "1. 请你倾听我的想法。\nQǐng nǐ qīngtīng wǒ de xiǎngfǎ.\nXin bạn lắng nghe suy nghĩ của tôi.\n──────────\n2. 他很会倾听别人的意见。\nTā hěn huì qīngtīng biérén de yìjiàn.\nAnh ấy rất biết lắng nghe ý kiến người khác.\n──────────\n3. 医生耐心地倾听病人的描述。\nYīshēng nàixīn de qīngtīng bìngrén de miáoshù.\nBác sĩ kiên nhẫn lắng nghe lời kể của bệnh nhân.\n──────────\n4. 有时候我们只需要有人倾听。\nYǒu shíhou wǒmen zhǐ xūyào yǒurén qīngtīng.\nĐôi khi chúng ta chỉ cần có người lắng nghe.\n──────────\n5. 请安静地听音乐。\nQǐng ānjìng de tīng yīnyuè.\nXin yên lặng nghe nhạc.",
+        "examples":  "1. 请你倾听我的想法。\nQǐng nǐ qīngtīng wǒ de xiǎngfǎ.\nXin bạn lắng nghe suy nghĩ của tôi.\n──────────\n2. 他很会倾听别人的意见。\nTā hěn huì qīngtīng biérén de yìjiàn.\nAnh ấy rất biết lắng nghe ý kiến người khác.\n──────────\n3. 医生耐心地倾听病人的描述。\nYīshēng nàixīn de qīngtīng bìngrén de miáoshù.\nBác sĩ kiên nhẫn lắng nghe lời kể của bệnh nhân.\n──────────\n4. 有时候我们只需要有人倾听。\nYǒu shíhou wǒmen zhǐ xūyào yǒurén qīngtīng.\nĐôi khi chúng ta chỉ cần có người lắng nghe.\n──────────\n5. 请安静地倾听他把话说完。\nQǐng ānjìng de qīngtīng tā bǎ huà shuōwán.\nXin hãy yên lặng lắng nghe anh ấy nói hết lời.",
         "expand":  "听 (nghe), 倾听 (lắng nghe), 听力 (khả năng nghe)"
     },
     {
@@ -2008,7 +2008,7 @@
         "pron":  "cháng",
         "hanviet":  "thường",
         "meaning":  "nếm",
-        "note":  "尝 giản thể từ 嘗 (bộ khẩu 口 + 尚, thượng) — đưa thức ăn lên miệng để thử.",
+        "note":  "尝 giản thể từ 嘗 (尚 thượng, âm + 旨 chỉ, vị ngon) — nếm vị để thử.",
         "examples":  "1. 你尝尝这个。\nNǐ chángchang zhège.\nBạn nếm thử cái này đi.\n──────────\n2. 这道菜尝起来很辣。\nZhè dào cài cháng qǐlái hěn là.\nMón này nếm thấy cay lắm.\n──────────\n3. 我可以尝一口吗？\nWǒ kěyǐ cháng yì kǒu ma?\nTôi nếm thử một miếng được không?\n──────────\n4. 尝尝味道够不够咸。\nChángchang wèidao gòu bu gòu xián.\nNếm thử xem đủ mặn chưa.\n──────────\n5. 这是我第一次尝这种水果。\nZhè shì wǒ dì yī cì cháng zhè zhǒng shuǐguǒ.\nĐây là lần đầu tôi nếm loại quả này.",
         "expand":  "尝试 (thử nghiệm), 品尝 (thưởng thức)"
     },
@@ -2017,7 +2017,7 @@
         "en":  "hate",
         "target":  "讨厌",
         "pron":  "tǎoyàn",
-        "hanviet":  "—",
+        "hanviet":  "thảo yếm",
         "meaning":  "ghét",
         "note":  "讨 (thảo) = đòi hỏi, gây phiền + 厌 (yếm) = chán ghét — cảm giác khó chịu, chán ghét với ai/việc gì.",
         "examples":  "1. 我讨厌下雨天。\nWǒ tǎoyàn xiàyǔ tiān.\nTôi ghét những ngày mưa.\n──────────\n2. 他很讨厌迟到的人。\nTā hěn tǎoyàn chídào de rén.\nAnh ấy rất ghét người đến muộn.\n──────────\n3. 我不是讨厌你，只是心情不好。\nWǒ bú shì tǎoyàn nǐ, zhǐshì xīnqíng bù hǎo.\nTôi không ghét bạn, chỉ là tâm trạng không tốt.\n──────────\n4. 她最讨厌被人骗。\nTā zuì tǎoyàn bèi rén piàn.\nCô ấy ghét nhất là bị người khác lừa.\n──────────\n5. 别惹他，他现在很讨厌被打扰。\nBié rě tā, tā xiànzài hěn tǎoyàn bèi dǎrǎo.\nĐừng trêu anh ấy, giờ anh ấy rất ghét bị làm phiền.",
@@ -2162,8 +2162,8 @@
         "pron":  "diū",
         "hanviet":  "—",
         "meaning":  "mất / đánh mất",
-        "note":  "丢 = 去(đi) thêm nét ngang — vật rời đi khỏi tay, biến mất.",
-        "examples":  "1. 我把钥匙丢了。\nWǒ bǎ yàoshi diū le.\nTôi làm mất chìa khóa rồi.\n──────────\n2. 小心别丢东西。\nXiǎoxīn bié diū dōngxi.\nCẩn thận đừng làm mất đồ.\n──────────\n3. 我的护照丢了，怎么办？\nWǒ de hùzhào diū le, zěnme bàn?\nHộ chiếu của tôi mất rồi, phải làm sao?\n──────────\n4. 这场比赛我们输了。\nZhè chǎng bǐsài wǒmen shū le.\nTrận đấu này chúng tôi thua rồi.\n──────────\n5. 别把手机弄丢了。\nBié bǎ shǒujī nòng diū le.\nĐừng làm mất điện thoại đấy.",
+        "note":  "丢 = nét phẩy 丿 + 去(đi) — vật rời đi khỏi tay, biến mất.",
+        "examples":  "1. 我把钥匙丢了。\nWǒ bǎ yàoshi diū le.\nTôi làm mất chìa khóa rồi.\n──────────\n2. 小心别丢东西。\nXiǎoxīn bié diū dōngxi.\nCẩn thận đừng làm mất đồ.\n──────────\n3. 我的护照丢了，怎么办？\nWǒ de hùzhào diū le, zěnme bàn?\nHộ chiếu của tôi mất rồi, phải làm sao?\n──────────\n4. 我在路上丢了钱包。\nWǒ zài lùshang diūle qiánbāo.\nTôi làm mất ví trên đường.\n──────────\n5. 别把手机弄丢了。\nBié bǎ shǒujī nòng diū le.\nĐừng làm mất điện thoại đấy.",
         "expand":  "丢了 (mất rồi), 输 (thua - trong thi đấu)"
     },
     {
@@ -2174,7 +2174,7 @@
         "hanviet":  "tầm",
         "meaning":  "tìm kiếm",
         "note":  "寻 (tầm) = tìm kiếm + 找 (tìm) = tìm — hai chữ gần nghĩa ghép lại, trang trọng hơn 找 đơn.",
-        "examples":  "1. 我在寻找一份新工作。\nWǒ zài xúnzhǎo yí fèn xīn gōngzuò.\nTôi đang tìm một công việc mới.\n──────────\n2. 警察正在寻找失踪的孩子。\nJǐngchá zhèngzài xúnzhǎo shīzōng de háizi.\nCảnh sát đang tìm kiếm đứa trẻ mất tích.\n──────────\n3. 我们需要寻找解决办法。\nWǒmen xūyào xúnzhǎo jiějué bànfǎ.\nChúng ta cần tìm cách giải quyết.\n──────────\n4. 他一直在寻找自己的方向。\nTā yìzhí zài xúnzhǎo zìjǐ de fāngxiàng.\nAnh ấy vẫn luôn tìm kiếm hướng đi cho mình.\n──────────\n5. 请帮我找找看。\nQǐng bāng wǒ zhǎozhao kàn.\nXin giúp tôi tìm thử xem.",
+        "examples":  "1. 我在寻找一份新工作。\nWǒ zài xúnzhǎo yí fèn xīn gōngzuò.\nTôi đang tìm một công việc mới.\n──────────\n2. 警察正在寻找失踪的孩子。\nJǐngchá zhèngzài xúnzhǎo shīzōng de háizi.\nCảnh sát đang tìm kiếm đứa trẻ mất tích.\n──────────\n3. 我们需要寻找解决办法。\nWǒmen xūyào xúnzhǎo jiějué bànfǎ.\nChúng ta cần tìm cách giải quyết.\n──────────\n4. 他一直在寻找自己的方向。\nTā yìzhí zài xúnzhǎo zìjǐ de fāngxiàng.\nAnh ấy vẫn luôn tìm kiếm hướng đi cho mình.\n──────────\n5. 他四处寻找丢失的钱包。\nTā sìchù xúnzhǎo diūshī de qiánbāo.\nAnh ấy tìm khắp nơi chiếc ví bị mất.",
         "expand":  "找 (tìm), 寻找 (tìm kiếm), 寻人启事 (thông báo tìm người)"
     },
     {
@@ -2182,7 +2182,7 @@
         "en":  "turn on",
         "target":  "打开",
         "pron":  "dǎkāi",
-        "hanviet":  "khai",
+        "hanviet":  "đả khai",
         "meaning":  "bật (thiết bị)",
         "note":  "Cùng chữ 打开 như \"open\", nhưng dùng cho việc kích hoạt thiết bị điện (đèn, ti vi, điều hòa) thay vì mở cửa vật lý.",
         "examples":  "1. 请打开电视。\nQǐng dǎkāi diànshì.\nXin bật ti vi lên.\n──────────\n2. 帮我打开空调。\nBāng wǒ dǎkāi kōngtiáo.\nBật giúp tôi điều hòa.\n──────────\n3. 天黑了，把灯打开吧。\nTiān hēi le, bǎ dēng dǎkāi ba.\nTrời tối rồi, bật đèn lên đi.\n──────────\n4. 你能打开WiFi吗？\nNǐ néng dǎkāi WiFi ma?\nBạn bật WiFi được không?\n──────────\n5. 手机打不开了。\nShǒujī dǎ bù kāi le.\nĐiện thoại không bật lên được.",
@@ -2237,7 +2237,7 @@
         "en":  "clean",
         "target":  "打扫",
         "pron":  "dǎsǎo",
-        "hanviet":  "—",
+        "hanviet":  "đả tảo",
         "meaning":  "dọn dẹp",
         "note":  "打 (đả) = làm + 扫 (tảo) = quét — hành động quét dọn làm sạch.",
         "examples":  "1. 我需要打扫房间。\nWǒ xūyào dǎsǎo fángjiān.\nTôi cần dọn dẹp phòng.\n──────────\n2. 你打扫完了吗？\nNǐ dǎsǎo wán le ma?\nBạn dọn xong chưa?\n──────────\n3. 周末我们一起打扫卫生吧。\nZhōumò wǒmen yìqǐ dǎsǎo wèishēng ba.\nCuối tuần chúng ta cùng dọn vệ sinh đi.\n──────────\n4. 这里打扫得很干净。\nZhèlǐ dǎsǎo de hěn gānjìng.\nỞ đây được dọn dẹp rất sạch sẽ.\n──────────\n5. 请帮我打扫一下厨房。\nQǐng bāng wǒ dǎsǎo yíxià chúfáng.\nXin dọn giúp tôi nhà bếp.",
@@ -2251,7 +2251,7 @@
         "hanviet":  "thiết",
         "meaning":  "cắt / thái",
         "note":  "切 = bộ đao 刀(dao) + 七 (thất, âm mượn) — dùng dao cắt, thái vật.",
-        "examples":  "1. 请把肉切小一点。\nQǐng bǎ ròu qiē xiǎo yìdiǎn.\nXin thái thịt nhỏ hơn chút.\n──────────\n2. 小心别切到手。\nXiǎoxīn bié qiē dào shǒu.\nCẩn thận đừng cắt vào tay.\n──────────\n3. 帮我把西瓜切开。\nBāng wǒ bǎ xīguā qiēkāi.\nCắt giúp tôi quả dưa hấu.\n──────────\n4. 这把刀很好切。\nZhè bǎ dāo hěn hǎo qiē.\nCon dao này cắt tốt lắm.\n──────────\n5. 蛋糕切成八块。\nDàngāo qiēchéng bā kuài.\nBánh gato cắt thành tám miếng.",
+        "examples":  "1. 请把肉切小一点。\nQǐng bǎ ròu qiē xiǎo yìdiǎn.\nXin thái thịt nhỏ hơn chút.\n──────────\n2. 小心别切到手。\nXiǎoxīn bié qiē dào shǒu.\nCẩn thận đừng cắt vào tay.\n──────────\n3. 帮我把西瓜切开。\nBāng wǒ bǎ xīguā qiēkāi.\nCắt giúp tôi quả dưa hấu.\n──────────\n4. 这把刀很锋利，切菜很轻松。\nZhè bǎ dāo hěn fēnglì, qiē cài hěn qīngsōng.\nCon dao này rất sắc, thái rau rất dễ.\n──────────\n5. 蛋糕切成八块。\nDàngāo qiēchéng bā kuài.\nBánh gato cắt thành tám miếng.",
         "expand":  "切菜 (thái rau), 切开 (cắt ra)"
     },
     {
@@ -2348,10 +2348,10 @@
         "target":  "骑",
         "pron":  "qí",
         "hanviet":  "kỵ",
-        "meaning":  "cưỡi / đi (xe đạp",
-        "note":  "xe máy)",
-        "examples":  "骑 = bộ mã 马(ngựa) + 奇 (kỳ, âm mượn) — nghĩa gốc cưỡi ngựa, mở rộng cho xe đạp/xe máy.",
-        "expand":  "1. 你会骑自行车吗？\nNǐ huì qí zìxíngchē ma?\nBạn biết đi xe đạp không?\n──────────\n2. 我们骑摩托车去吧。\nWǒmen qí mótuōchē qù ba.\nChúng ta đi xe máy đi.\n──────────\n3. 他每天骑车上班。\nTā měitiān qí chē shàngbān.\nAnh ấy đi xe đạp làm việc mỗi ngày.\n──────────\n4. 这里可以骑马吗？\nZhèlǐ kěyǐ qímǎ ma?\nỞ đây cưỡi ngựa được không?\n──────────\n5. 骑车小心一点，路上车多。\nQí chē xiǎoxīn yìdiǎn, lùshang chē duō.\nĐi xe cẩn thận chút, trên đường nhiều xe."
+        "meaning":  "cưỡi / đi (xe đạp, xe máy)",
+        "note":  "骑 = bộ mã 马(ngựa) + 奇 (kỳ, âm mượn) — nghĩa gốc cưỡi ngựa, mở rộng cho xe đạp/xe máy.",
+        "examples":  "1. 你会骑自行车吗？\nNǐ huì qí zìxíngchē ma?\nBạn biết đi xe đạp không?\n──────────\n2. 我们骑摩托车去吧。\nWǒmen qí mótuōchē qù ba.\nChúng ta đi xe máy đi.\n──────────\n3. 他每天骑车上班。\nTā měitiān qí chē shàngbān.\nAnh ấy đi xe đạp đi làm mỗi ngày.\n──────────\n4. 这里可以骑马吗？\nZhèlǐ kěyǐ qímǎ ma?\nỞ đây cưỡi ngựa được không?\n──────────\n5. 骑车小心一点，路上车多。\nQí chē xiǎoxīn yìdiǎn, lùshang chē duō.\nĐi xe cẩn thận chút, trên đường nhiều xe.",
+        "expand":  "骑车 (đi xe đạp/xe máy), 骑马 (cưỡi ngựa), 骑士 (kỵ sĩ)"
     },
     {
         "stt":  215,
@@ -2391,7 +2391,7 @@
         "en":  "narrow",
         "target":  "窄",
         "pron":  "zhǎi",
-        "hanviet":  "—",
+        "hanviet":  "trách",
         "meaning":  "hẹp",
         "note":  "窄 = bộ huyệt 穴(hang, không gian) + 乍 (sạ, âm mượn) — không gian nhỏ hẹp.",
         "examples":  "1. 这条路很窄。\nZhè tiáo lù hěn zhǎi.\nCon đường này rất hẹp.\n──────────\n2. 房间有点窄。\nFángjiān yǒudiǎn zhǎi.\nPhòng hơi hẹp.\n──────────\n3. 这双鞋有点窄，夹脚。\nZhè shuāng xié yǒudiǎn zhǎi, jiā jiǎo.\nĐôi giày này hơi chật, kẹp chân.\n──────────\n4. 楼梯很窄，小心一点。\nLóutī hěn zhǎi, xiǎoxīn yìdiǎn.\nCầu thang hẹp lắm, cẩn thận chút.\n──────────\n5. 这条巷子又窄又长。\nZhè tiáo xiàngzi yòu zhǎi yòu cháng.\nCon hẻm này vừa hẹp vừa dài.",
@@ -2414,9 +2414,9 @@
         "target":  "薄",
         "pron":  "báo",
         "hanviet":  "bạc",
-        "meaning":  "mỏng / gầy",
+        "meaning":  "mỏng",
         "note":  "薄 = bộ thảo 艹(cỏ) trên 溥 (phổ) — lớp cỏ mỏng, nghĩa mở rộng chỉ độ mỏng.",
-        "examples":  "1. 这件衣服很薄。\nZhè jiàn yīfu hěn báo.\nCái áo này mỏng lắm.\n──────────\n2. 他最近瘦了很多，变得很薄。\nTā zuìjìn shòule hěn duō, biàn de hěn báo.\nGần đây anh ấy gầy đi nhiều.\n──────────\n3. 这本书很薄，一天就能看完。\nZhè běn shū hěn báo, yì tiān jiù néng kànwán.\nQuyển sách này mỏng, một ngày là đọc xong.\n──────────\n4. 冰太薄了，不能滑冰。\nBīng tài báo le, bù néng huábīng.\nBăng mỏng quá, không trượt băng được.\n──────────\n5. 这块布比较薄。\nZhè kuài bù bǐjiào báo.\nMiếng vải này khá mỏng.",
+        "examples":  "1. 这件衣服很薄。\nZhè jiàn yīfu hěn báo.\nCái áo này mỏng lắm.\n──────────\n2. 这块饼切得很薄。\nZhè kuài bǐng qiē de hěn báo.\nMiếng bánh này thái rất mỏng.\n──────────\n3. 这本书很薄，一天就能看完。\nZhè běn shū hěn báo, yì tiān jiù néng kànwán.\nQuyển sách này mỏng, một ngày là đọc xong.\n──────────\n4. 冰太薄了，不能滑冰。\nBīng tài báo le, bù néng huábīng.\nBăng mỏng quá, không trượt băng được.\n──────────\n5. 这块布比较薄。\nZhè kuài bù bǐjiào báo.\nMiếng vải này khá mỏng.",
         "expand":  "薄弱 (yếu ớt/mỏng manh), 单薄 (mỏng manh)"
     },
     {
@@ -2438,7 +2438,7 @@
         "hanviet":  "lương khoái",
         "meaning":  "mát mẻ",
         "note":  "凉 (lương) = mát mẻ + 快 (khoái) = dễ chịu — cảm giác mát mẻ dễ chịu.",
-        "examples":  "1. 秋天的天气很凉快。\nQiūtiān de tiānqì hěn liángkuai.\nThời tiết mùa thu mát mẻ.\n──────────\n2. 开了空调，房间凉快多了。\nKāile kōngtiáo, fángjiān liángkuai duōle.\nBật điều hòa rồi, phòng mát hơn nhiều.\n──────────\n3. 树下比较凉快。\nShù xià bǐjiào liángkuai.\nDưới gốc cây khá mát.\n──────────\n4. 晚上出来散步很凉快。\nWǎnshang chūlái sànbù hěn liángkuai.\nBuổi tối ra ngoài dạo bộ rất mát mẻ.\n──────────\n5. 这杯饮料很凉快，喝了很舒服。\nZhè bēi yǐnliào hěn liángkuai, hēle hěn shūfu.\nCốc nước này mát lạnh, uống vào rất dễ chịu.",
+        "examples":  "1. 秋天的天气很凉快。\nQiūtiān de tiānqì hěn liángkuai.\nThời tiết mùa thu mát mẻ.\n──────────\n2. 开了空调，房间凉快多了。\nKāile kōngtiáo, fángjiān liángkuai duōle.\nBật điều hòa rồi, phòng mát hơn nhiều.\n──────────\n3. 树下比较凉快。\nShù xià bǐjiào liángkuai.\nDưới gốc cây khá mát.\n──────────\n4. 晚上出来散步很凉快。\nWǎnshang chūlái sànbù hěn liángkuai.\nBuổi tối ra ngoài dạo bộ rất mát mẻ.\n──────────\n5. 喝了这杯冰水，觉得凉快多了。\nHēle zhè bēi bīngshuǐ, juéde liángkuai duōle.\nUống cốc nước đá này, thấy mát hơn nhiều.",
         "expand":  "凉水 (nước mát), 冷气 (hơi lạnh - máy lạnh)"
     },
     {
@@ -2460,7 +2460,7 @@
         "hanviet":  "hại phạ",
         "meaning":  "sợ hãi",
         "note":  "害 (hại) = tai hại + 怕 (phạ) = sợ — sợ điều gây hại.",
-        "examples":  "1. 别害怕。\nBié hàipà.\nĐừng sợ.\n──────────\n2. 我很害怕黑暗。\nWǒ hěn hàipà hēi\u0027àn.\nTôi rất sợ bóng tối.\n──────────\n3. 她看到蛇很害怕。\nTā kàndào shé hěn hàipà.\nCô ấy nhìn thấy rắn rất sợ.\n──────────\n4. 有什么好害怕的？\nYǒu shénme hǎo hàipà de?\nCó gì đáng sợ đâu?\n──────────\n5. 孩子怕打针。\nHáizi pà dǎzhēn.\nĐứa trẻ sợ tiêm.",
+        "examples":  "1. 别害怕。\nBié hàipà.\nĐừng sợ.\n──────────\n2. 我很害怕黑暗。\nWǒ hěn hàipà hēi\u0027àn.\nTôi rất sợ bóng tối.\n──────────\n3. 她看到蛇很害怕。\nTā kàndào shé hěn hàipà.\nCô ấy nhìn thấy rắn rất sợ.\n──────────\n4. 有什么好害怕的？\nYǒu shénme hǎo hàipà de?\nCó gì đáng sợ đâu?\n──────────\n5. 孩子害怕打针。\nHáizi hàipà dǎzhēn.\nĐứa trẻ sợ tiêm.",
         "expand":  "害怕 (sợ hãi), 怕 (sợ - dùng đơn giản hơn)"
     },
     {
@@ -2511,7 +2511,7 @@
         "stt":  229,
         "en":  "dirty",
         "target":  "脏",
-        "pron":  "zàng",
+        "pron":  "zāng",
         "hanviet":  "tạng",
         "meaning":  "bẩn",
         "note":  "脏 giản thể đồng dạng với chữ 脏 trong 心脏 (tim) nhưng đọc khác âm (zāng \"bẩn\" ≠ zàng \"tạng\"); ở đây mang nghĩa dơ bẩn.",
@@ -2526,7 +2526,7 @@
         "hanviet":  "phú hữu",
         "meaning":  "giàu có",
         "note":  "富 (phú) = giàu có + 有 (hữu) = có — sở hữu nhiều của cải.",
-        "examples":  "1. 他很富有。\nTā hěn fùyǒu.\nAnh ấy rất giàu có.\n──────────\n2. 这个国家资源很富有。\nZhège guójiā zīyuán hěn fùyǒu.\nQuốc gia này tài nguyên phong phú.\n──────────\n3. 他家很富裕。\nTā jiā hěn fùyù.\nNhà anh ấy khá giả.\n──────────\n4. 富有不代表幸福。\nFùyǒu bú dàibiǎo xìngfú.\nGiàu có không đồng nghĩa với hạnh phúc.\n──────────\n5. 这座城市越来越富裕了。\nZhè zuò chéngshì yuè lái yuè fùyù le.\nThành phố này ngày càng giàu có hơn.",
+        "examples":  "1. 他很富有。\nTā hěn fùyǒu.\nAnh ấy rất giàu có.\n──────────\n2. 他是个富有的商人。\nTā shì gè fùyǒu de shāngrén.\nÔng ấy là một thương nhân giàu có.\n──────────\n3. 他虽然富有，却很节俭。\nTā suīrán fùyǒu, què hěn jiéjiǎn.\nAnh ấy tuy giàu có nhưng rất tiết kiệm.\n──────────\n4. 富有不代表幸福。\nFùyǒu bú dàibiǎo xìngfú.\nGiàu có không đồng nghĩa với hạnh phúc.\n──────────\n5. 这座城市里有很多富有的人。\nZhè zuò chéngshì lǐ yǒu hěn duō fùyǒu de rén.\nThành phố này có rất nhiều người giàu có.",
         "expand":  "富裕 (khá giả), 有钱 (có tiền - khẩu ngữ)"
     },
     {
@@ -2548,7 +2548,7 @@
         "hanviet":  "mãn",
         "meaning":  "đầy",
         "note":  "满 giản thể = 氵(nước) + 两 (âm mượn) — nước đầy tràn, nghĩa mở rộng chỉ trạng thái đầy.",
-        "examples":  "1. 杯子满了。\nBēizi mǎn le.\nCốc đầy rồi.\n──────────\n2. 这个箱子装满了书。\nZhège xiāngzi zhuāngmǎnle shū.\nCái hộp này chứa đầy sách.\n──────────\n3. 餐厅今天满座了。\nCāntīng jīntiān mǎnzuò le.\nNhà hàng hôm nay hết chỗ rồi.\n──────────\n4. 我吃饱了，吃不下了。\nWǒ chībǎo le, chī bú xià le.\nTôi no rồi, ăn không nổi nữa.\n──────────\n5. 街上满是人。\nJiēshàng mǎn shì rén.\nTrên phố đầy người.",
+        "examples":  "1. 杯子满了。\nBēizi mǎn le.\nCốc đầy rồi.\n──────────\n2. 这个箱子装满了书。\nZhège xiāngzi zhuāngmǎnle shū.\nCái hộp này chứa đầy sách.\n──────────\n3. 餐厅今天满座了。\nCāntīng jīntiān mǎnzuò le.\nNhà hàng hôm nay hết chỗ rồi.\n──────────\n4. 电影院里坐满了人。\nDiànyǐngyuàn lǐ zuòmǎnle rén.\nRạp chiếu phim ngồi đầy người.\n──────────\n5. 街上满是人。\nJiēshàng mǎn shì rén.\nTrên phố đầy người.",
         "expand":  "满意 (hài lòng), 吃饱 (no bụng - dùng cho ăn uống)"
     },
     {
@@ -2570,7 +2570,7 @@
         "hanviet":  "an toàn",
         "meaning":  "an toàn",
         "note":  "安 (an) = bình yên + 全 (toàn) = toàn vẹn — trạng thái bình yên, không bị tổn hại.",
-        "examples":  "1. 这里很安全。\nZhèlǐ hěn ānquán.\nỞ đây rất an toàn.\n──────────\n2. 请注意安全。\nQǐng zhùyì ānquán.\nXin chú ý an toàn.\n──────────\n3. 这个地方晚上安全吗？\nZhège dìfang wǎnshang ānquán ma?\nChỗ này buổi tối có an toàn không?\n──────────\n4. 到了请报个平安。\nDàole qǐng bào gè píng\u0027ān.\nĐến nơi rồi nhớ báo bình an nhé.\n──────────\n5. 系好安全带。\nJì hǎo ānquándài.\nThắt dây an toàn vào.",
+        "examples":  "1. 这里很安全。\nZhèlǐ hěn ānquán.\nỞ đây rất an toàn.\n──────────\n2. 请注意安全。\nQǐng zhùyì ānquán.\nXin chú ý an toàn.\n──────────\n3. 这个地方晚上安全吗？\nZhège dìfang wǎnshang ānquán ma?\nChỗ này buổi tối có an toàn không?\n──────────\n4. 在这里存钱很安全。\nZài zhèlǐ cún qián hěn ānquán.\nGửi tiền ở đây rất an toàn.\n──────────\n5. 系好安全带。\nJì hǎo ānquándài.\nThắt dây an toàn vào.",
         "expand":  "安全带 (dây an toàn), 平安 (bình an)"
     },
     {
@@ -3141,8 +3141,8 @@
         "pron":  "yèwǎn",
         "hanviet":  "dạ vãn",
         "meaning":  "ban đêm",
-        "note":  "夜 (dạ) = đêm + 晚 (vãn) = muộn — khoảng thời gian sâu trong đêm, khác 晚上 (buổi tối vừa sẩm tối).",
-        "examples":  "1. 昨天夜晚很冷。\nZuótiān yèwǎn hěn lěng.\nĐêm qua trời rất lạnh.\n──────────\n2. 夜晚的城市很安静。\nYèwǎn de chéngshì hěn ānjìng.\nThành phố về đêm rất yên tĩnh.\n──────────\n3. 他常常工作到深夜。\nTā chángcháng gōngzuò dào shēnyè.\nAnh ấy thường làm việc đến đêm khuya.\n──────────\n4. 夜晚开车要特别小心。\nYèwǎn kāichē yào tèbié xiǎoxīn.\nLái xe ban đêm phải đặc biệt cẩn thận.\n──────────\n5. 这里夜晚很热闹。\nZhèlǐ yèwǎn hěn rènao.\nNơi đây về đêm rất nhộn nhịp.",
+        "note":  "夜 (dạ) = đêm + 晚 (vãn) = muộn, tối — ghép thành \"ban đêm\"; 夜晚 chỉ khoảng thời gian từ tối đến sáng, hơi văn viết hơn 晚上.",
+        "examples":  "1. 昨天夜晚很冷。\nZuótiān yèwǎn hěn lěng.\nĐêm qua trời rất lạnh.\n──────────\n2. 夜晚的城市很安静。\nYèwǎn de chéngshì hěn ānjìng.\nThành phố về đêm rất yên tĩnh.\n──────────\n3. 他常常在夜晚工作到很晚。\nTā chángcháng zài yèwǎn gōngzuò dào hěn wǎn.\nAnh ấy thường làm việc đến khuya vào ban đêm.\n──────────\n4. 夜晚开车要特别小心。\nYèwǎn kāichē yào tèbié xiǎoxīn.\nLái xe ban đêm phải đặc biệt cẩn thận.\n──────────\n5. 这里夜晚很热闹。\nZhèlǐ yèwǎn hěn rènao.\nNơi đây về đêm rất nhộn nhịp.",
         "expand":  "夜里 (trong đêm), 半夜 (nửa đêm), 深夜 (đêm khuya)"
     },
     {
@@ -3241,7 +3241,7 @@
         "hanviet":  "quý tiết",
         "meaning":  "mùa",
         "note":  "季 (quý) = mùa, khoảng thời gian + 节 (tiết) = tiết khí, giai đoạn — ghép thành \"mùa\" trong năm.",
-        "examples":  "1. 你最喜欢哪个季节？\nNǐ zuì xǐhuan nǎge jìjié?\nBạn thích mùa nào nhất?\n──────────\n2. 现在是雨季。\nXiànzài shì yǔjì.\nBây giờ là mùa mưa.\n──────────\n3. 每个季节的风景都不一样。\nMěi gè jìjié de fēngjǐng dōu bù yíyàng.\nMỗi mùa phong cảnh đều khác nhau.\n──────────\n4. 这种水果只有秋季才有。\nZhè zhǒng shuǐguǒ zhǐyǒu qiūjì cái yǒu.\nLoại quả này chỉ mùa thu mới có.\n──────────\n5. 季节变化对身体有影响。\nJìjié biànhuà duì shēntǐ yǒu yǐngxiǎng.\nSự thay đổi mùa ảnh hưởng đến sức khỏe.",
+        "examples":  "1. 你最喜欢哪个季节？\nNǐ zuì xǐhuan nǎge jìjié?\nBạn thích mùa nào nhất?\n──────────\n2. 现在是多雨的季节。\nXiànzài shì duō yǔ de jìjié.\nBây giờ là mùa nhiều mưa.\n──────────\n3. 每个季节的风景都不一样。\nMěi gè jìjié de fēngjǐng dōu bù yíyàng.\nMỗi mùa phong cảnh đều khác nhau.\n──────────\n4. 这种水果只有这个季节才有。\nZhè zhǒng shuǐguǒ zhǐyǒu zhège jìjié cái yǒu.\nLoại quả này chỉ có vào mùa này.\n──────────\n5. 季节变化对身体有影响。\nJìjié biànhuà duì shēntǐ yǒu yǐngxiǎng.\nSự thay đổi mùa ảnh hưởng đến sức khỏe.",
         "expand":  "四季 (bốn mùa), 旺季 (mùa cao điểm)"
     },
     {
@@ -3284,7 +3284,7 @@
         "pron":  "dōngtiān",
         "hanviet":  "đông thiên",
         "meaning":  "mùa đông",
-        "note":  "冬 (đông) = mùa lạnh (tượng hình băng đóng) + 天 (thiên) = ngày/thời tiết — ghép thành \"mùa đông\".",
+        "note":  "冬 (đông) = mùa lạnh, chữ có bộ băng 冫 (nước đá) gợi sự lạnh giá + 天 (thiên) = ngày/thời tiết — ghép thành \"mùa đông\".",
         "examples":  "1. 冬天很冷。\nDōngtiān hěn lěng.\nMùa đông lạnh lắm.\n──────────\n2. 你怕冷吗？冬天怎么办？\nNǐ pà lěng ma? Dōngtiān zěnme bàn?\nBạn sợ lạnh không? Mùa đông làm sao?\n──────────\n3. 北京的冬天会下雪。\nBěijīng de dōngtiān huì xiàxuě.\nMùa đông Bắc Kinh có tuyết rơi.\n──────────\n4. 冬天要多穿点衣服。\nDōngtiān yào duō chuān diǎn yīfu.\nMùa đông phải mặc nhiều quần áo.\n──────────\n5. 冬天天黑得比较早。\nDōngtiān tiān hēi de bǐjiào zǎo.\nMùa đông trời tối khá sớm.",
         "expand":  "冬天 (mùa đông), 寒假 (nghỉ đông)"
     },
@@ -3296,7 +3296,7 @@
         "hanviet":  "nhi tử",
         "meaning":  "con trai",
         "note":  "儿 (nhi) = trẻ con + 子 (tử) = con — ghép thành \"con trai\".",
-        "examples":  "1. 这是我儿子。\nZhè shì wǒ érzi.\nĐây là con trai tôi.\n──────────\n2. 你儿子几岁了？\nNǐ érzi jǐ suì le?\nCon trai bạn mấy tuổi rồi?\n──────────\n3. 我儿子在读大学。\nWǒ érzi zài dú dàxué.\nCon trai tôi đang học đại học.\n──────────\n4. 他是家里的独生子。\nTā shì jiā lǐ de dúshēngzǐ.\nNó là con trai một trong nhà.\n──────────\n5. 儿子长得很像爸爸。\nÉrzi zhǎng de hěn xiàng bàba.\nCon trai trông rất giống bố.",
+        "examples":  "1. 这是我儿子。\nZhè shì wǒ érzi.\nĐây là con trai tôi.\n──────────\n2. 你儿子几岁了？\nNǐ érzi jǐ suì le?\nCon trai bạn mấy tuổi rồi?\n──────────\n3. 我儿子在读大学。\nWǒ érzi zài dú dàxué.\nCon trai tôi đang học đại học.\n──────────\n4. 我儿子是独生子。\nWǒ érzi shì dúshēngzǐ.\nCon trai tôi là con một.\n──────────\n5. 儿子长得很像爸爸。\nÉrzi zhǎng de hěn xiàng bàba.\nCon trai trông rất giống bố.",
         "expand":  "儿子 (con trai), 独生子 (con trai một)"
     },
     {
@@ -3362,7 +3362,7 @@
         "hanviet":  "trượng phu",
         "meaning":  "chồng",
         "note":  "丈 (trượng) = đơn vị đo cổ, chỉ người đàn ông trưởng thành + 夫 (phu) = người đàn ông — ghép thành \"chồng\".",
-        "examples":  "1. 这是我丈夫。\nZhè shì wǒ zhàngfu.\nĐây là chồng tôi.\n──────────\n2. 我丈夫在出差。\nWǒ zhàngfu zài chūchāi.\nChồng tôi đang đi công tác.\n──────────\n3. 她丈夫是医生。\nTā zhàngfu shì yīshēng.\nChồng cô ấy là bác sĩ.\n──────────\n4. 丈夫很疼她。\nZhàngfu hěn téng tā.\nChồng rất yêu thương cô ấy.\n──────────\n5. 他们是一对好夫妻。\nTāmen shì yí duì hǎo fūqī.\nHọ là một cặp vợ chồng tốt.",
+        "examples":  "1. 这是我丈夫。\nZhè shì wǒ zhàngfu.\nĐây là chồng tôi.\n──────────\n2. 我丈夫在出差。\nWǒ zhàngfu zài chūchāi.\nChồng tôi đang đi công tác.\n──────────\n3. 她丈夫是医生。\nTā zhàngfu shì yīshēng.\nChồng cô ấy là bác sĩ.\n──────────\n4. 丈夫很疼她。\nZhàngfu hěn téng tā.\nChồng rất yêu thương cô ấy.\n──────────\n5. 丈夫和妻子要互相尊重。\nZhàngfu hé qīzi yào hùxiāng zūnzhòng.\nChồng và vợ phải tôn trọng lẫn nhau.",
         "expand":  "丈夫 (chồng), 夫妻 (vợ chồng), 老公 (chồng - thân mật)"
     },
     {
@@ -3373,7 +3373,7 @@
         "hanviet":  "thê tử",
         "meaning":  "vợ",
         "note":  "妻 (thê) = vợ + 子 (tử) = hậu tố danh từ — ghép thành \"vợ\".",
-        "examples":  "1. 这是我妻子。\nZhè shì wǒ qīzi.\nĐây là vợ tôi.\n──────────\n2. 我妻子在家带孩子。\nWǒ qīzi zài jiā dài háizi.\nVợ tôi ở nhà chăm con.\n──────────\n3. 他妻子很温柔。\nTā qīzi hěn wēnróu.\nVợ anh ấy rất dịu dàng.\n──────────\n4. 妻子做的饭很好吃。\nQīzi zuò de fàn hěn hǎochī.\nCơm vợ nấu rất ngon.\n──────────\n5. 我们结婚十年了。\nWǒmen jiéhūn shí nián le.\nChúng tôi kết hôn được mười năm rồi.",
+        "examples":  "1. 这是我妻子。\nZhè shì wǒ qīzi.\nĐây là vợ tôi.\n──────────\n2. 我妻子在家带孩子。\nWǒ qīzi zài jiā dài háizi.\nVợ tôi ở nhà chăm con.\n──────────\n3. 他妻子很温柔。\nTā qīzi hěn wēnróu.\nVợ anh ấy rất dịu dàng.\n──────────\n4. 妻子做的饭很好吃。\nQīzi zuò de fàn hěn hǎochī.\nCơm vợ nấu rất ngon.\n──────────\n5. 我和妻子结婚十年了。\nWǒ hé qīzi jiéhūn shí nián le.\nVợ chồng tôi kết hôn được mười năm rồi.",
         "expand":  "妻子 (vợ), 夫妻 (vợ chồng), 老婆 (vợ - thân mật)"
     },
     {
@@ -3415,9 +3415,9 @@
         "target":  "王后",
         "pron":  "wánghòu",
         "hanviet":  "vương hậu",
-        "meaning":  "nữ hoàng / hoàng hậu",
+        "meaning":  "hoàng hậu / vương hậu (vợ vua)",
         "note":  "王 (vương) = vua + 后 (hậu) = vợ vua, phía sau — người vợ đứng bên vua, cai quản hậu cung.",
-        "examples":  "1. 她是这个国家的女王。\nTā shì zhège guójiā de nǚwáng.\nCô ấy là nữ hoàng của đất nước này.\n──────────\n2. 王后穿着华丽的礼服。\nWánghòu chuānzhe huálì de lǐfú.\nHoàng hậu mặc bộ lễ phục lộng lẫy.\n──────────\n3. 这部电影讲的是一位女王的故事。\nZhè bù diànyǐng jiǎng de shì yí wèi nǚwáng de gùshi.\nBộ phim này kể về câu chuyện của một nữ hoàng.\n──────────\n4. 蜂后是蜂群的女王。\nFēnghòu shì fēngqún de nǚwáng.\nOng chúa là nữ hoàng của đàn ong.\n──────────\n5. 她被称为时尚女王。\nTā bèi chēngwéi shíshàng nǚwáng.\nCô ấy được mệnh danh là nữ hoàng thời trang.",
+        "examples":  "1. 她是这个国家的王后。\nTā shì zhège guójiā de wánghòu.\nBà ấy là hoàng hậu của đất nước này.\n──────────\n2. 王后穿着华丽的礼服。\nWánghòu chuānzhe huálì de lǐfú.\nHoàng hậu mặc bộ lễ phục lộng lẫy.\n──────────\n3. 国王和王后一起出席了仪式。\nGuówáng hé wánghòu yìqǐ chūxíle yíshì.\nNhà vua và hoàng hậu cùng dự buổi lễ.\n──────────\n4. 蜂后是蜂群的女王。\nFēnghòu shì fēngqún de nǚwáng.\nOng chúa là nữ hoàng của đàn ong.\n──────────\n5. 王后很受人民爱戴。\nWánghòu hěn shòu rénmín àidài.\nHoàng hậu rất được người dân yêu mến.",
         "expand":  "女王 (nữ hoàng), 王后 (hoàng hậu - vợ vua)"
     },
     {
@@ -3428,7 +3428,7 @@
         "hanviet":  "tổng thống",
         "meaning":  "tổng thống",
         "note":  "总 (tổng) = tổng quát, đứng đầu + 统 (thống) = thống lĩnh, quản lý — người đứng đầu quốc gia (thể chế cộng hòa).",
-        "examples":  "1. 总统今天发表了讲话。\nZǒngtǒng jīntiān fābiǎole jiǎnghuà.\nHôm nay tổng thống đã phát biểu.\n──────────\n2. 谁是这个国家的总统？\nShéi shì zhège guójiā de zǒngtǒng?\nAi là tổng thống của nước này?\n──────────\n3. 总统访问了越南。\nZǒngtǒng fǎngwènle Yuènán.\nTổng thống đã thăm Việt Nam.\n──────────\n4. 他被选为公司总裁。\nTā bèi xuǎn wéi gōngsī zǒngcái.\nAnh ấy được bầu làm tổng giám đốc công ty.\n──────────\n5. 总统府在市中心。\nZǒngtǒngfǔ zài shì zhōngxīn.\nPhủ tổng thống ở trung tâm thành phố.",
+        "examples":  "1. 总统今天发表了讲话。\nZǒngtǒng jīntiān fābiǎole jiǎnghuà.\nHôm nay tổng thống đã phát biểu.\n──────────\n2. 谁是这个国家的总统？\nShéi shì zhège guójiā de zǒngtǒng?\nAi là tổng thống của nước này?\n──────────\n3. 总统访问了越南。\nZǒngtǒng fǎngwènle Yuènán.\nTổng thống đã thăm Việt Nam.\n──────────\n4. 他当选为新一任总统。\nTā dāngxuǎn wéi xīn yí rèn zǒngtǒng.\nÔng ấy đắc cử làm tổng thống nhiệm kỳ mới.\n──────────\n5. 总统府在市中心。\nZǒngtǒngfǔ zài shì zhōngxīn.\nPhủ tổng thống ở trung tâm thành phố.",
         "expand":  "总统 (tổng thống), 总裁 (tổng giám đốc)"
     },
     {
@@ -3438,7 +3438,7 @@
         "pron":  "lǎobǎn",
         "hanviet":  "lão bản",
         "meaning":  "ông chủ",
-        "note":  "老 (lão) = tiền tố kính trọng + 板 (bản) = tấm ván, gốc nghĩa chủ tiệm gỗ — nghĩa mở rộng thành người chủ nói chung.",
+        "note":  "老 (lão) = tiền tố kính trọng + 板 (bản) — cách gọi chủ tiệm, người đứng đầu cửa hàng/công ty; nguồn gốc chữ 板 còn nhiều giả thuyết.",
         "examples":  "1. 我老板人很好。\nWǒ lǎobǎn rén hěn hǎo.\nSếp tôi là người tốt.\n──────────\n2. 老板叫我去他办公室。\nLǎobǎn jiào wǒ qù tā bàngōngshì.\nSếp gọi tôi đến văn phòng của ông ấy.\n──────────\n3. 这是老板的决定。\nZhè shì lǎobǎn de juédìng.\nĐây là quyết định của sếp.\n──────────\n4. 老板今天心情不太好。\nLǎobǎn jīntiān xīnqíng bú tài hǎo.\nHôm nay tâm trạng sếp không tốt lắm.\n──────────\n5. 他自己当老板，开了家小店。\nTā zìjǐ dāng lǎobǎn, kāile jiā xiǎo diàn.\nAnh ấy tự làm chủ, mở một cửa hàng nhỏ.",
         "expand":  "老板 (ông chủ), 老板娘 (bà chủ)"
     },
@@ -3461,7 +3461,7 @@
         "hanviet":  "nhân quần",
         "meaning":  "đám đông",
         "note":  "人 (nhân) = người + 群 (quần) = bầy đàn, nhóm đông — ghép thành \"đám đông người\".",
-        "examples":  "1. 广场上有很多人群。\nGuǎngchǎng shàng yǒu hěn duō rénqún.\nTrên quảng trường có rất nhiều người.\n──────────\n2. 人群里很难找到他。\nRénqún lǐ hěn nán zhǎodào tā.\nTrong đám đông rất khó tìm thấy anh ấy.\n──────────\n3. 请远离人群密集的地方。\nQǐng yuǎnlí rénqún mìjí de dìfang.\nXin tránh xa những nơi đông người.\n──────────\n4. 人群渐渐散去了。\nRénqún jiànjiàn sànqù le.\nĐám đông dần dần tản đi.\n──────────\n5. 车站的人群非常多。\nChēzhàn de rénqún fēicháng duō.\nĐám đông ở bến xe rất nhiều.",
+        "examples":  "1. 广场上的人群越来越多。\nGuǎngchǎng shàng de rénqún yuè lái yuè duō.\nĐám đông trên quảng trường ngày càng đông.\n──────────\n2. 人群里很难找到他。\nRénqún lǐ hěn nán zhǎodào tā.\nTrong đám đông rất khó tìm thấy anh ấy.\n──────────\n3. 请远离人群密集的地方。\nQǐng yuǎnlí rénqún mìjí de dìfang.\nXin tránh xa những nơi đông người.\n──────────\n4. 人群渐渐散去了。\nRénqún jiànjiàn sànqù le.\nĐám đông dần dần tản đi.\n──────────\n5. 车站里人群拥挤。\nChēzhàn lǐ rénqún yōngjǐ.\nĐám đông ở bến xe rất chen chúc.",
         "expand":  "人群 (đám đông), 挤 (chen chúc)"
     },
     {
@@ -3527,7 +3527,7 @@
         "hanviet":  "nhĩ đóa",
         "meaning":  "tai",
         "note":  "耳 (nhĩ) tượng hình vành tai + 朵 (đóa) = hậu tố chỉ vật hình cụm.",
-        "examples":  "1. 我耳朵疼。\nWǒ ěrduo téng.\nTai tôi đau.\n──────────\n2. 说话小声点，孩子的耳朵很敏感。\nShuōhuà xiǎoshēng diǎn, háizi de ěrduo hěn mǐngǎn.\nNói nhỏ tiếng thôi, tai trẻ con nhạy cảm lắm.\n──────────\n3. 他耳朵不太好，说话要大声点。\nTā ěrduo bú tài hǎo, shuōhuà yào dàshēng diǎn.\nTai anh ấy không tốt lắm, nói phải to hơn.\n──────────\n4. 这个耳环很好看。\nZhège ěrhuán hěn hǎokàn.\nĐôi bông tai này đẹp lắm.\n──────────\n5. 别用手挖耳朵。\nBié yòng shǒu wā ěrduo.\nĐừng dùng tay ngoáy tai.",
+        "examples":  "1. 我耳朵疼。\nWǒ ěrduo téng.\nTai tôi đau.\n──────────\n2. 说话小声点，孩子的耳朵很敏感。\nShuōhuà xiǎoshēng diǎn, háizi de ěrduo hěn mǐngǎn.\nNói nhỏ tiếng thôi, tai trẻ con nhạy cảm lắm.\n──────────\n3. 他耳朵不太好，说话要大声点。\nTā ěrduo bú tài hǎo, shuōhuà yào dàshēng diǎn.\nTai anh ấy không tốt lắm, nói phải to hơn.\n──────────\n4. 她的耳朵冻红了。\nTā de ěrduo dòng hóng le.\nTai cô ấy bị lạnh đến đỏ lên.\n──────────\n5. 别用手挖耳朵。\nBié yòng shǒu wā ěrduo.\nĐừng dùng tay ngoáy tai.",
         "expand":  "耳环 (bông tai), 耳机 (tai nghe)"
     },
     {
@@ -3537,8 +3537,8 @@
         "pron":  "bízi",
         "hanviet":  "tị tử",
         "meaning":  "mũi",
-        "note":  "鼻 (tị) tượng hình cái mũi + 子 (tử) = hậu tố danh từ.",
-        "examples":  "1. 我鼻子不舒服。\nWǒ bízi bù shūfu.\nMũi tôi khó chịu.\n──────────\n2. 他感冒了，一直流鼻涕。\nTā gǎnmào le, yìzhí liú bítì.\nAnh ấy bị cảm, cứ chảy nước mũi mãi.\n──────────\n3. 这个味道很冲鼻子。\nZhège wèidao hěn chōng bízi.\nMùi này xộc lên mũi khó chịu.\n──────────\n4. 孩子的鼻子很可爱。\nHáizi de bízi hěn kě\u0027ài.\nCái mũi của em bé đáng yêu quá.\n──────────\n5. 请擤一下鼻子。\nQǐng xǐng yíxià bízi.\nXin xì mũi một chút.",
+        "note":  "鼻 (tị) = 自 (tự, hình cái mũi nguyên thủy) + 畀 (tỉ, âm) + 子 (tử) = hậu tố danh từ.",
+        "examples":  "1. 我鼻子不舒服。\nWǒ bízi bù shūfu.\nMũi tôi khó chịu.\n──────────\n2. 他感冒了，鼻子一直不通气。\nTā gǎnmào le, bízi yìzhí bù tōngqì.\nAnh ấy bị cảm, mũi cứ nghẹt mãi.\n──────────\n3. 这个味道很冲鼻子。\nZhège wèidao hěn chōng bízi.\nMùi này xộc lên mũi khó chịu.\n──────────\n4. 孩子的鼻子很可爱。\nHáizi de bízi hěn kě\u0027ài.\nCái mũi của em bé đáng yêu quá.\n──────────\n5. 请擤一下鼻子。\nQǐng xǐng yíxià bízi.\nXin xì mũi một chút.",
         "expand":  "鼻涕 (nước mũi), 鼻子疼 (đau mũi)"
     },
     {
@@ -3581,7 +3581,7 @@
         "pron":  "bózi",
         "hanviet":  "—",
         "meaning":  "cổ",
-        "note":  "脖 = bộ nhục 月(thịt) + 勃 (bột, âm mượn) — chỉ phần cổ của cơ thể.",
+        "note":  "脖 = bộ nhục 月(thịt) + 孛 (bột, âm mượn) — chỉ phần cổ của cơ thể.",
         "examples":  "1. 我脖子疼。\nWǒ bózi téng.\nCổ tôi đau.\n──────────\n2. 请把围巾围在脖子上。\nQǐng bǎ wéijīn wéi zài bózi shàng.\nXin quàng khăn quanh cổ.\n──────────\n3. 长时间看手机脖子会不舒服。\nCháng shíjiān kàn shǒujī bózi huì bù shūfu.\nNhìn điện thoại lâu cổ sẽ khó chịu.\n──────────\n4. 他脖子上有一条项链。\nTā bózi shàng yǒu yì tiáo xiàngliàn.\nTrên cổ anh ấy có một sợi dây chuyền.\n──────────\n5. 睡觉姿势不对，脖子很酸。\nShuìjiào zīshì bú duì, bózi hěn suān.\nTư thế ngủ không đúng, cổ mỏi lắm.",
         "expand":  "脖子疼 (đau cổ), 围巾 (khăn quàng cổ)"
     },
@@ -3670,7 +3670,7 @@
         "hanviet":  "nhũ phòng",
         "meaning":  "ngực (phụ nữ)",
         "note":  "乳 (nhũ) = sữa, vú + 房 (phòng) = căn phòng, khoang — thuật ngữ y học chỉ bầu ngực phụ nữ.",
-        "examples":  "1. 定期做乳房检查很重要。\nDìngqī zuò rǔfáng jiǎnchá hěn zhòngyào.\nKhám ngực định kỳ rất quan trọng.\n──────────\n2. 医生建议她做乳房超声检查。\nYīshēng jiànyì tā zuò rǔfáng chāoshēng jiǎnchá.\nBác sĩ khuyên cô ấy siêu âm ngực.\n──────────\n3. 这种疾病主要影响乳房健康。\nZhè zhǒng jíbìng zhǔyào yǐngxiǎng rǔfáng jiànkāng.\nLoại bệnh này chủ yếu ảnh hưởng đến sức khỏe ngực.\n──────────\n4. 母乳喂养对婴儿很好。\nMǔrǔ wèiyǎng duì yīng\u0027ér hěn hǎo.\nCho con bú sữa mẹ rất tốt cho trẻ sơ sinh.\n──────────\n5. 她去医院做了乳房检查。\nTā qù yīyuàn zuòle rǔfáng jiǎnchá.\nCô ấy đã đến bệnh viện khám ngực.",
+        "examples":  "1. 定期做乳房检查很重要。\nDìngqī zuò rǔfáng jiǎnchá hěn zhòngyào.\nKhám ngực định kỳ rất quan trọng.\n──────────\n2. 医生建议她做乳房超声检查。\nYīshēng jiànyì tā zuò rǔfáng chāoshēng jiǎnchá.\nBác sĩ khuyên cô ấy siêu âm ngực.\n──────────\n3. 这种疾病主要影响乳房健康。\nZhè zhǒng jíbìng zhǔyào yǐngxiǎng rǔfáng jiànkāng.\nLoại bệnh này chủ yếu ảnh hưởng đến sức khỏe ngực.\n──────────\n4. 哺乳期间要注意保护乳房。\nBǔrǔ qījiān yào zhùyì bǎohù rǔfáng.\nTrong thời kỳ cho con bú cần chú ý bảo vệ ngực.\n──────────\n5. 她去医院做了乳房检查。\nTā qù yīyuàn zuòle rǔfáng jiǎnchá.\nCô ấy đã đến bệnh viện khám ngực.",
         "expand":  "乳房检查 (khám ngực), 母乳 (sữa mẹ)"
     },
     {
@@ -3702,8 +3702,8 @@
         "pron":  "yāo",
         "hanviet":  "yêu",
         "meaning":  "eo / thắt lưng",
-        "note":  "腰 = bộ nhục 月(thịt) + 要 (yếu, quan trọng) — phần eo giữ vai trò quan trọng trong tư thế cơ thể.",
-        "examples":  "1. 我腰疼。\nWǒ yāo téng.\nEo tôi đau.\n──────────\n2. 弯腰的时候要小心。\nWānyāo de shíhou yào xiǎoxīn.\nLúc cúi eo phải cẩn thận.\n──────────\n3. 这条裤子腰有点紧。\nZhè tiáo kùzi yāo yǒudiǎn jǐn.\nCái quần này chỗ eo hơi chật.\n──────────\n4. 长时间坐着对腰不好。\nCháng shíjiān zuòzhe duì yāo bù hǎo.\nNgồi lâu không tốt cho eo lưng.\n──────────\n5. 他腰上系着一条皮带。\nTā yāo shàng jìzhe yì tiáo pídài.\nTrên eo anh ấy thắt một chiếc thắt lưng.",
+        "note":  "腰 = bộ nhục 月(thịt) + 要 (yêu) — 要 vốn là chữ gốc chỉ eo (hình người chống tay lên eo), sau mượn nghĩa \"cần, muốn\" nên thêm 月 để chỉ eo.",
+        "examples":  "1. 我腰疼。\nWǒ yāo téng.\nEo tôi đau.\n──────────\n2. 弯腰的时候要小心。\nWānyāo de shíhou yào xiǎoxīn.\nLúc cúi người phải cẩn thận.\n──────────\n3. 这条裤子腰有点紧。\nZhè tiáo kùzi yāo yǒudiǎn jǐn.\nCái quần này chỗ eo hơi chật.\n──────────\n4. 长时间坐着对腰不好。\nCháng shíjiān zuòzhe duì yāo bù hǎo.\nNgồi lâu không tốt cho eo lưng.\n──────────\n5. 他腰上系着一条皮带。\nTā yāo shàng jìzhe yì tiáo pídài.\nTrên eo anh ấy thắt một chiếc thắt lưng.",
         "expand":  "腰疼 (đau eo), 弯腰 (cúi người/khom lưng)"
     },
     {
@@ -3712,10 +3712,10 @@
         "target":  "臀部",
         "pron":  "túnbù",
         "hanviet":  "đồn bộ",
-        "meaning":  "hông",
-        "note":  "臀 (đồn) = phần mông + 部 (bộ) = phần, bộ phận — chỉ vùng hông/mông.",
-        "examples":  "1. 这条裙子很显臀部曲线。\nZhè tiáo qúnzi hěn xiǎn túnbù qūxiàn.\nCái váy này tôn dáng vùng hông.\n──────────\n2. 长期久坐对臀部肌肉不好。\nChángqī jiǔzuò duì túnbù jīròu bù hǎo.\nNgồi lâu ngày không tốt cho cơ vùng hông.\n──────────\n3. 医生给他打了一针在臀部。\nYīshēng gěi tā dǎle yì zhēn zài túnbù.\nBác sĩ tiêm cho anh ấy một mũi vào mông.\n──────────\n4. 这个动作能锻炼臀部肌肉。\nZhège dòngzuò néng duànliàn túnbù jīròu.\nĐộng tác này giúp rèn luyện cơ hông.\n──────────\n5. 裤子的臀部部分有点紧。\nKùzi de túnbù bùfen yǒudiǎn jǐn.\nPhần hông của cái quần hơi chật.",
-        "expand":  "臀部肌肉 (cơ hông), 屁股 (mông - khẩu ngữ)"
+        "meaning":  "mông",
+        "note":  "臀 (đồn) = phần mông + 部 (bộ) = phần, bộ phận — chỉ vùng mông.",
+        "examples":  "1. 这条裙子很显臀部曲线。\nZhè tiáo qúnzi hěn xiǎn túnbù qūxiàn.\nCái váy này tôn đường cong vòng mông.\n──────────\n2. 长期久坐对臀部肌肉不好。\nChángqī jiǔzuò duì túnbù jīròu bù hǎo.\nNgồi lâu ngày không tốt cho cơ mông.\n──────────\n3. 医生在他的臀部打了一针。\nYīshēng zài tā de túnbù dǎle yì zhēn.\nBác sĩ tiêm cho anh ấy một mũi ở mông.\n──────────\n4. 这个动作能锻炼臀部肌肉。\nZhège dòngzuò néng duànliàn túnbù jīròu.\nĐộng tác này giúp rèn luyện cơ mông.\n──────────\n5. 裤子的臀部部分有点紧。\nKùzi de túnbù bùfen yǒudiǎn jǐn.\nPhần mông của cái quần hơi chật.",
+        "expand":  "臀部肌肉 (cơ mông), 屁股 (mông - khẩu ngữ)"
     },
     {
         "stt":  339,
@@ -3724,7 +3724,7 @@
         "pron":  "tuǐ",
         "hanviet":  "thối",
         "meaning":  "chân (đùi trở xuống)",
-        "note":  "腿 = bộ nhục 月(thịt) + 退 (thối, lùi lại) — bộ phận giúp cơ thể di chuyển tới lui.",
+        "note":  "腿 = bộ nhục 月(thịt) + 退 (thối, âm mượn) — chỉ chân, bộ phận giúp cơ thể di chuyển.",
         "examples":  "1. 我的腿疼。\nWǒ de tuǐ téng.\nChân tôi đau.\n──────────\n2. 他跑得腿都酸了。\nTā pǎo de tuǐ dōu suān le.\nAnh ấy chạy đến mỏi cả chân.\n──────────\n3. 坐太久对腿不好。\nZuò tài jiǔ duì tuǐ bù hǎo.\nNgồi lâu không tốt cho chân.\n──────────\n4. 她的腿很长。\nTā de tuǐ hěn cháng.\nChân cô ấy dài lắm.\n──────────\n5. 摔倒的时候腿受伤了。\nShuāidǎo de shíhou tuǐ shòushāng le.\nLúc ngã chân bị thương.",
         "expand":  "腿疼 (đau chân), 大腿 (đùi)"
     },
@@ -4033,7 +4033,7 @@
         "hanviet":  "thổ đậu",
         "meaning":  "khoai tây",
         "note":  "土 (thổ) = đất + 豆 (đậu) = hạt tròn — nghĩa đen \"đậu mọc dưới đất\", chỉ củ khoai tây.",
-        "examples":  "1. 我想吃土豆。\nWǒ xiǎng chī tǔdòu.\nTôi muốn ăn khoai tây.\n──────────\n2. 请帮我削个土豆。\nQǐng bāng wǒ xiāo gè tǔdòu.\nGọt giúp tôi một củ khoai tây.\n──────────\n3. 这道菜是土豆做的。\nZhè dào cài shì tǔdòu zuò de.\nMón này làm từ khoai tây.\n──────────\n4. 土豆丝很好吃。\nTǔdòusī hěn hǎochī.\nKhoai tây thái sợi ngon lắm.\n──────────\n5. 我要一份炸薯条。\nWǒ yào yí fèn zhá shǔtiáo.\nTôi muốn một suất khoai tây chiên.",
+        "examples":  "1. 我想吃土豆。\nWǒ xiǎng chī tǔdòu.\nTôi muốn ăn khoai tây.\n──────────\n2. 请帮我削个土豆。\nQǐng bāng wǒ xiāo gè tǔdòu.\nGọt giúp tôi một củ khoai tây.\n──────────\n3. 这道菜是土豆做的。\nZhè dào cài shì tǔdòu zuò de.\nMón này làm từ khoai tây.\n──────────\n4. 土豆丝很好吃。\nTǔdòusī hěn hǎochī.\nKhoai tây thái sợi ngon lắm.\n──────────\n5. 土豆要削皮再煮。\nTǔdòu yào xiāopí zài zhǔ.\nKhoai tây phải gọt vỏ rồi mới luộc.",
         "expand":  "土豆丝 (khoai tây thái sợi), 薯条 (khoai tây chiên)"
     },
     {
@@ -4098,8 +4098,8 @@
         "pron":  "dòu",
         "hanviet":  "đậu",
         "meaning":  "đậu",
-        "note":  "豆 tượng hình cái đấu (dụng cụ đong cổ), mượn hình chỉ hạt đậu.",
-        "examples":  "1. 我喜欢吃豆子。\nWǒ xǐhuan chī dòuzi.\nTôi thích ăn đậu.\n──────────\n2. 这道菜有豆腐。\nZhè dào cài yǒu dòufu.\nMón này có đậu phụ.\n──────────\n3. 黄豆有很多蛋白质。\nHuángdòu yǒu hěn duō dànbáizhì.\nĐậu nành có nhiều protein.\n──────────\n4. 我要一杯豆浆。\nWǒ yào yì bēi dòujiāng.\nTôi muốn một cốc sữa đậu nành.\n──────────\n5. 这盘绿豆汤很好喝。\nZhè pán lǜdòu tāng hěn hǎohē.\nBát chè đậu xanh này ngon lắm.",
+        "note":  "豆 tượng hình cái đậu (đồ đựng thức ăn có chân cao thời cổ), sau mượn để chỉ hạt đậu.",
+        "examples":  "1. 我喜欢吃豆子。\nWǒ xǐhuan chī dòuzi.\nTôi thích ăn đậu.\n──────────\n2. 这道菜有豆腐。\nZhè dào cài yǒu dòufu.\nMón này có đậu phụ.\n──────────\n3. 黄豆有很多蛋白质。\nHuángdòu yǒu hěn duō dànbáizhì.\nĐậu nành có nhiều protein.\n──────────\n4. 我要一杯豆浆。\nWǒ yào yì bēi dòujiāng.\nTôi muốn một cốc sữa đậu nành.\n──────────\n5. 这碗绿豆汤很好喝。\nZhè wǎn lǜdòu tāng hěn hǎohē.\nBát chè đậu xanh này ngon lắm.",
         "expand":  "豆腐 (đậu phụ), 豆浆 (sữa đậu nành)"
     },
     {
@@ -4120,7 +4120,7 @@
         "pron":  "yán",
         "hanviet":  "diêm",
         "meaning":  "muối",
-        "note":  "盐 giản thể = 卤(bộ lỗ, muối mặn) + 皿 (mãnh, đồ đựng) — hình ảnh muối được chứa trong vật đựng.",
+        "note":  "盐 giản thể = 监 (giám) + 皿 (mãnh, đồ đựng); dạng phồn thể 鹽 = 卤(muối mặn) + 監 — hình ảnh muối được chứa trong vật đựng.",
         "examples":  "1. 请少放盐。\nQǐng shǎo fàng yán.\nXin cho ít muối thôi.\n──────────\n2. 这个菜有点咸，盐放多了。\nZhège cài yǒudiǎn xián, yán fàng duō le.\nMón này hơi mặn, cho nhiều muối quá.\n──────────\n3. 我们家没盐了。\nWǒmen jiā méi yán le.\nNhà chúng tôi hết muối rồi.\n──────────\n4. 请给我拿一下盐。\nQǐng gěi wǒ ná yíxià yán.\nLấy giúp tôi lọ muối.\n──────────\n5. 医生说要少吃盐。\nYīshēng shuō yào shǎo chī yán.\nBác sĩ nói phải ăn ít muối.",
         "expand":  "食盐 (muối ăn), 盐分 (hàm lượng muối)"
     },
@@ -4275,7 +4275,7 @@
         "hanviet":  "công dụ",
         "meaning":  "căn hộ",
         "note":  "公 (công) = chung, công cộng + 寓 (dụ) = nơi ở, gửi thân — nơi ở trong tòa nhà chung.",
-        "examples":  "1. 我住在这栋公寓里。\nWǒ zhù zài zhè dòng gōngyù lǐ.\nTôi sống trong tòa căn hộ này.\n──────────\n2. 这套公寓多少钱一个月？\nZhè tào gōngyù duōshao qián yí gè yuè?\nCăn hộ này bao nhiêu tiền một tháng?\n──────────\n3. 这个公寓很新。\nZhège gōngyù hěn xīn.\nCăn hộ này mới lắm.\n──────────\n4. 我想租一套公寓。\nWǒ xiǎng zū yí tào gōngyù.\nTôi muốn thuê một căn hộ.\n──────────\n5. 公寓里有电梯吗？\nGōngyù lǐ yǒu diàntī ma?\nTrong căn hộ có thang máy không?",
+        "examples":  "1. 我住在这栋公寓里。\nWǒ zhù zài zhè dòng gōngyù lǐ.\nTôi sống trong tòa chung cư này.\n──────────\n2. 这套公寓多少钱一个月？\nZhè tào gōngyù duōshao qián yí gè yuè?\nCăn hộ này bao nhiêu tiền một tháng?\n──────────\n3. 这个公寓很新。\nZhège gōngyù hěn xīn.\nCăn hộ này mới lắm.\n──────────\n4. 我想租一套公寓。\nWǒ xiǎng zū yí tào gōngyù.\nTôi muốn thuê một căn hộ.\n──────────\n5. 公寓里有电梯吗？\nGōngyù lǐ yǒu diàntī ma?\nTrong căn hộ có thang máy không?",
         "expand":  "公寓楼 (tòa căn hộ), 租公寓 (thuê căn hộ)"
     },
     {
@@ -4546,11 +4546,11 @@
         "stt":  414,
         "en":  "trash bin",
         "target":  "垃圾桶",
-        "pron":  "lèjītǒng",
+        "pron":  "lājītǒng",
         "hanviet":  "lạp ngập đồng",
         "meaning":  "thùng rác",
         "note":  "垃圾 (lạp ngập) = rác rưởi + 桶 (đồng) = cái thùng — thùng đựng rác.",
-        "examples":  "1. 垃圾桶在哪儿？\nLèjītǒng zài nǎr?\nThùng rác ở đâu?\n──────────\n2. 垃圾桶满了。\nLèjītǒng mǎn le.\nThùng rác đầy rồi.\n──────────\n3. 请把垃圾扔进垃圾桶。\nQǐng bǎ lèjī rēng jìn lèjītǒng.\nXin vứt rác vào thùng rác.\n──────────\n4. 这个垃圾桶需要清空。\nZhège lèjītǒng xūyào qīngkōng.\nCái thùng rác này cần đổ đi.\n──────────\n5. 垃圾桶旁边有异味。\nLèjītǒng pángbiān yǒu yìwèi.\nBên cạnh thùng rác có mùi lạ.",
+        "examples":  "1. 垃圾桶在哪儿？\nLājītǒng zài nǎr?\nThùng rác ở đâu?\n──────────\n2. 垃圾桶满了。\nLājītǒng mǎn le.\nThùng rác đầy rồi.\n──────────\n3. 请把垃圾扔进垃圾桶。\nQǐng bǎ lājī rēng jìn lājītǒng.\nXin vứt rác vào thùng rác.\n──────────\n4. 这个垃圾桶需要清空。\nZhège lājītǒng xūyào qīngkōng.\nCái thùng rác này cần đổ đi.\n──────────\n5. 垃圾桶旁边有异味。\nLājītǒng pángbiān yǒu yìwèi.\nBên cạnh thùng rác có mùi lạ.",
         "expand":  "垃圾 (rác), 扔垃圾 (vứt rác)"
     },
     {
@@ -4570,7 +4570,7 @@
         "target":  "毛巾",
         "pron":  "máojīn",
         "hanviet":  "mao cân",
-        "meaning":  "khăn tắm",
+        "meaning":  "khăn mặt / khăn lau",
         "note":  "毛 (mao) = lông, xù + 巾 (cân) = khăn vải — khăn vải có bề mặt lông xù để thấm nước.",
         "examples":  "1. 请给我一条毛巾。\nQǐng gěi wǒ yì tiáo máojīn.\nXin đưa cho tôi một cái khăn.\n──────────\n2. 这条毛巾很软。\nZhè tiáo máojīn hěn ruǎn.\nCái khăn này mềm lắm.\n──────────\n3. 毛巾需要洗了。\nMáojīn xūyào xǐ le.\nKhăn cần giặt rồi.\n──────────\n4. 请把毛巾挂好。\nQǐng bǎ máojīn guà hǎo.\nXin treo khăn gọn gàng.\n──────────\n5. 酒店提供干净的毛巾。\nJiǔdiàn tígōng gānjìng de máojīn.\nKhách sạn cung cấp khăn sạch.",
         "expand":  "浴巾 (khăn tắm to), 毛巾架 (giá treo khăn)"
@@ -4946,7 +4946,7 @@
         "hanviet":  "điện ảnh viện",
         "meaning":  "rạp chiếu phim",
         "note":  "电影 (điện ảnh) = phim ảnh + 院 (viện) = khuôn viên — nơi chiếu phim.",
-        "examples":  "1. 我们去电影院看电影吧。\nWǒmen qù diànyǐngyuàn kàn diànyǐng ba.\nChúng ta đi rạp xem phim đi.\n──────────\n2. 电影院离这里远吗？\nDiànyǐngyuàn lí zhèlǐ yuǎn ma?\nRạp chiếu phim cách đây xa không？\n──────────\n3. 这家电影院设备很新。\nZhè jiā diànyǐngyuàn shèbèi hěn xīn.\nThiết bị rạp chiếu phim này mới lắm.\n──────────\n4. 电影院里不能大声说话。\nDiànyǐngyuàn lǐ bù néng dàshēng shuōhuà.\nTrong rạp chiếu phim không được nói to.\n──────────\n5. 电影票在电影院门口买。\nDiànyǐngpiào zài diànyǐngyuàn ménkǒu mǎi.\nVé xem phim mua ở cổng rạp.",
+        "examples":  "1. 我们去电影院看电影吧。\nWǒmen qù diànyǐngyuàn kàn diànyǐng ba.\nChúng ta đi rạp xem phim đi.\n──────────\n2. 电影院离这里远吗？\nDiànyǐngyuàn lí zhèlǐ yuǎn ma?\nRạp chiếu phim cách đây xa không?\n──────────\n3. 这家电影院设备很新。\nZhè jiā diànyǐngyuàn shèbèi hěn xīn.\nThiết bị rạp chiếu phim này mới lắm.\n──────────\n4. 电影院里不能大声说话。\nDiànyǐngyuàn lǐ bù néng dàshēng shuōhuà.\nTrong rạp chiếu phim không được nói to.\n──────────\n5. 电影票在电影院门口买。\nDiànyǐngpiào zài diànyǐngyuàn ménkǒu mǎi.\nVé xem phim mua ở cổng rạp.",
         "expand":  "电影票 (vé xem phim), 电影院爆米花 (bỏng ngô rạp phim)"
     },
     {
@@ -5000,7 +5000,7 @@
         "pron":  "xīngxing",
         "hanviet":  "tinh tinh",
         "meaning":  "ngôi sao",
-        "note":  "星 (tinh) tượng hình ngôi sao lấp lánh — lặp từ 星星 dùng trong khẩu ngữ, thân mật hơn.",
+        "note":  "星 (tinh) = 日 (nhật, mặt trời/ánh sáng) + 生 (sinh, âm đọc) — vật phát sáng trên trời; lặp từ 星星 dùng trong khẩu ngữ, thân mật hơn.",
         "examples":  "1. 今晚星星很多。\nJīnwǎn xīngxing hěn duō.\nTối nay nhiều sao lắm.\n──────────\n2. 你看那颗星星。\nNǐ kàn nà kē xīngxing.\nNhìn ngôi sao kia kìa.\n──────────\n3. 城市里很难看到星星。\nChéngshì lǐ hěn nán kàndào xīngxing.\nỞ thành phố rất khó nhìn thấy sao.\n──────────\n4. 孩子喜欢数星星。\nHáizi xǐhuan shǔ xīngxing.\nTrẻ con thích đếm sao.\n──────────\n5. 今晚天空没有星星。\nJīnwǎn tiānkōng méiyǒu xīngxing.\nTối nay trên trời không có sao.",
         "expand":  "星空 (bầu trời sao), 明星 (ngôi sao nổi tiếng)"
     },
@@ -5044,7 +5044,7 @@
         "pron":  "fēng",
         "hanviet":  "phong",
         "meaning":  "gió",
-        "note":  "风 = 几(hình dạng gió xoáy) + 虫(bộ trùng, côn trùng cổ liên quan sinh vật) — chỉ luồng không khí chuyển động.",
+        "note":  "风 giản thể = 几 (khung, hình dạng gió) + 乂; phồn thể 風 = 几 + 虫 (người xưa tin gió sinh ra côn trùng/rồng) — chỉ luồng không khí chuyển động.",
         "examples":  "1. 今天风很大。\nJīntiān fēng hěn dà.\nHôm nay gió to lắm.\n──────────\n2. 外面有风，穿件外套吧。\nWàimiàn yǒu fēng, chuān jiàn wàitào ba.\nBên ngoài có gió, mặc áo khoác vào đi.\n──────────\n3. 风把门吹开了。\nFēng bǎ mén chuīkāi le.\nGió thổi cửa mở ra.\n──────────\n4. 今天没有风，很闷热。\nJīntiān méiyǒu fēng, hěn mēnrè.\nHôm nay không có gió, ngột ngạt lắm.\n──────────\n5. 山上的风很凉快。\nShān shàng de fēng hěn liángkuai.\nGió trên núi mát mẻ lắm.",
         "expand":  "刮风 (nổi gió), 台风 (bão)"
     },
@@ -5089,7 +5089,7 @@
         "hanviet":  "lục địa",
         "meaning":  "đất liền",
         "note":  "陆 (lục) = đất liền + 地 (địa) = đất — phần đất không phải biển, đối lập với 海 (biển).",
-        "examples":  "1. 船终于靠岸，回到陆地了。\nChuán zhōngyú kào\u0027àn, huídào lùdì le.\nThuyền cuối cùng cũng cập bến, về đến đất liền rồi.\n──────────\n2. 这种动物只能在陆地上生活。\nZhè zhǒng dòngwù zhǐ néng zài lùdì shàng shēnghuó.\nLoài động vật này chỉ có thể sống trên đất liền.\n──────────\n3. 从海上能看到陆地了。\nCóng hǎishàng néng kàndào lùdì le.\nTừ trên biển đã nhìn thấy đất liền rồi.\n──────────\n4. 地球表面陆地比海洋少。\nDìqiú biǎomiàn lùdì bǐ hǎiyáng shǎo.\nBề mặt trái đất đất liền ít hơn đại dương.\n──────────\n5. 这片陆地属于哪个国家？\nZhè piàn lùdì shǔyú nǎge guójiā?\nVùng đất liền này thuộc quốc gia nào？",
+        "examples":  "1. 船终于靠岸，回到陆地了。\nChuán zhōngyú kào\u0027àn, huídào lùdì le.\nThuyền cuối cùng cũng cập bến, về đến đất liền rồi.\n──────────\n2. 这种动物只能在陆地上生活。\nZhè zhǒng dòngwù zhǐ néng zài lùdì shàng shēnghuó.\nLoài động vật này chỉ có thể sống trên đất liền.\n──────────\n3. 从海上能看到陆地了。\nCóng hǎishàng néng kàndào lùdì le.\nTừ trên biển đã nhìn thấy đất liền rồi.\n──────────\n4. 地球表面陆地比海洋少。\nDìqiú biǎomiàn lùdì bǐ hǎiyáng shǎo.\nBề mặt trái đất đất liền ít hơn đại dương.\n──────────\n5. 这片陆地属于哪个国家？\nZhè piàn lùdì shǔyú nǎge guójiā?\nVùng đất liền này thuộc quốc gia nào?",
         "expand":  "土地 (đất đai), 大陆 (đại lục)"
     },
     {
@@ -5177,7 +5177,7 @@
         "hanviet":  "ba lãng",
         "meaning":  "con sóng",
         "note":  "波 (ba) = sóng nhỏ + 浪 (lãng) = sóng lớn — ghép thành \"sóng\" nói chung.",
-        "examples":  "1. 海浪很大。\nHǎilàng hěn dà.\nSóng biển to lắm.\n──────────\n2. 这里的波浪不适合游泳。\nZhèlǐ de bōlàng bú shìhé yóuyǒng.\nSóng ở đây không phù hợp để bơi.\n──────────\n3. 孩子们在海边玩浪。\nHáizimen zài hǎibiān wán làng.\nBọn trẻ chơi đùa với sóng bên bờ biển.\n──────────\n4. 今天风大，浪也大。\nJīntiān fēng dà, làng yě dà.\nHôm nay gió to, sóng cũng to.\n──────────\n5. 冲浪的人喜欢大浪。\nChōnglàng de rén xǐhuan dà làng.\nNgười lướt sóng thích sóng lớn.",
+        "examples":  "1. 今天的波浪很大。\nJīntiān de bōlàng hěn dà.\nHôm nay sóng lớn lắm.\n──────────\n2. 这里的波浪不适合游泳。\nZhèlǐ de bōlàng bú shìhé yóuyǒng.\nSóng ở đây không phù hợp để bơi.\n──────────\n3. 孩子们在海边看波浪。\nHáizimen zài hǎibiān kàn bōlàng.\nBọn trẻ ngắm sóng bên bờ biển.\n──────────\n4. 风大，波浪也大。\nFēng dà, bōlàng yě dà.\nGió to, sóng cũng to.\n──────────\n5. 冲浪的人喜欢大的波浪。\nChōnglàng de rén xǐhuan dà de bōlàng.\nNgười lướt sóng thích sóng lớn.",
         "expand":  "海浪 (sóng biển), 冲浪 (lướt sóng)"
     },
     {
@@ -5264,7 +5264,7 @@
         "pron":  "yèzi",
         "hanviet":  "diệp tử",
         "meaning":  "lá cây",
-        "note":  "叶 (diệp) giản thể = 艹(bộ thảo) + 十 (âm mượn) — chỉ lá cây; 子 (tử) = hậu tố danh từ.",
+        "note":  "叶 (diệp) giản thể = 口 + 十 (vốn là chữ cổ khác, được mượn làm giản thể của 葉); phồn thể 葉 có bộ 艹 (thảo) — chỉ lá cây; 子 (tử) = hậu tố danh từ.",
         "examples":  "1. 秋天树叶都黄了。\nQiūtiān shùyè dōu huáng le.\nMùa thu lá cây vàng hết cả.\n──────────\n2. 这片叶子很大。\nZhè piàn yèzi hěn dà.\nChiếc lá này to lắm.\n──────────\n3. 地上有很多落叶。\nDìshàng yǒu hěn duō luòyè.\nTrên mặt đất có nhiều lá rụng.\n──────────\n4. 这种植物的叶子能吃。\nZhè zhǒng zhíwù de yèzi néng chī.\nLá của loại cây này ăn được.\n──────────\n5. 请把落叶扫一下。\nQǐng bǎ luòyè sǎo yíxià.\nXin quét lá rụng đi.",
         "expand":  "树叶 (lá cây), 落叶 (lá rụng)"
     },
@@ -5628,7 +5628,7 @@
         "hanviet":  "tử sắc",
         "meaning":  "màu tím",
         "note":  "紫 (tử) = bộ mịch 纟(tơ, vải nhuộm) + 此 (thử, âm mượn) — màu vải nhuộm tím quý phái thời xưa; 色 (sắc) = màu.",
-        "examples":  "1. 我喜欢紫色。\nWǒ xǐhuan zǐsè.\nTôi thích màu tím.\n──────────\n2. 这朵花是紫色的。\nZhè duǒ huā shì zǐsè de.\nBông hoa này màu tím.\n──────────\n3. 有紫色的衣服吗？\nYǒu zǐsè de yīfu ma?\nCó quần áo màu tím không？\n──────────\n4. 紫色代表神秘。\nZǐsè dàibiǎo shénmì.\nMàu tím tượng trưng cho sự bí ẩn.\n──────────\n5. 这个紫色很好看。\nZhège zǐsè hěn hǎokàn.\nMàu tím này đẹp lắm.",
+        "examples":  "1. 我喜欢紫色。\nWǒ xǐhuan zǐsè.\nTôi thích màu tím.\n──────────\n2. 这朵花是紫色的。\nZhè duǒ huā shì zǐsè de.\nBông hoa này màu tím.\n──────────\n3. 有紫色的衣服吗？\nYǒu zǐsè de yīfu ma?\nCó quần áo màu tím không?\n──────────\n4. 紫色代表神秘。\nZǐsè dàibiǎo shénmì.\nMàu tím tượng trưng cho sự bí ẩn.\n──────────\n5. 这个紫色很好看。\nZhège zǐsè hěn hǎokàn.\nMàu tím này đẹp lắm.",
         "expand":  "浅紫色 (tím nhạt), 深紫色 (tím đậm)"
     },
     {
@@ -5693,7 +5693,7 @@
         "pron":  "qúnzi",
         "hanviet":  "quần tử",
         "meaning":  "chân váy",
-        "note":  "裙 (quần, khác âm Hán Việt với 裤 khố dù cùng đọc \"quần\" trong tiếng Việt) = trang phục hình ống che thân dưới; 子 là hậu tố.",
+        "note":  "裙 (quần) = bộ y 衤(quần áo) + 君 (quân, âm mượn) — trang phục hình ống che nửa thân dưới; 子 là hậu tố. Lưu ý: 裙 đọc \"quần\", còn 裤 đọc \"khố\".",
         "examples":  "1. 这条裙子很漂亮。\nZhè tiáo qúnzi hěn piàoliang.\nCái chân váy này đẹp lắm.\n──────────\n2. 我想买条裙子。\nWǒ xiǎng mǎi tiáo qúnzi.\nTôi muốn mua một cái chân váy.\n──────────\n3. 这条裙子有点短。\nZhè tiáo qúnzi yǒudiǎn duǎn.\nCái chân váy này hơi ngắn.\n──────────\n4. 裙子多少钱？\nQúnzi duōshao qián?\nChân váy bao nhiêu tiền?\n──────────\n5. 这条裙子适合上班穿吗？\nZhè tiáo qúnzi shìhé shàngbān chuān ma?\nCái chân váy này mặc đi làm có hợp không?",
         "expand":  "短裙 (chân váy ngắn), 长裙 (chân váy dài)"
     },
@@ -6013,7 +6013,7 @@
         "hanviet":  "ngưu",
         "meaning":  "con bò",
         "note":  "牛 tượng hình đầu con bò có sừng — chỉ loài bò/trâu nói chung.",
-        "examples":  "1. 农场里有很多牛。\nNóngchǎng lǐ yǒu hěn duō niú.\nTrong trang trại có nhiều bò.\n──────────\n2. 这头牛很大。\nZhè tóu niú hěn dà.\nCon bò này to lắm.\n──────────\n3. 牛在吃草。\nNiú zài chī cǎo.\nBò đang ăn cỏ.\n──────────\n4. 这里的牛奶是新鲜的牛产的。\nZhèlǐ de niúnǎi shì xīnxiān de niú chǎn de.\nSữa ở đây là do bò tươi sản xuất.\n──────────\n5. 他家养了几头牛。\nTā jiā yǎngle jǐ tóu niú.\nNhà anh ấy nuôi vài con bò.",
+        "examples":  "1. 农场里有很多牛。\nNóngchǎng lǐ yǒu hěn duō niú.\nTrong trang trại có nhiều bò.\n──────────\n2. 这头牛很大。\nZhè tóu niú hěn dà.\nCon bò này to lắm.\n──────────\n3. 牛在吃草。\nNiú zài chī cǎo.\nBò đang ăn cỏ.\n──────────\n4. 这些牛每天产很多牛奶。\nZhèxiē niú měitiān chǎn hěn duō niúnǎi.\nNhững con bò này mỗi ngày cho rất nhiều sữa.\n──────────\n5. 他家养了几头牛。\nTā jiā yǎngle jǐ tóu niú.\nNhà anh ấy nuôi vài con bò.",
         "expand":  "奶牛 (bò sữa), 牛肉 (thịt bò)"
     },
     {
@@ -6045,7 +6045,7 @@
         "pron":  "jī",
         "hanviet":  "kê",
         "meaning":  "con gà",
-        "note":  "鸡 = bộ điểu 鸟(chim) + 又 (âm mượn) — chỉ loài gà.",
+        "note":  "鸡 (kê) = 又 + 鸟(chim) — giản thể; 又 chỉ là ký hiệu thay phần 奚 của chữ phồn thể 雞, không phải chữ ghi âm; chỉ loài gà.",
         "examples":  "1. 农场里有很多鸡。\nNóngchǎng lǐ yǒu hěn duō jī.\nTrong trang trại có nhiều gà.\n──────────\n2. 这只鸡很大。\nZhè zhī jī hěn dà.\nCon gà này to lắm.\n──────────\n3. 我想吃鸡。\nWǒ xiǎng chī jī.\nTôi muốn ăn gà.\n──────────\n4. 鸡在院子里跑来跑去。\nJī zài yuànzi lǐ pǎo lái pǎo qù.\nGà chạy qua chạy lại trong sân.\n──────────\n5. 他家养了几只鸡。\nTā jiā yǎngle jǐ zhī jī.\nNhà anh ấy nuôi vài con gà.",
         "expand":  "鸡蛋 (trứng gà), 鸡肉 (thịt gà)"
     },
@@ -6089,7 +6089,7 @@
         "pron":  "xióng",
         "hanviet":  "hùng",
         "meaning":  "con gấu",
-        "note":  "熊 = bộ 能(năng, tài năng) + 灬(bộ hỏa, chân con vật) — chỉ loài gấu.",
+        "note":  "熊 = 能 (vốn là chữ tượng hình con gấu, sau mượn nghĩa \"năng lực\") + 灬(bộ hỏa) — chỉ loài gấu.",
         "examples":  "1. 这只熊很大。\nZhè zhī xióng hěn dà.\nCon gấu này to lắm.\n──────────\n2. 动物园里有熊猫吗？\nDòngwùyuán lǐ yǒu xióngmāo ma?\nTrong sở thú có gấu trúc không?\n──────────\n3. 熊很危险，不要靠近。\nXióng hěn wēixiǎn, bú yào kàojìn.\nGấu rất nguy hiểm, đừng lại gần.\n──────────\n4. 这只熊在森林里。\nZhè zhī xióng zài sēnlín lǐ.\nCon gấu này ở trong rừng.\n──────────\n5. 孩子喜欢泰迪熊玩具。\nHáizi xǐhuan tàidí xióng wánjù.\nTrẻ con thích đồ chơi gấu bông teddy.",
         "expand":  "熊猫 (gấu trúc), 泰迪熊 (gấu bông teddy)"
     },
@@ -6418,7 +6418,7 @@
         "target":  "艺术家",
         "pron":  "yìshùjiā",
         "hanviet":  "nghệ thuật gia",
-        "meaning":  "họa sĩ / nghệ sĩ",
+        "meaning":  "nghệ sĩ",
         "note":  "艺术 (nghệ thuật) + 家 (gia) = người chuyên môn — người sáng tạo nghệ thuật.",
         "examples":  "1. 他是一位艺术家。\nTā shì yí wèi yìshùjiā.\nAnh ấy là một nghệ sĩ.\n──────────\n2. 这位艺术家很有才华。\nZhè wèi yìshùjiā hěn yǒu cáihuá.\nNghệ sĩ này rất có tài năng.\n──────────\n3. 我想成为一名艺术家。\nWǒ xiǎng chéngwéi yì míng yìshùjiā.\nTôi muốn trở thành một nghệ sĩ.\n──────────\n4. 这幅画是那位艺术家画的。\nZhè fú huà shì nà wèi yìshùjiā huà de.\nBức tranh này là do nghệ sĩ đó vẽ.\n──────────\n5. 这位艺术家的作品很有名。\nZhè wèi yìshùjiā de zuòpǐn hěn yǒumíng.\nTác phẩm của nghệ sĩ này rất nổi tiếng.",
         "expand":  "画家 (họa sĩ), 艺术作品 (tác phẩm nghệ thuật)"
@@ -6497,7 +6497,7 @@
         "hanviet":  "cương bút",
         "meaning":  "bút mực",
         "note":  "钢 (cương) = thép, kim loại + 笔 (bút) = cây bút — bút có ngòi kim loại chứa mực.",
-        "examples":  "1. 请借我一支笔。\nQǐng jiè wǒ yì zhī bǐ.\nCho tôi mượn một cây bút.\n──────────\n2. 这支钢笔很好写。\nZhè zhī gāngbǐ hěn hǎo xiě.\nCây bút mực này viết rất tốt.\n──────────\n3. 我的钢笔没墨水了。\nWǒ de gāngbǐ méi mòshuǐ le.\nBút mực của tôi hết mực rồi.\n──────────\n4. 这是一支很贵的钢笔。\nZhè shì yì zhī hěn guì de gāngbǐ.\nĐây là một cây bút mực rất đắt.\n──────────\n5. 请用钢笔签名。\nQǐng yòng gāngbǐ qiānmíng.\nXin dùng bút mực ký tên.",
+        "examples":  "1. 请借我一支钢笔。\nQǐng jiè wǒ yì zhī gāngbǐ.\nCho tôi mượn một cây bút mực.\n──────────\n2. 这支钢笔很好写。\nZhè zhī gāngbǐ hěn hǎo xiě.\nCây bút mực này viết rất tốt.\n──────────\n3. 我的钢笔没墨水了。\nWǒ de gāngbǐ méi mòshuǐ le.\nBút mực của tôi hết mực rồi.\n──────────\n4. 这是一支很贵的钢笔。\nZhè shì yì zhī hěn guì de gāngbǐ.\nĐây là một cây bút mực rất đắt.\n──────────\n5. 请用钢笔签名。\nQǐng yòng gāngbǐ qiānmíng.\nXin dùng bút mực ký tên.",
         "expand":  "圆珠笔 (bút bi), 笔记本 (sổ tay)"
     },
     {
@@ -6627,9 +6627,9 @@
         "target":  "收音机",
         "pron":  "shōuyīnjī",
         "hanviet":  "thu âm cơ",
-        "meaning":  "đài phát thanh",
+        "meaning":  "radio (máy thu thanh)",
         "note":  "收音 (thu âm) = thu nhận âm thanh + 机 (cơ) = máy móc — máy thu tín hiệu âm thanh.",
-        "examples":  "1. 我喜欢听收音机。\nWǒ xǐhuan tīng shōuyīnjī.\nTôi thích nghe đài.\n──────────\n2. 这台收音机很旧了。\nZhè tái shōuyīnjī hěn jiù le.\nCái đài này cũ rồi.\n──────────\n3. 收音机里在放新闻。\nShōuyīnjī lǐ zài fàng xīnwén.\nĐài đang phát tin tức.\n──────────\n4. 请把收音机关小声一点。\nQǐng bǎ shōuyīnjī guān xiǎoshēng yìdiǎn.\nXin vặn nhỏ đài lại.\n──────────\n5. 车上有收音机吗？\nChē shàng yǒu shōuyīnjī ma?\nTrên xe có đài không?",
+        "examples":  "1. 我喜欢听收音机。\nWǒ xǐhuan tīng shōuyīnjī.\nTôi thích nghe đài.\n──────────\n2. 这台收音机很旧了。\nZhè tái shōuyīnjī hěn jiù le.\nCái đài này cũ rồi.\n──────────\n3. 收音机里在放新闻。\nShōuyīnjī lǐ zài fàng xīnwén.\nĐài đang phát tin tức.\n──────────\n4. 请把收音机调小声一点。\nQǐng bǎ shōuyīnjī tiáo xiǎoshēng yìdiǎn.\nXin vặn nhỏ tiếng đài lại.\n──────────\n5. 车上有收音机吗？\nChē shàng yǒu shōuyīnjī ma?\nTrên xe có đài không?",
         "expand":  "广播 (phát thanh), 收听 (nghe đài)"
     },
     {
@@ -6692,7 +6692,7 @@
         "en":  "credit card",
         "target":  "信用卡",
         "pron":  "xìnyòngkǎ",
-        "hanviet":  "tín dụng卡",
+        "hanviet":  "tín dụng",
         "meaning":  "thẻ tín dụng",
         "note":  "信用 (tín dụng) = uy tín, tín nhiệm + 卡 (phiên âm mượn \"card\") — thẻ dựa trên uy tín để thanh toán.",
         "examples":  "1. 我可以用信用卡吗？\nWǒ kěyǐ yòng xìnyòngkǎ ma?\nTôi dùng thẻ tín dụng được không?\n──────────\n2. 这里接受信用卡吗？\nZhèlǐ jiēshòu xìnyòngkǎ ma?\nỞ đây có nhận thẻ tín dụng không?\n──────────\n3. 我的信用卡丢了。\nWǒ de xìnyòngkǎ diū le.\nThẻ tín dụng của tôi bị mất rồi.\n──────────\n4. 请刷信用卡。\nQǐng shuā xìnyòngkǎ.\nXin quẹt thẻ tín dụng.\n──────────\n5. 我想办一张信用卡。\nWǒ xiǎng bàn yì zhāng xìnyòngkǎ.\nTôi muốn làm một cái thẻ tín dụng.",
@@ -6705,7 +6705,7 @@
         "pron":  "pánzi",
         "hanviet":  "bàn tử",
         "meaning":  "cái đĩa",
-        "note":  "盘 (bàn) tượng hình đồ đựng có chân — vật đựng thức ăn hình tròn dẹt; 子 là hậu tố.",
+        "note":  "盘 (bàn) = 般 (âm) + 皿 (bộ mãnh, đồ đựng) — vật đựng thức ăn hình tròn dẹt; 子 là hậu tố.",
         "examples":  "1. 请给我一个盘子。\nQǐng gěi wǒ yí gè pánzi.\nCho tôi một cái đĩa.\n──────────\n2. 这个盘子很漂亮。\nZhège pánzi hěn piàoliang.\nCái đĩa này đẹp lắm.\n──────────\n3. 请把菜放在盘子里。\nQǐng bǎ cài fàng zài pánzi lǐ.\nXin để món ăn vào đĩa.\n──────────\n4. 盘子摔碎了。\nPánzi shuāisuì le.\nĐĩa rơi vỡ rồi.\n──────────\n5. 请帮我洗一下盘子。\nQǐng bāng wǒ xǐ yíxià pánzi.\nRửa giúp tôi cái đĩa.",
         "expand":  "盘子里 (trong đĩa), 洗盘子 (rửa đĩa)"
     },
@@ -6761,7 +6761,7 @@
         "hanviet":  "bình tử",
         "meaning":  "cái chai",
         "note":  "瓶 (bình) = bộ ngõa 瓦(đồ gốm) + 并 (tịnh, âm mượn) — đồ đựng cổ hẹp miệng; 子 là hậu tố.",
-        "examples":  "1. 请给我一瓶水。\nQǐng gěi wǒ yì píng shuǐ.\nCho tôi một chai nước.\n──────────\n2. 这个瓶子是空的。\nZhège píngzi shì kōng de.\nCái chai này rỗng.\n──────────\n3. 瓶子破了。\nPíngzi pò le.\nChai vỡ rồi.\n──────────\n4. 请把瓶子扔掉。\nQǐng bǎ píngzi rēngdiào.\nXin vứt cái chai đi.\n──────────\n5. 这个瓶子能装多少水？\nZhège píngzi néng zhuāng duōshao shuǐ?\nCái chai này chứa được bao nhiêu nước?",
+        "examples":  "1. 请给我一个瓶子。\nQǐng gěi wǒ yí gè píngzi.\nCho tôi một cái chai.\n──────────\n2. 这个瓶子是空的。\nZhège píngzi shì kōng de.\nCái chai này rỗng.\n──────────\n3. 瓶子破了。\nPíngzi pò le.\nChai vỡ rồi.\n──────────\n4. 请把瓶子扔掉。\nQǐng bǎ píngzi rēngdiào.\nXin vứt cái chai đi.\n──────────\n5. 这个瓶子能装多少水？\nZhège píngzi néng zhuāng duōshao shuǐ?\nCái chai này chứa được bao nhiêu nước?",
         "expand":  "水瓶 (bình nước), 瓶盖 (nắp chai)"
     },
     {
@@ -6784,7 +6784,7 @@
         "meaning":  "cái thìa",
         "note":  "勺 (chước) tượng hình cái muôi múc — dụng cụ múc thức ăn/nước; 子 là hậu tố.",
         "examples":  "1. 请给我一个勺子。\nQǐng gěi wǒ yí gè sháozi.\nCho tôi một cái thìa.\n──────────\n2. 这个汤需要用勺子喝。\nZhège tāng xūyào yòng sháozi hē.\nCanh này cần dùng thìa để húp.\n──────────\n3. 请拿把干净的勺子。\nQǐng ná bǎ gānjìng de sháozi.\nLấy giúp tôi một cái thìa sạch.\n──────────\n4. 这把勺子太小了。\nZhè bǎ sháozi tài xiǎo le.\nCái thìa này nhỏ quá.\n──────────\n5. 婴儿用小勺子吃饭。\nYīng\u0027ér yòng xiǎo sháozi chīfàn.\nTrẻ sơ sinh dùng thìa nhỏ để ăn.",
-        "expand":  "汤勺 (thìa canh), 勺子挖 (múc bằng thìa)"
+        "expand":  "汤勺 (thìa canh), 小勺 (thìa nhỏ)"
     },
     {
         "stt":  618,
