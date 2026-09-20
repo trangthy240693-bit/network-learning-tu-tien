@@ -4,8 +4,7 @@
 // Draggable: the learner can park it anywhere on screen; position persists
 // (per browser) via localStorage.
 import { gaoAvatar } from "./mascot.js";
-import { renderChatShell } from "./freetalk.js";
-import { LANG_META } from "./data.js";
+import { renderGaoQuizCompact } from "./quiz-chat.js";
 
 const POS_KEY = "nl_gao_fab_pos";
 let mounted = false;
@@ -71,30 +70,13 @@ export function mountGaoSupportWidget(ctx) {
     fab.classList.add("active");
     if (!loaded) {
       loaded = true;
-      const meta = LANG_META[ctx.lang];
-      const systemPrompt = `Bạn là Gạo, một chú chó Pomeranian đáng yêu, đóng vai trợ lý hỗ trợ nhanh (customer support) cho app học ${meta.label} "Network Learning".
-Luôn gọi người học là "ký chủ"; tự xưng bản thân là "em", "Hệ thống", hoặc "người ta" (đổi luân phiên cho tự nhiên, không dùng "tôi/mình").
-Nhiệm vụ: trả lời thắc mắc về ngữ pháp, cách dùng từ, cách dùng các tính năng của app (Từ vựng, Ôn tập, Hệ thống Tom/Gạo), hoặc chỉ trò chuyện/tâm sự cùng ký chủ khi cần.
-Trả lời ngắn gọn, thân thiện, dễ hiểu, có thể xen tiếng Việt và ${meta.label}. Luôn khích lệ, không bao giờ chê bai.`;
-      renderChatShell(document.getElementById("gao-support-body"), ctx, {
-        name: "Gạo",
-        avatar: gaoAvatar,
-        backHref: "",
-        backLabel: "",
-        title: "",
-        introDesc: "",
-        chip: "",
-        wordListHtml: "",
-        systemPrompt,
-        wordPool: ctx.words,
-        introMessage: "Ký chủ cần em giúp gì nè? Hỏi ngữ pháp, hỏi cách dùng app, hay chỉ muốn tám chuyện cũng được ạ 🐾",
-        rerender: () => { loaded = false; open(); },
-      });
+      renderGaoQuizCompact(document.getElementById("gao-support-body"), ctx);
     }
   }
   function close() {
     panel.classList.add("hidden");
     fab.classList.remove("active");
+    loaded = false;
   }
 
   // Drag-to-reposition: a real drag (moved beyond a small threshold) repositions

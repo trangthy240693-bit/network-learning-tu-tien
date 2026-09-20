@@ -87,8 +87,9 @@ async function renderQuizShell(root, ctx, opts) {
   `;
   root.innerHTML = html;
 
-  const log = document.getElementById("chat-log");
-  const inputRow = document.getElementById("msg-row");
+  // Scoped to `root` so the floating widget and the full page can coexist.
+  const log = root.querySelector("#chat-log");
+  const inputRow = root.querySelector("#msg-row");
   let current = null; // { w, kind }
   let awaitingNext = false;
 
@@ -155,8 +156,8 @@ async function renderQuizShell(root, ctx, opts) {
     }
   }
 
-  const inputEl = document.getElementById("msg-input");
-  const sendBtn = document.getElementById("msg-send");
+  const inputEl = root.querySelector("#msg-input");
+  const sendBtn = root.querySelector("#msg-send");
   async function submit() {
     if (awaitingNext || !current) return;
     const text = inputEl.value.trim();
@@ -200,6 +201,16 @@ export async function renderTomQuiz(root, ctx, batchIndex) {
     chip: `Luyện trong ${batch.length} từ của nhóm này`,
     introMessage: "Chào ký chủ! Mình bắt đầu ôn từ nha, em hỏi ký chủ trả lời thôi 🐾",
     aiHref: `#/freetalk-ai/${batchIndex}`,
+  });
+}
+
+// Compact Gạo quiz for the floating pop-up: same offline quiz, no header/links.
+export async function renderGaoQuizCompact(root, ctx) {
+  return renderQuizShell(root, ctx, {
+    name: "Gạo",
+    avatar: gaoAvatar,
+    words: ctx.words,
+    introMessage: "Chào ký chủ, Gạo đây ạ 👑 Ôn bài thôi nào!",
   });
 }
 
