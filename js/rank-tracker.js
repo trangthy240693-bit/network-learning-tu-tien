@@ -3,13 +3,12 @@
 import { Store } from "./db.js";
 import { rankForPct } from "./ranks.js";
 import { showBreakthroughOverlay } from "./breakthrough.js";
-
-const TOTAL_WORDS = 625;
+import { wordCount } from "./data.js";
 
 export async function currentRank(lang) {
   const all = await Store.getAllProgress(lang);
   const learned = all.filter((p) => p.status === "learned").length;
-  const pct = (learned / TOTAL_WORDS) * 100;
+  const pct = (learned / (await wordCount(lang))) * 100;
   return { rank: rankForPct(pct), pct, learned };
 }
 

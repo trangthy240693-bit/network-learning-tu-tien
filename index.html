@@ -27,8 +27,8 @@
       <button class="btn ghost profile-btn" id="profile-delete" title="Xóa người học này">🗑️</button>
     </div>
     <div class="mascot-bubble" id="mascot-slot"></div>
-    <h2 style="margin:6px 0 2px">Hai thế giới tu tiên</h2>
-    <p class="text-muted" style="margin-top:0;font-size:13px">625 từ vựng nền tảng mỗi nhánh · học song song hoặc chỉ 1 nhánh, tiến độ lưu riêng từng thế giới</p>
+    <h2 style="margin:6px 0 2px">Ba thế giới tu tiên</h2>
+    <p class="text-muted" style="margin-top:0;font-size:13px">Trung · Hàn: 625 từ nền tảng mỗi nhánh. Anh: 625 từ thông dụng rồi A1 → C1. Học song song hoặc chỉ 1 nhánh, tiến độ lưu riêng từng thế giới.</p>
 
     <div class="branch-grid branch-grid--twin">
       <a href="branch.html?lang=zh" class="branch-card branch-card--art" style="background-image:url('assets/swirl-gray.jpg')">
@@ -53,6 +53,19 @@
           <div class="progress-row">
             <div class="progress-track"><div class="progress-fill" id="ko-fill" style="width:0%"></div></div>
             <div class="progress-label"><span id="ko-pct">0%</span><span id="ko-count">0 / 625 từ đã thuộc</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="branch.html?lang=en" class="branch-card branch-card--art branch-card--wide branch-card--en">
+        <div class="branch-card-scrim"></div>
+        <div class="branch-card-content">
+          <span class="branch-card-seal">En</span>
+          <h3>Tiếng Anh</h3>
+          <p>IPA · Phát âm · Nghe-Nói-Đọc-Viết · 625 từ thông dụng + A1 → C1</p>
+          <div class="progress-row">
+            <div class="progress-track"><div class="progress-fill" id="en-fill" style="width:0%"></div></div>
+            <div class="progress-label"><span id="en-pct">0%</span><span id="en-count">0 từ đã thuộc</span></div>
           </div>
         </div>
       </a>
@@ -86,6 +99,7 @@
 <script type="module">
 import { gaoAvatar, gaoSay } from "./js/mascot.js";
 import { Store } from "./js/db.js";
+import { wordCount } from "./js/data.js";
 import { listProfiles, currentProfileId, addProfile, renameProfile, deleteProfile, setCurrentProfile } from "./js/profiles.js";
 
 const profileSelect = document.getElementById("profile-select");
@@ -123,16 +137,17 @@ document.getElementById("mascot-slot").innerHTML = `
 `;
 
 async function loadProgress(lang, fillId, pctId, countId) {
-  const all = await Store.getAllProgress(lang);
+  const [all, total] = await Promise.all([Store.getAllProgress(lang), wordCount(lang)]);
   const learned = all.filter((p) => p.status === "learned").length;
-  const pct = Math.round((learned / 625) * 100);
+  const pct = Math.round((learned / total) * 100);
   document.getElementById(fillId).style.width = pct + "%";
   document.getElementById(pctId).textContent = pct + "%";
-  document.getElementById(countId).textContent = `${learned} / 625 từ đã thuộc`;
+  document.getElementById(countId).textContent = `${learned} / ${total} từ đã thuộc`;
 }
 Store.restoreIfEmpty().then(() => {
   loadProgress("zh", "zh-fill", "zh-pct", "zh-count");
   loadProgress("ko", "ko-fill", "ko-pct", "ko-count");
+  loadProgress("en", "en-fill", "en-pct", "en-count");
 });
 
 document.getElementById("btn-export").addEventListener("click", async () => {

@@ -3,7 +3,7 @@ import { speak, missingVoiceMessage } from "./tts.js";
 import { createRecognizer, isSttSupported } from "./stt.js";
 import { mascotSay, mascotBubble } from "./mascot.js";
 import { LANG_META } from "./data.js";
-import { diffSentence } from "./vocab-tab.js";
+import { diffSentence, normCompare } from "./vocab-tab.js";
 
 const BATCH_SIZE = 20;
 
@@ -370,8 +370,7 @@ async function renderReadFlags(root, ctx) {
         out.innerHTML = `<span class="text-muted">Đang nghe...</span>`;
         const rec = createRecognizer(meta.sttLang, {
           onResult: async (transcript) => {
-            const strip = (t) => t.replace(/[\s.,。！!?？、，]/g, "");
-            const isCorrect = strip(transcript) === strip(ex.target);
+            const isCorrect = normCompare(transcript, lang) === normCompare(ex.target, lang);
             out.innerHTML = `<div>${diffSentence(ex.target, transcript, lang)}</div><div class="diff-transcript">Bạn đọc: "${transcript}"</div>`;
             await Store.recordReadResult(lang, Number(sttStr), Number(idxStr), isCorrect);
           },

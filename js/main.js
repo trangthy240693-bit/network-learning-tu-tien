@@ -9,7 +9,8 @@ import { ensureRankBaseline, initRankTracker } from "./rank-tracker.js";
 import { mountGaoSupportWidget } from "./support-widget.js";
 
 const params = new URLSearchParams(location.search);
-const lang = params.get("lang") === "ko" ? "ko" : "zh";
+const langParam = params.get("lang");
+const lang = langParam === "ko" || langParam === "en" ? langParam : "zh";
 const meta = LANG_META[lang];
 
 document.getElementById("lang-badge").textContent = meta.label;

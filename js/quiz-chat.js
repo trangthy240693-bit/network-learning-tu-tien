@@ -14,7 +14,10 @@ function normalize(s) {
 }
 
 function meaningCandidates(w) {
-  return [w.meaning, w.en].flatMap((v) => (v || "").split(/[\/,;]/)).map(normalize).filter(Boolean);
+  // English entries store the word itself in `en`; it must not count as a
+  // correct "meaning" answer.
+  const enGloss = normalize(w.en) === normalize(w.target) ? "" : w.en;
+  return [w.meaning, enGloss].flatMap((v) => (v || "").split(/[\/,;]/)).map(normalize).filter(Boolean);
 }
 
 function checkMeaning(answer, w) {
@@ -93,11 +96,13 @@ async function renderQuizShell(root, ctx, opts) {
   let current = null; // { w, kind }
   let awaitingNext = false;
 
-  function addBubble(text, who) {
+  // speakText: what the 🔊 button reads (defaults to the bubble text).
+  function addBubble(text, who, speakText) {
     const div = document.createElement("div");
     div.style.cssText = who === "ai" ? "display:flex;gap:8px;align-items:flex-start" : "text-align:right";
     if (who === "ai") {
-      div.innerHTML = `<div style="width:36px;flex-shrink:0">${opts.avatar(36)}</div><div class="bubble msg-bubble-ai">${text}<button class="msg-listen-btn" data-t="${encodeURIComponent(text.replace(/<[^>]+>/g, "").trim())}" title="Nghe">🔊</button></div>`;
+      const spoken = speakText || text.replace(/<[^>]+>/g, "").trim();
+      div.innerHTML = `<div style="width:36px;flex-shrink:0">${opts.avatar(36)}</div><div class="bubble msg-bubble-ai">${text}<button class="msg-listen-btn" data-t="${encodeURIComponent(spoken)}" title="Nghe">🔊</button></div>`;
     } else {
       div.innerHTML = `<div class="bubble msg-bubble-me">${text}</div>`;
     }
@@ -118,13 +123,18 @@ async function renderQuizShell(root, ctx, opts) {
   function askNext() {
     awaitingNext = false;
     const w = pickDueWord(pool, progressMap);
-    const kinds = ["meaning", "target", "pron"];
+    // English has no romanization to type; dictation (hear → spell) takes its place.
+    const kinds = lang === "en" ? ["meaning", "target", "spell"] : ["meaning", "target", "pron"];
     const kind = kinds[Math.floor(Math.random() * kinds.length)];
     current = { w, kind };
 
     if (kind === "meaning") {
-      addBubble(`${w.target} (${w.pron}) nghĩa là gì?`, "ai");
+      addBubble(`${w.target} (${w.pron}) nghĩa là gì?`, "ai", lang === "en" ? w.target : undefined);
       inputRow.classList.remove("hidden");
+    } else if (kind === "spell") {
+      addBubble(`Nghe rồi gõ lại đúng từ này nhé 👂`, "ai", w.target);
+      inputRow.classList.remove("hidden");
+      speak(w.target, meta.voiceLang);
     } else if (kind === "pron") {
       addBubble(`Gõ phiên âm của ${w.target}?`, "ai");
       inputRow.classList.remove("hidden");
@@ -165,10 +175,14 @@ async function renderQuizShell(root, ctx, opts) {
     inputEl.value = "";
     addBubble(text, "me");
     const { w, kind } = current;
-    const correct = kind === "meaning" ? checkMeaning(text, w) : checkPron(text, w);
+    const correct = kind === "meaning" ? checkMeaning(text, w)
+      : kind === "spell" ? normalize(text) === normalize(w.target)
+      : checkPron(text, w);
     awaitingNext = true;
     if (correct) {
       addBubble("Đúng rồi! 🎉", "ai");
+    } else if (kind === "spell") {
+      addBubble(`Chưa đúng, từ đúng là "${w.target}" ${w.pron}.`, "ai", w.target);
     } else if (kind === "meaning") {
       addBubble(`Chưa đúng, ${w.target} nghĩa là "${w.meaning}".`, "ai");
     } else {

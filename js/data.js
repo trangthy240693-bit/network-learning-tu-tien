@@ -2,7 +2,10 @@
 // structured {n, target, pron, vi} entries.
 const cache = {};
 
-export function parseExamples(raw) {
+// Chinese/Korean examples are 3-line blocks (sentence / pinyin-romanization /
+// Vietnamese). English examples are 2-line blocks (sentence / Vietnamese) —
+// sentence-level IPA would only add noise, word-level IPA lives in `pron`.
+export function parseExamples(raw, lang) {
   if (!raw) return [];
   const blocks = raw.split("──────────").map((b) => b.trim()).filter(Boolean);
   return blocks.map((block) => {
@@ -11,6 +14,7 @@ export function parseExamples(raw) {
     let first = lines[0] || "";
     const m = first.match(/^\d+\.\s*(.*)$/);
     const target = m ? m[1] : first;
+    if (lang === "en") return { target, pron: "", vi: lines.slice(1).join(" ") || "" };
     const pron = lines[1] || "";
     const vi = lines.slice(2).join(" ") || "";
     return { target, pron, vi };
@@ -32,12 +36,28 @@ export async function loadWords(lang) {
   const words = rows.map((r) => ({
     ...r,
     hanvietDisplay: r.hanviet && r.hanviet !== "—" ? r.hanviet : null,
-    exampleList: parseExamples(r.examples),
+    exampleList: parseExamples(r.examples, lang),
     expandList: parseExpand(r.expand),
-    tier: r.stt <= 179 ? "super" : "low",
+    tier: r.section ? (r.section === "core" ? "super" : "low") : (r.stt <= 179 ? "super" : "low"),
   }));
   cache[lang] = words;
   return words;
+}
+
+// Tiny file so the home page can show "x / total" without downloading a whole
+// vocabulary file (English is several MB).
+let countsPromise = null;
+export function wordCounts() {
+  if (!countsPromise) {
+    countsPromise = fetch("data/counts.json")
+      .then((r) => r.json())
+      .catch(() => ({ zh: 625, ko: 625, en: 625 }));
+  }
+  return countsPromise;
+}
+export async function wordCount(lang) {
+  const c = await wordCounts();
+  return c[lang] || 625;
 }
 
 export function batchesOf(words, batchSize = 20) {
@@ -46,6 +66,14 @@ export function batchesOf(words, batchSize = 20) {
     out.push(words.slice(i, i + batchSize));
   }
   return out;
+}
+
+const ACCENT_KEY = "nl_en_accent";
+export function getEnAccent() {
+  try { return localStorage.getItem(ACCENT_KEY) === "en-GB" ? "en-GB" : "en-US"; } catch { return "en-US"; }
+}
+export function setEnAccent(code) {
+  try { localStorage.setItem(ACCENT_KEY, code === "en-GB" ? "en-GB" : "en-US"); } catch { /* private mode */ }
 }
 
 export const LANG_META = {
@@ -62,5 +90,13 @@ export const LANG_META = {
     voiceLang: "ko-KR",
     sttLang: "ko-KR",
     targetCol: "한국어",
+  },
+  en: {
+    label: "Tiếng Anh",
+    glyph: "🔤",
+    // US/UK accent is the learner's choice, so the codes are read live.
+    get voiceLang() { return getEnAccent(); },
+    get sttLang() { return getEnAccent(); },
+    targetCol: "English",
   },
 };

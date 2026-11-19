@@ -254,6 +254,55 @@ body { overflow-x: hidden; }
 .branch-card-content .progress-track { background: rgba(255,255,255,0.25); height: 7px; }
 .branch-grid--twin .branch-card-content .progress-label { color: rgba(255,255,255,0.88); font-size: 13px; font-weight: 600; }
 
+/* English card: full-width third world, gradient instead of a painting */
+.branch-card--wide { grid-column: 1 / -1; aspect-ratio: auto; min-height: 240px; }
+.branch-card--wide .branch-card-content { padding-top: 66px; }
+.branch-card--en { background-image: linear-gradient(135deg, #3d2a14 0%, #8a5a26 52%, #d9a24f 100%); }
+.branch-card--en .branch-card-scrim { background: linear-gradient(180deg, rgba(10,14,22,0.0) 0%, rgba(10,14,22,0.1) 40%, rgba(8,10,18,0.7) 100%); }
+.branch-grid--twin .branch-card--en .branch-card-content p { font-size: 12.5px; }
+
+/* English word page: accent toggle + collapsible level sections */
+.ptip {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.accent-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.accent-btn {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.accent-btn.on { background: var(--primary); border-color: var(--primary); color: #fff; }
+.sec-group { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  background: var(--primary-soft);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+.sec-title { flex: 1; }
+.sec-caret { transition: transform 0.15s ease; }
+.sec-group.open .sec-caret { transform: rotate(180deg); }
+.sec-body { display: none; flex-direction: column; gap: 10px; padding: 10px; }
+.sec-group.open .sec-body { display: flex; }
+textarea.type-input { width: 100%; resize: vertical; font-family: inherit; }
+
 /* ---------- Progress bar ---------- */
 .progress-track {
   height: 8px;

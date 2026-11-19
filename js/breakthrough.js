@@ -18,7 +18,7 @@ const SCRIPTED = {
   },
   "dao-to": {
     tom: "Đạo Tổ giáng lâm!!! Nô tài xin được làm đệ tử ghi danh từ hôm nay ạ!!",
-    gao: "Ding~~~ Chúc mừng ký chủ chứng đạo Đạo Tổ. 625 từ đã trong lòng bàn tay. Từ hôm nay, ký chủ chính là truyền kỳ.",
+    gao: "Ding~~~ Chúc mừng ký chủ chứng đạo Đạo Tổ. Toàn bộ từ vựng đã trong lòng bàn tay. Từ hôm nay, ký chủ chính là truyền kỳ.",
   },
 };
 

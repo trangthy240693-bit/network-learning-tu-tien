@@ -2,10 +2,19 @@ import { Store } from "./db.js";
 import { speak, isTtsSupported, hasVoiceFor, missingVoiceMessage } from "./tts.js";
 import { createRecognizer, isSttSupported } from "./stt.js";
 import { mascotBubble, mascotSay } from "./mascot.js";
-import { LANG_META } from "./data.js";
+import { LANG_META, getEnAccent, setEnAccent } from "./data.js";
 import { rankForPct, nextRank } from "./ranks.js";
 
 const BATCH_SIZE = 20;
+
+const SECTION_LABEL = {
+  core: "🌟 625 từ thông dụng",
+  A1: "A1 · Sơ cấp",
+  A2: "A2 · Cơ bản",
+  B1: "B1 · Trung cấp",
+  B2: "B2 · Trung cao cấp",
+  C1: "C1 · Cao cấp",
+};
 
 // ---------- Visual mnemonics for the Từ vựng detail screen ----------
 // A curated English-keyword → emoji map for a quick "visual anchor" next to
@@ -164,12 +173,17 @@ export async function renderBatchList(root, ctx) {
 
   let html = rankBanner + mascotBubble("welcome");
   html += `<div class="row between mt-16"><h2 style="margin:0">Các nhóm từ vựng</h2></div>`;
-  html += `<div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">`;
-  batches.forEach((batch, idx) => {
+
+  const batchCard = (batch, idx) => {
     const learnedCount = batch.filter((w) => progressMap.get(w.stt)?.status === "learned").length;
     const pct = Math.round((learnedCount / batch.length) * 100);
-    const tierTag = batch[0].tier === "super" ? "🌟 Từ tần suất cao" : "";
-    html += `
+    let tierTag = batch[0].tier === "super" ? "🌟 Từ tần suất cao" : "";
+    if (lang === "en") {
+      const a = batch[0].level, b = batch[batch.length - 1].level;
+      if (batch[0].section === "core") tierTag = "🌟 Từ tần suất cao";
+      else tierTag = a === b ? `Mức ${a}` : `Mức ${a} → ${b}`;
+    }
+    return `
       <a href="#/batch/${idx}" class="card" style="text-decoration:none;color:inherit;display:block;">
         <div class="row between">
           <strong>Nhóm ${idx + 1} · ${batch[0].stt}–${batch[batch.length - 1].stt}</strong>
@@ -178,9 +192,48 @@ export async function renderBatchList(root, ctx) {
         ${tierTag ? `<div class="text-muted" style="font-size:12px;margin-top:4px">${tierTag}</div>` : ""}
         <div class="progress-track mt-8"><div class="progress-fill" style="width:${pct}%"></div></div>
       </a>`;
+  };
+
+  if (lang !== "en") {
+    html += `<div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">`;
+    batches.forEach((batch, idx) => { html += batchCard(batch, idx); });
+    html += `</div>`;
+    root.innerHTML = html;
+    return;
+  }
+
+  // English has thousands of words: group the batches by section (625 core
+  // words, then A1 → C1) as collapsible blocks; open the one still in progress.
+  const groups = [];
+  batches.forEach((batch, idx) => {
+    const sec = batch[0].section || "core";
+    let g = groups[groups.length - 1];
+    if (!g || g.sec !== sec) { g = { sec, items: [] }; groups.push(g); }
+    g.items.push({ batch, idx });
+  });
+  // Count by the words' own section: a 20-word batch can straddle two sections.
+  groups.forEach((g) => {
+    const own = words.filter((w) => (w.section || "core") === g.sec);
+    g.total = own.length;
+    g.learned = own.filter((w) => progressMap.get(w.stt)?.status === "learned").length;
+  });
+  const openIdx = Math.max(0, groups.findIndex((g) => g.learned < g.total));
+  html += `<div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">`;
+  groups.forEach((g, gi) => {
+    const open = gi === openIdx;
+    html += `
+      <div class="sec-group ${open ? "open" : ""}">
+        <button class="sec-head" data-sec="${gi}">
+          <span class="sec-title">${SECTION_LABEL[g.sec] || g.sec}</span>
+          <span class="chip">${g.learned}/${g.total} thuộc</span>
+          <span class="sec-caret">▾</span>
+        </button>
+        <div class="sec-body">${g.items.map((x) => batchCard(x.batch, x.idx)).join("")}</div>
+      </div>`;
   });
   html += `</div>`;
   root.innerHTML = html;
+  root.querySelectorAll(".sec-head").forEach((b) => b.addEventListener("click", () => b.parentElement.classList.toggle("open")));
 }
 
 export async function renderBatch(root, ctx, batchIndex) {
@@ -282,7 +335,41 @@ function pinyinAlphaChips(lang) {
 
 // Word-level diff for Korean (space-separated 어절), char-level for Chinese
 // (no spaces) — used by the Đọc skill's mic pronunciation check.
+// Normalizes spoken/typed text before comparing it with the expected text.
+// English: case-insensitive, punctuation-free, spaces kept (speech recognizers
+// return lower-case text without punctuation). zh/ko: all spaces removed.
+export function normCompare(s, lang) {
+  if (lang === "en") {
+    // Apostrophes are dropped (don't = dont): recognizers are inconsistent about them.
+    return (s || "").toLowerCase().replace(/[’‘']/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+  }
+  return (s || "").replace(/[\s.,。！!?？、，]/g, "");
+}
+
+// English word-level diff via longest-common-subsequence, so one missed or
+// extra word doesn't mark every following word wrong.
+function diffSentenceEn(expected, recognized) {
+  const expToks = expected.trim().split(/\s+/).filter(Boolean);
+  const exp = expToks.map((t) => normCompare(t, "en"));
+  const rec = normCompare(recognized, "en").split(" ").filter(Boolean);
+  const dp = Array.from({ length: exp.length + 1 }, () => new Array(rec.length + 1).fill(0));
+  for (let i = exp.length - 1; i >= 0; i--) {
+    for (let j = rec.length - 1; j >= 0; j--) {
+      dp[i][j] = exp[i] === rec[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    }
+  }
+  const ok = new Set();
+  let i = 0, j = 0;
+  while (i < exp.length && j < rec.length) {
+    if (exp[i] === rec[j]) { ok.add(i); i++; j++; }
+    else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+    else j++;
+  }
+  return expToks.map((t, k) => `<span class="${ok.has(k) || !exp[k] ? "diff-ok" : "diff-wrong"}">${t}</span>`).join(" ");
+}
+
 export function diffSentence(expected, recognized, lang) {
+  if (lang === "en") return diffSentenceEn(expected, recognized);
   const strip = (s) => s.replace(/[\s.,。！!?？、，]/g, "");
   if (lang === "zh") {
     const exp = Array.from(strip(expected));
@@ -317,20 +404,28 @@ export async function renderWordDetail(root, ctx, stt) {
       <div class="target-big">
         <span>${w.target}</span>
         <button class="speak-btn" id="btn-speak-main" title="Nghe">🔊</button>
+        ${lang === "en" ? `<button class="speak-btn" id="btn-speak-slow" title="Nghe chậm">🐢</button>` : ""}
         ${sttOk ? `<button class="speak-btn" id="btn-speak-record" title="Nói theo">🎤</button>` : ""}
       </div>
       <div class="pron-big">${w.pron}</div>
-      <div class="en-tag">${w.en} · ${w.meaning}${w.hanvietDisplay ? ` · <span class="hanviet-pill">Hán Việt: ${w.hanvietDisplay}</span>` : ""}</div>
+      ${lang === "en" && w.ptip ? `<div class="ptip">🗣️ ${w.ptip}</div>` : ""}
+      ${lang === "en"
+        ? `<div class="en-tag">${w.pos ? `<em>${w.pos}</em> · ` : ""}${w.meaning} · <span class="hanviet-pill">${w.level}</span></div>
+           <div class="accent-row">
+             <button class="accent-btn ${getEnAccent() === "en-US" ? "on" : ""}" data-accent="en-US">🇺🇸 Giọng Mỹ</button>
+             <button class="accent-btn ${getEnAccent() === "en-GB" ? "on" : ""}" data-accent="en-GB">🇬🇧 Giọng Anh</button>
+           </div>`
+        : `<div class="en-tag">${w.en} · ${w.meaning}${w.hanvietDisplay ? ` · <span class="hanviet-pill">Hán Việt: ${w.hanvietDisplay}</span>` : ""}</div>`}
       <div id="voice-warn" class="text-muted" style="font-size:12px;margin-top:6px"></div>
       <div id="speak-fb" class="feedback-banner" style="text-align:left"></div>
     </div>
 
     <div class="info-block">
       <div class="section-title-row">
-        <h4 style="margin:0">🖼️ Hình ảnh minh họa</h4>
-        <button class="btn ghost" id="btn-toggle-write" style="font-size:12px;padding:5px 10px">✍️ Tập viết</button>
+        <h4 style="margin:0">${lang === "en" ? "✍️ Luyện viết" : "🖼️ Hình ảnh minh họa"}</h4>
+        <button class="btn ghost" id="btn-toggle-write" style="font-size:12px;padding:5px 10px">✍️ ${lang === "en" ? "Mở bài tập" : "Tập viết"}</button>
       </div>
-      <div class="visual-mnemonic">
+      ${lang === "en" && !emojiFor(w.en) ? "" : `<div class="visual-mnemonic">
         ${emojiFor(w.en) ? `<div class="visual-emoji">${emojiFor(w.en)}</div>` : ""}
         ${lang === "zh"
           ? `<div class="hanzi-strokes">${primaryHanzi(w.target).map((ch, i) => `
@@ -338,8 +433,22 @@ export async function renderWordDetail(root, ctx, stt) {
                 <div class="stroke-box" id="stroke-box-${i}" data-char="${ch}"></div>
                 <button class="btn ghost" style="font-size:12px;padding:6px 10px;margin-top:6px" data-replay="${i}">▶ Xem nét</button>
               </div>`).join("")}</div>`
-          : renderHangulBreakdown(w.target)}
-      </div>
+          : lang === "ko" ? renderHangulBreakdown(w.target) : ""}
+      </div>`}
+      ${lang === "en" ? `
+      <div class="write-panel hidden" id="write-panel">
+        <div class="text-muted" style="font-size:13px">1 · Chính tả — bấm 🔊 nghe rồi gõ lại đúng từ:</div>
+        <div class="row gap" style="margin-top:6px">
+          <button class="speak-btn" id="write-listen" title="Nghe">🔊</button>
+          <input class="type-input" id="write-input" placeholder="Gõ từ bạn vừa nghe..." autocomplete="off" autocapitalize="off" spellcheck="false"/>
+        </div>
+        <button class="btn block mt-8" id="write-check">Kiểm tra chính tả</button>
+        <div class="feedback-banner" id="fb-w"></div>
+        <div class="text-muted" style="font-size:13px;margin-top:16px">2 · Đặt câu — viết một câu của riêng bạn có dùng "<strong>${w.target}</strong>":</div>
+        <textarea class="type-input" id="sentence-input" rows="2" placeholder="Viết câu của bạn..." autocomplete="off" spellcheck="false" style="margin-top:6px"></textarea>
+        <button class="btn ghost block mt-8" id="sentence-check">Kiểm tra câu</button>
+        <div class="feedback-banner" id="fb-s"></div>
+      </div>` : `
       <div class="write-panel hidden" id="write-panel">
         <div class="text-muted" style="font-size:13px">Gõ đúng ${lang === "zh" ? "Pinyin" : "phiên âm La-tinh"} của từ này:</div>
         <input class="type-input" id="write-input" placeholder="Gõ vào đây..." autocomplete="off"/>
@@ -349,7 +458,7 @@ export async function renderWordDetail(root, ctx, stt) {
         ${toneHintChips(lang)}
         <button class="btn block mt-16" id="write-check">Kiểm tra</button>
         <div class="feedback-banner" id="fb-w"></div>
-      </div>
+      </div>`}
     </div>
 
     <div class="info-block">
@@ -358,7 +467,7 @@ export async function renderWordDetail(root, ctx, stt) {
     </div>
 
     <div class="info-block">
-      <h4>Mở rộng</h4>
+      <h4>${lang === "en" ? "Họ từ &amp; cụm từ đi kèm" : "Mở rộng"}</h4>
       <div class="expand-list">${renderExpandItems(w.expandList, lang)}</div>
     </div>
 
@@ -369,10 +478,11 @@ export async function renderWordDetail(root, ctx, stt) {
         <div class="example-block ${readFlags.includes(i) ? "flagged" : ""}" id="ex-block-${i}">
           <div class="ex-target">${ex.target}
             <button class="speak-btn small" data-t="${encodeURIComponent(ex.target)}">🔊</button>
+            ${lang === "en" ? `<button class="speak-btn small" data-slow="${encodeURIComponent(ex.target)}" title="Nghe chậm">🐢</button>` : ""}
             ${sttOk ? ` <button class="speak-btn small" data-rec="${i}">🎤</button>` : ""}
             <button class="flag-toggle-btn ${readFlags.includes(i) ? "active" : ""}" data-flag="${i}" title="Gắn/bỏ cờ câu này">🚩</button>
           </div>
-          <div class="ex-pron">${ex.pron}</div>
+          ${ex.pron ? `<div class="ex-pron">${ex.pron}</div>` : ""}
           <div class="ex-vi">${ex.vi}</div>
           <div class="diff-result" id="diff-${i}"></div>
         </div>`).join("")}
@@ -413,6 +523,16 @@ export async function renderWordDetail(root, ctx, stt) {
     if (!r.hadVoice && warnEl) warnEl.textContent = missingVoiceMessage(meta.label);
   });
 
+  if (lang === "en") {
+    // 🐢 slow playback for pronunciation practice, and US/UK accent choice.
+    document.getElementById("btn-speak-slow").addEventListener("click", () => speak(w.target, meta.voiceLang, 0.55));
+    root.querySelectorAll(".accent-btn").forEach((b) => b.addEventListener("click", () => {
+      setEnAccent(b.dataset.accent);
+      root.querySelectorAll(".accent-btn").forEach((x) => x.classList.toggle("on", x === b));
+      speak(w.target, meta.voiceLang);
+    }));
+  }
+
   // 🎤 main speak-and-check (next to the listen button)
   if (sttOk) {
     const recordBtn = document.getElementById("btn-speak-record");
@@ -421,9 +541,9 @@ export async function renderWordDetail(root, ctx, stt) {
       recordBtn.classList.add("recording");
       const rec = createRecognizer(meta.sttLang, {
         onResult: async (transcript) => {
-          const said = transcript.replace(/[.,。！!?？\s]/g, "");
-          const target = w.target.split("/")[0].replace(/[.,。！!?？\s]/g, "");
-          const close = said.includes(target) || target.includes(said);
+          const said = normCompare(transcript, lang);
+          const target = normCompare(w.target.split("/")[0], lang);
+          const close = !!said && (said.includes(target) || target.includes(said));
           fb.classList.add("show", close ? "good" : "retry");
           fb.textContent = close ? `Nghe được: "${transcript}" — ${mascotSay("correct")}` : `Nghe được: "${transcript}" — gần đúng rồi, thử lại xem sao?`;
           if (close) await markDone("speak");
@@ -445,14 +565,49 @@ export async function renderWordDetail(root, ctx, stt) {
     writeInput.value += c.dataset.ch;
     writeInput.focus();
   }));
-  document.getElementById("write-check").addEventListener("click", async () => {
-    const norm = (s) => s.toLowerCase().replace(/\s+/g, "");
-    const correct = norm(writeInput.value) === norm(w.pron);
-    const fb = document.getElementById("fb-w");
-    fb.classList.add("show", correct ? "good" : "retry");
-    fb.textContent = correct ? mascotSay("correct") + ` (${w.pron})` : `${mascotSay("wrong")} Đáp án: ${w.pron}`;
-    if (correct) await markDone("write");
-  });
+  if (lang === "en") {
+    // Writing practice: (1) dictation/spelling of the word, (2) own sentence.
+    document.getElementById("write-listen").addEventListener("click", () => speak(w.target, meta.voiceLang));
+    document.getElementById("write-check").addEventListener("click", async () => {
+      const correct = normCompare(writeInput.value, "en") === normCompare(w.target, "en");
+      const fb = document.getElementById("fb-w");
+      fb.classList.remove("good", "retry");
+      fb.classList.add("show", correct ? "good" : "retry");
+      fb.textContent = correct ? `${mascotSay("correct")} (${w.target})` : `${mascotSay("wrong")} Đáp án: ${w.target}`;
+      if (correct) await markDone("write");
+    });
+    document.getElementById("sentence-check").addEventListener("click", async () => {
+      const text = document.getElementById("sentence-input").value.trim();
+      const fb = document.getElementById("fb-s");
+      fb.classList.remove("good", "retry");
+      fb.classList.add("show");
+      const tokens = normCompare(text, "en").split(" ").filter(Boolean);
+      const parts = normCompare(w.target, "en").split(" ").filter(Boolean);
+      const stemOf = (t) => (t.length > 5 ? t.slice(0, t.length - 2) : t.length > 3 ? t.slice(0, t.length - 1) : t);
+      const hasWord = parts.every((part, i) => tokens.some((tk) => (i === 0 ? tk.startsWith(stemOf(part)) : tk === part)));
+      if (tokens.length < 4) {
+        fb.classList.add("retry");
+        fb.textContent = "Câu hơi ngắn — thử viết một câu đầy đủ (ít nhất 4 từ) nhé.";
+      } else if (!hasWord) {
+        fb.classList.add("retry");
+        fb.textContent = `Câu chưa có từ "${w.target}" — thử lại nhé.`;
+      } else {
+        fb.classList.add("good");
+        const sample = w.exampleList[0] ? ` Câu mẫu để so sánh: "${w.exampleList[0].target}"` : "";
+        fb.textContent = `Có dùng "${w.target}" rồi, tốt lắm! (App chưa chấm được ngữ pháp, bạn tự đọc lại câu nhé.)${sample}`;
+        await markDone("write");
+      }
+    });
+  } else {
+    document.getElementById("write-check").addEventListener("click", async () => {
+      const norm = (s) => s.toLowerCase().replace(/\s+/g, "");
+      const correct = norm(writeInput.value) === norm(w.pron);
+      const fb = document.getElementById("fb-w");
+      fb.classList.add("show", correct ? "good" : "retry");
+      fb.textContent = correct ? mascotSay("correct") + ` (${w.pron})` : `${mascotSay("wrong")} Đáp án: ${w.pron}`;
+      if (correct) await markDone("write");
+    });
+  }
 
   // stroke order (zh only)
   if (lang === "zh") {
@@ -481,6 +636,7 @@ export async function renderWordDetail(root, ctx, stt) {
 
   // 📖 read examples with mic pronunciation check + per-sentence flag tracking
   root.querySelectorAll(".example-block [data-t]").forEach((b) => b.addEventListener("click", () => speak(decodeURIComponent(b.dataset.t), meta.voiceLang)));
+  root.querySelectorAll(".example-block [data-slow]").forEach((b) => b.addEventListener("click", () => speak(decodeURIComponent(b.dataset.slow), meta.voiceLang, 0.55)));
 
   root.querySelectorAll(".flag-toggle-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
@@ -501,8 +657,7 @@ export async function renderWordDetail(root, ctx, stt) {
         out.innerHTML = `<span class="text-muted">Đang nghe...</span>`;
         const rec = createRecognizer(meta.sttLang, {
           onResult: async (transcript) => {
-            const strip = (t) => t.replace(/[\s.,。！!?？、，]/g, "");
-            const isCorrect = strip(transcript) === strip(ex.target);
+            const isCorrect = normCompare(transcript, lang) === normCompare(ex.target, lang);
             out.innerHTML = `<div>${diffSentence(ex.target, transcript, lang)}</div><div class="diff-transcript">Bạn đọc: "${transcript}"</div>`;
             const wasFlagged = readFlags.includes(idx);
             const rp = await Store.recordReadResult(lang, w.stt, idx, isCorrect);
