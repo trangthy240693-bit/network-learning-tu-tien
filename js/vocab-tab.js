@@ -260,7 +260,7 @@ export async function renderBatch(root, ctx, batchIndex) {
     const p = progressMap.get(w.stt);
     html += `
       <div class="word-tile" data-nav="#/word/${w.stt}">
-        ${(p?.flag || (p?.readFlags && p.readFlags.length > 0)) ? `<span class="flag-icon">🚩</span>` : ""}
+        <button class="tile-flag ${p?.flag ? "on" : ""}" data-flag-stt="${w.stt}" title="Gắn/bỏ cờ từ này" aria-label="Gắn cờ">🚩</button>
         <span class="status-dot ${statusClass(p)}"></span>
         <div class="target">${w.target}</div>
         <div class="pron">${w.pron}</div>
@@ -278,6 +278,18 @@ export async function renderBatch(root, ctx, batchIndex) {
   root.innerHTML = html;
   root.querySelectorAll(".word-tile").forEach((el) => {
     el.addEventListener("click", () => { location.hash = el.dataset.nav; });
+  });
+  wireTileFlags(root, lang);
+}
+
+// Flag button on word tiles: toggles the word-level 🚩 without opening the word.
+export function wireTileFlags(root, lang) {
+  root.querySelectorAll(".tile-flag").forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const p = await Store.toggleWordFlag(lang, Number(btn.dataset.flagStt));
+      btn.classList.toggle("on", !!p.flag);
+    });
   });
 }
 
@@ -412,6 +424,7 @@ export async function renderWordDetail(root, ctx, stt) {
         <button class="speak-btn" id="btn-speak-main" title="Nghe">🔊</button>
         ${lang === "en" ? `<button class="speak-btn" id="btn-speak-slow" title="Nghe chậm">🐢</button>` : ""}
         ${sttOk ? `<button class="speak-btn" id="btn-speak-record" title="Nói theo">🎤</button>` : ""}
+        <button class="word-flag-btn ${p.flag ? "active" : ""}" id="btn-word-flag" title="Gắn/bỏ cờ từ này (ưu tiên ôn)">🚩</button>
       </div>
       <div class="pron-big">${w.pron}</div>
       ${lang === "en" && w.ptip ? `<div class="ptip">🗣️ ${w.ptip}</div>` : ""}
@@ -524,6 +537,12 @@ export async function renderWordDetail(root, ctx, stt) {
   document.getElementById("verdict-known").addEventListener("click", async () => {
     await Store.setStatus(lang, w.stt, "learned");
     goNext();
+  });
+
+  const wordFlagBtn = document.getElementById("btn-word-flag");
+  wordFlagBtn.addEventListener("click", async () => {
+    const np = await Store.toggleWordFlag(lang, w.stt);
+    wordFlagBtn.classList.toggle("active", !!np.flag);
   });
 
   const markDone = (skill) => Store.markSkillDone(lang, w.stt, skill);

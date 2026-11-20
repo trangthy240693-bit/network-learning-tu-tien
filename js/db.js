@@ -234,6 +234,17 @@ export const Store = {
     return p;
   },
 
+  // Manual flag on a whole word (🚩 = "cần chú ý / ưu tiên ôn"). Independent of
+  // the learned/learning verdict; the flashcard deck and word list put flagged
+  // words first.
+  async toggleWordFlag(lang, stt) {
+    const p = await this.ensureProgress(lang, stt);
+    p.flag = !p.flag;
+    p.lastSeen = Date.now();
+    await this.putProgress(p);
+    return p;
+  },
+
   // Used correctly in free-talk -> unflag directly.
   async markUsedInFreeTalk(lang, stt) {
     const p = await this.ensureProgress(lang, stt);

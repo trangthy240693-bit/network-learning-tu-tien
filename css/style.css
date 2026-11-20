@@ -692,6 +692,23 @@ textarea.type-input { width: 100%; resize: vertical; font-family: inherit; }
   padding: 2px;
 }
 .flag-toggle-btn.active { opacity: 1; filter: none; }
+.word-flag-btn {
+  border: none; background: transparent; cursor: pointer;
+  font-size: 22px; margin-left: 4px; padding: 2px;
+  opacity: 0.35; filter: grayscale(1);
+}
+.word-flag-btn.active { opacity: 1; filter: none; }
+/* Flag button on word tiles (top-left): faint when off, full colour when on */
+.tile-flag {
+  position: absolute; top: 2px; left: 2px;
+  width: 30px; height: 30px;
+  border: none; background: transparent; cursor: pointer;
+  font-size: 14px; line-height: 1;
+  opacity: 0.3; filter: grayscale(1);
+}
+.tile-flag.on { opacity: 1; filter: none; }
+.tile-flag:hover { opacity: 0.7; }
+.tile-flag.on:hover { opacity: 1; }
 
 .section-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
 .section-check { font-size: 11px; font-weight: 600; color: var(--primary); margin-left: 8px; text-transform: none; letter-spacing: 0; }

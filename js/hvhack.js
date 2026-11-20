@@ -4,6 +4,7 @@
 import { zhSwitcher, hackTabs, sayZh, analyzeSyllable, syllableTags, loadHvData, pyParts, RULE_OF } from "./hanviet.js";
 import { Store } from "./db.js";
 import { COMPOUND_BASE } from "./data.js";
+import { wireTileFlags } from "./vocab-tab.js";
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const shuffle = (a) => { const r = [...a]; for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; } return r; };
@@ -175,10 +176,11 @@ export async function renderCompounds(root, ctx) {
       <div class="row between mt-16"><h3 class="hk-h3" style="margin:0">${esc(name)}</h3><span class="chip">${learnedIn(list)}/${list.length} thuộc</span></div>
       <div class="word-grid">${list.map((w) => `
         <div class="word-tile" data-nav="#/word/${w.stt}">
-          ${progress.get(w.stt)?.flag || progress.get(w.stt)?.readFlags?.length ? `<span class="flag-icon">🚩</span>` : ""}
+          <button class="tile-flag ${progress.get(w.stt)?.flag ? "on" : ""}" data-flag-stt="${w.stt}" title="Gắn/bỏ cờ từ này" aria-label="Gắn cờ">🚩</button>
           <span class="status-dot ${statusOf(progress.get(w.stt))}"></span>
           <div class="target">${esc(w.target)}</div><div class="pron">${esc(w.pron)}</div><div class="meaning">${esc(w.meaning)}</div>
         </div>`).join("")}</div>`).join("")}
     <a href="#/hv/all" class="text-muted" style="display:block;margin-top:18px;font-size:13px">Kho từ mở rộng (tra cứu thêm) →</a>`;
   page.querySelectorAll(".word-tile").forEach((el) => el.addEventListener("click", () => { location.hash = el.dataset.nav; }));
+  wireTileFlags(page, ctx.lang);
 }
