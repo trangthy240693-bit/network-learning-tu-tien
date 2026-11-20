@@ -38,7 +38,9 @@ self.addEventListener("fetch", (e) => {
 
   if (sameOrigin) {
     e.respondWith(
-      fetch(req)
+      // no-cache = always revalidate with the server (GitHub Pages otherwise lets the
+      // browser reuse a stale copy for up to 10 minutes after a deploy).
+      fetch(req, { cache: "no-cache" })
         .then((res) => {
           if (res.ok) caches.open(CACHE).then((c) => c.put(req, res.clone()));
           return res;
