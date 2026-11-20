@@ -1,5 +1,6 @@
 import { loadWords, LANG_META } from "./data.js";
 import { Store } from "./db.js";
+import { renderHvList } from "./hanviet.js";
 import { currentProfile } from "./profiles.js";
 import { renderBatchList, renderBatch, renderWordDetail } from "./vocab-tab.js";
 import { renderReview } from "./review-tab.js";
@@ -38,6 +39,10 @@ async function route() {
   if (!parts.length || parts[0] === "batches") {
     setActiveTab("vocab");
     return renderBatchList(root, ctx);
+  }
+  if (parts[0] === "hv" && lang === "zh") {
+    setActiveTab("vocab");
+    return renderHvList(root, ctx);
   }
   if (parts[0] === "batch" && parts[1] !== undefined) {
     setActiveTab("vocab");

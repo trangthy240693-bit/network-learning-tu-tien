@@ -4,6 +4,7 @@ import { createRecognizer, isSttSupported } from "./stt.js";
 import { mascotBubble, mascotSay } from "./mascot.js";
 import { LANG_META, getEnAccent, setEnAccent } from "./data.js";
 import { rankForPct, nextRank } from "./ranks.js";
+import { renderHvBox } from "./hanviet.js";
 
 const BATCH_SIZE = 20;
 
@@ -172,6 +173,9 @@ export async function renderBatchList(root, ctx) {
     </div>`;
 
   let html = rankBanner + mascotBubble("welcome");
+  if (lang === "zh") {
+    html += `<a href="#/hv" class="hv-entry"><span class="emoji">🔗</span><div class="txt"><strong>Từ Hán-Việt giống tiếng Trung</strong><span>Tra cứu hàng nghìn từ mà âm Hán-Việt gần giống pinyin — lọc theo mức giống, HSK, lĩnh vực.</span></div></a>`;
+  }
   html += `<div class="row between mt-16"><h2 style="margin:0">Các nhóm từ vựng</h2></div>`;
 
   const batchCard = (batch, idx) => {
@@ -466,6 +470,8 @@ export async function renderWordDetail(root, ctx, stt) {
       <div class="body">${w.note || ""}</div>
     </div>
 
+    ${lang === "zh" ? `<div class="info-block hv-block" id="hv-block" hidden><h4>🔗 Mẹo Hán-Việt</h4><div id="hv-box"></div></div>` : ""}
+
     <div class="info-block">
       <h4>${lang === "en" ? "Họ từ &amp; cụm từ đi kèm" : "Mở rộng"}</h4>
       <div class="expand-list">${renderExpandItems(w.expandList, lang)}</div>
@@ -515,6 +521,8 @@ export async function renderWordDetail(root, ctx, stt) {
   });
 
   const markDone = (skill) => Store.markSkillDone(lang, w.stt, skill);
+
+  if (lang === "zh") renderHvBox(document.getElementById("hv-block"), w, words).catch(() => {});
 
   // 🔊 main listen
   document.getElementById("btn-speak-main").addEventListener("click", async () => {
