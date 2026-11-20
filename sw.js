@@ -7,10 +7,10 @@ const CORE = [
   "./", "./index.html", "./branch.html", "./manifest.webmanifest",
   "./css/style.css",
   "./js/breakthrough.js", "./js/data.js", "./js/db.js", "./js/freetalk.js",
-  "./js/hanviet.js", "./js/main.js", "./js/mascot.js", "./js/profiles.js", "./js/quiz-chat.js",
+  "./js/hanviet.js", "./js/hvhack.js", "./js/main.js", "./js/mascot.js", "./js/profiles.js", "./js/quiz-chat.js",
   "./js/rank-tracker.js", "./js/ranks.js", "./js/review-tab.js", "./js/stt.js",
   "./js/support-widget.js", "./js/tts.js", "./js/vocab-tab.js",
-  "./data/zh.json", "./data/ko.json", "./data/counts.json", "./data/hv.json", "./data/hv-rules.json",
+  "./data/zh.json", "./data/ko.json", "./data/counts.json", "./data/hv.json", "./data/hv-rules.json", "./data/hv-core.json",
   "./assets/gao.jpg", "./assets/tom.jpg", "./assets/swirl-gray.jpg", "./assets/swirl-blue.jpg",
   "./assets/icon-192.png", "./assets/icon-512.png",
 ];

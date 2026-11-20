@@ -121,14 +121,9 @@ export function analyzeSyllable(han, hv, py, rules) {
   const neutral = p.tone === "0";
   return {
     han, hv, py,
-    init: { label: `${VN_INIT_LABEL[v.init] || v.init}${conditional && v.front ? " + vần i/ê" : ""}`, predicted: ci.items.map((x) => `${pyIni(x.key)} ${pct(x.share)}`), actual: pyIni(p.init), ...grade(ci, p.init) },
-    final: { label: v.final === "V" ? "mở" : `-${v.final}`, predicted: cf.items.map((x) => `${FINAL_LABEL[x.key] || x.key}`), actual: FINAL_LABEL[p.coda], ...grade(cf, p.coda) },
-    tone: {
-      label: TONE_VN[v.tone],
-      predicted: ct.items.map((x) => `${x.key} ${pct(x.share)}`),
-      actual: neutral ? "nhẹ" : p.tone,
-      ...(neutral ? { status: "na", share: 0 } : grade(ct, p.tone)),
-    },
+    init: { hvInit: v.init, front: v.front, keys: ci.items.map((x) => x.key), actual: p.init, ...grade(ci, p.init) },
+    final: { hvFinal: v.final, keys: cf.items.map((x) => x.key), actual: p.coda, ...grade(cf, p.coda) },
+    tone: { hvTone: v.tone, keys: ct.items.map((x) => x.key), actual: neutral ? "nhẹ" : p.tone, ...(neutral ? { status: "na", share: 0 } : grade(ct, p.tone)) },
   };
 }
 
@@ -166,25 +161,49 @@ function buildIndex(rows, appWords) {
 }
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const ICON = { ok: "✓", ex: "⚠", na: "·" };
+const KIND_BADGE = { reversed: "⇄ đảo trật tự", drift: "⚠ bạn giả", partial: "đoán từng chữ" };
 
-function chip(label, pred, actual, status, share) {
-  const predText = pred.length ? pred.join(" / ") : "chưa đủ dữ liệu";
-  const note = status === "ex" ? (share > 0 ? `hiếm gặp (${pct(share)})` : "ngoại lệ") : "";
-  return `<div class="hv-chip ${status}"><span class="hv-k">${label}</span><span class="hv-pred">đoán: ${esc(predText)}</span><span class="hv-act">${ICON[status]} thực tế: <b>${esc(actual)}</b>${note ? ` — ${note}` : ""}</span></div>`;
+// Which of the 10 initial-consonant rules a Hán-Việt initial belongs to.
+export const RULE_OF = { v: 1, "đ": 2, th: 3, nh: 4, t: 5, ph: 6, k: 7, c: 7, q: 7, qu: 7, kh: 7, g: 7, gi: 7, ng: 8, ngh: 8, tr: 9, ch: 9, s: 9, x: 9, h: 10 };
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const KEEP = new Set(["b", "m", "l", "n"]);
+const tag = (cls, text) => `<span class="hv-tag ${cls}">${esc(text)}</span>`;
+
+// Plain-language rule tags for one syllable; only what helps the learner.
+function syllableTags(s) {
+  const out = [];
+  const i = s.init;
+  if (i.status !== "na" && !(KEEP.has(i.hvInit) && i.actual === i.hvInit) && i.hvInit !== "0") {
+    const from = cap(i.hvInit === "đ" ? "Đ" : i.hvInit);
+    const to = cap(i.actual === "0" ? "(không phụ âm)" : i.actual);
+    const rule = RULE_OF[i.hvInit] ? `Quy luật ${RULE_OF[i.hvInit]} · ` : "";
+    out.push(i.status === "ok" ? tag("ok", `${rule}${from} → ${to}`)
+      : tag("ex", `⚠ Ngoại lệ: ${from} → ${to} (thường là ${i.keys.map((k) => cap(k === "0" ? "∅" : k)).join("/")})`));
+  }
+  const f = s.final;
+  if (f.hvFinal !== "V" && f.status !== "na") {
+    const to = f.actual === "V" ? "bỏ âm cuối" : `-${f.actual}`;
+    out.push(f.status === "ok" ? tag("ok", `Vần -${f.hvFinal} → ${to}`) : tag("ex", `⚠ Ngoại lệ vần: -${f.hvFinal} → ${to}`));
+  }
+  const t = s.tone;
+  if (t.status !== "na") {
+    out.push(t.status === "ok" ? tag("ok", `Thanh ${TONE_VN[t.hvTone]} → thanh ${t.actual}`) : tag("ex", `⚠ Ngoại lệ thanh: ${TONE_VN[t.hvTone]} → thanh ${t.actual}`));
+  }
+  return out.join("");
 }
 
-const KIND_BADGE = { reversed: "⇄ đảo trật tự", drift: "⚠ bạn giả", partial: "đoán từng chữ" };
+export { syllableTags, loadHvData as loadData };
+export function pyParts(syl) {
+  const t = stripMarks(syl);
+  const p = parsePy(syl);
+  return { init: p.init, coda: p.coda, tone: p.tone, rest: p.init === "0" ? t : t.slice(p.init.length) };
+}
 
 function syllableCard(s) {
   return `
     <div class="hv-syl">
       <div class="hv-head"><span class="hv-han">${esc(s.han)}</span><span class="hv-vn">${esc(s.hv)}</span><span class="hv-arrow">→</span><span class="hv-py">${esc(s.py)}</span></div>
-      <div class="hv-chips">
-        ${chip(`Âm đầu ${esc(s.init.label)}`, s.init.predicted, s.init.actual, s.init.status, s.init.share)}
-        ${chip(`Vần ${esc(s.final.label)}`, s.final.predicted, s.final.actual, s.final.status, s.final.share)}
-        ${chip(`Thanh ${esc(s.tone.label)}`, s.tone.predicted.map((x) => `thanh ${x}`), s.tone.actual === "nhẹ" ? "thanh nhẹ" : `thanh ${s.tone.actual}`, s.tone.status, s.tone.share)}
-      </div>
+      <div class="hv-tags">${syllableTags(s)}</div>
     </div>`;
 }
 
@@ -209,27 +228,12 @@ export function zhSwitcher(active) {
   </div>`;
 }
 
-function rulesHtml(rules) {
-  const top = (list, label) => {
-    const total = list.reduce((s, [, c]) => s + c, 0);
-    if (total < MIN_SAMPLE) return null;
-    return { total, text: list.filter(([, c]) => c / total >= MIN_SHARE).map(([k, c]) => `${label(k)} ${pct(c / total)}`).join(" · ") };
-  };
-  const table = (title, rowsArr) => `<div class="hv-rule-title">${title}</div>${rowsArr.map((r) => `<div class="hv-rule-row"><b>${esc(r.name)}</b><span>→ ${esc(r.text)}</span><i>${r.total} chữ</i></div>`).join("")}`;
-  const initRows = Object.entries(rules.initial).filter(([k]) => k.includes("|")).map(([k, list]) => {
-    const [i, f] = k.split("|");
-    const t = top(list, pyIni);
-    return t && { name: `${VN_INIT_LABEL[i] || i}${f === "1" ? " + vần i/ê" : ""}`, ...t };
-  }).filter(Boolean).sort((a, b) => a.name.localeCompare(b.name, "vi"));
-  const finalRows = Object.entries(rules.final).map(([k, list]) => { const t = top(list, (x) => FINAL_LABEL[x] || x); return t && { name: k === "V" ? "vần mở" : `-${k}`, ...t }; }).filter(Boolean);
-  const toneRows = Object.entries(rules.tone).map(([k, list]) => { const t = top(list, (x) => `thanh ${x}`); return t && { name: `thanh ${TONE_VN[k]}`, ...t }; }).filter(Boolean);
-  return `<details class="hv-help"><summary>📖 Bảng quy luật đo từ dữ liệu (${rules.n} cặp chữ–âm)</summary>
-    <div class="hv-rules">${table("Âm đầu: Hán-Việt → pinyin", initRows)}${table("Vần cuối: Hán-Việt → pinyin", finalRows)}${table("Thanh điệu: Hán-Việt → thanh pinyin", toneRows)}</div></details>`;
-}
-
 export async function renderHvList(root) {
   root.innerHTML = `${zhSwitcher("hack")}
-    <h2 style="margin:8px 0 4px">🔗 Hack Hán-Việt</h2><div id="hvl-body" class="text-muted">Đang tải danh sách...</div>`;
+    <a href="#/hv" class="text-muted" style="text-decoration:none;font-size:13px">← Quy luật Hack Hán-Việt</a>
+    <h2 style="margin:8px 0 4px">Kho từ mở rộng</h2>
+    <p class="text-muted" style="font-size:12.5px;margin:0 0 8px">Danh sách này do máy sinh để tra cứu thêm, chưa rà từng từ — dữ liệu chuẩn nằm ở trang quy luật.</p>
+    <div id="hvl-body" class="text-muted">Đang tải danh sách...</div>`;
   const { rules, rows, domains, kinds } = await loadHvData();
   const body = root.querySelector("#hvl-body");
   if (!rules || !rows.length) { body.textContent = "Chưa tải được dữ liệu Hán-Việt."; return; }
@@ -256,7 +260,6 @@ export async function renderHvList(root) {
     <div id="hvl-count" class="text-muted" style="font-size:12px;margin:8px 0"></div>
     <div id="hvl-list"></div>
     <button class="btn ghost block mt-16" id="hvl-more">Xem thêm</button>
-    ${rulesHtml(rules)}
     <div class="text-muted" style="font-size:12px;margin-top:12px">★★★: mọi âm tiết đều khớp quy luật âm đầu + vần + thanh; ★★: khớp ít nhất một nửa số âm tiết; ★: nhiều ngoại lệ. "Bạn giả" = cùng chữ Hán-Việt nhưng nghĩa lệch; "đảo trật tự" = tiếng Việt ghép ngược (nhiệt náo → náo nhiệt).</div>`;
 
   const listEl = body.querySelector("#hvl-list");
@@ -320,11 +323,7 @@ export async function renderHvBox(blockEl, w, appWords) {
   if (!rules || !blockEl.isConnected) { blockEl.hidden = true; return; }
 
   const syls = a.han.map((h, i) => analyzeSyllable(h, a.hv[i], a.py[i], rules));
-  const graded = syls.flatMap((s) => [s.init, s.final, s.tone]).filter((x) => x.status !== "na");
-  const okCount = graded.filter((x) => x.status === "ok").length;
-  const exCount = graded.length - okCount;
-
-  let html = `<div class="hv-summary">Từ âm Hán-Việt <b>${esc(a.hv.join(" "))}</b>, đoán đúng <b>${okCount}/${graded.length}</b> yếu tố của pinyin <b>${esc(a.py.join(" "))}</b>${exCount ? ` · ⚠ ${exCount} ngoại lệ` : " · không có ngoại lệ"}.</div>`;
+  let html = `<div class="hv-summary">Đọc âm Hán-Việt <b>${esc(a.hv.join(" "))}</b> là đoán được pinyin <b>${esc(a.py.join(" "))}</b>:</div>`;
   html += syls.map(syllableCard).join("");
 
   const { bySyl, byHan } = buildIndex(rows, appWords);
@@ -340,7 +339,6 @@ export async function renderHvBox(blockEl, w, appWords) {
       <span class="hv-word ${e.stt ? "link" : ""}" ${e.stt ? `data-stt="${e.stt}"` : ""}><span class="hv-word-han">${esc(e.han)}</span><span class="hv-word-py">${esc(e.py)}</span><span class="hv-word-vn">${esc(e.hv.split(" ").map((x) => (x === s ? `[${x}]` : x)).join(" "))} · ${esc(e.vi)}</span>${e.kind && e.kind !== "same" ? `<span class="hv-flag">${KIND_BADGE[e.kind] || ""}</span>` : ""}</span>`).join("")}</div></div>`);
   }
   html += related.join("");
-  html += `<details class="hv-help"><summary>Cách đọc hộp này</summary><div>Tỉ lệ lấy từ ${rules.n} cặp chữ–âm đã đối chiếu. ✓ = khớp quy luật thường gặp (≥10%), ⚠ = ngoại lệ hoặc rất hiếm. Đây là mẹo đoán, không thay thế việc học pinyin: vần và thanh điệu đoán khá chắc, âm đầu kém chắc hơn.</div></details>`;
 
   box.innerHTML = html;
   blockEl.hidden = false;

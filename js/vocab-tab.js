@@ -421,6 +421,8 @@ export async function renderWordDetail(root, ctx, stt) {
       <div id="speak-fb" class="feedback-banner" style="text-align:left"></div>
     </div>
 
+    ${lang === "zh" ? `<div class="info-block hv-block" id="hv-block" hidden><h4>🔗 Mẹo Hán-Việt</h4><div id="hv-box"></div></div>` : ""}
+
     <div class="info-block">
       <div class="section-title-row">
         <h4 style="margin:0">${lang === "en" ? "✍️ Luyện viết" : "🖼️ Hình ảnh minh họa"}</h4>
@@ -466,8 +468,6 @@ export async function renderWordDetail(root, ctx, stt) {
       <h4>🧠 Mẹo nhớ nhanh</h4>
       <div class="body">${w.note || ""}</div>
     </div>
-
-    ${lang === "zh" ? `<div class="info-block hv-block" id="hv-block" hidden><h4>🔗 Mẹo Hán-Việt</h4><div id="hv-box"></div></div>` : ""}
 
     <div class="info-block">
       <h4>${lang === "en" ? "Họ từ &amp; cụm từ đi kèm" : "Mở rộng"}</h4>
