@@ -201,9 +201,35 @@ function scoreWord(han, py, hv, rules) {
 
 const plain = (s) => stripMarks(String(s)).replace(/đ/g, "d");
 
+// Two sections of the Chinese branch: Tốc Biến (625 core words) and Hack Hán-Việt.
+export function zhSwitcher(active) {
+  return `<div class="list-toggle-row zh-switch">
+    <a href="#/batches" class="list-toggle-tile c1 ${active === "speed" ? "active" : ""}"><span class="emoji">⚡</span><strong>Tốc Biến</strong><span>625 từ thông dụng nhất</span></a>
+    <a href="#/hv" class="list-toggle-tile c3 ${active === "hack" ? "active" : ""}"><span class="emoji">🔗</span><strong>Hack Hán-Việt</strong><span>Đoán pinyin từ âm Hán-Việt</span></a>
+  </div>`;
+}
+
+function rulesHtml(rules) {
+  const top = (list, label) => {
+    const total = list.reduce((s, [, c]) => s + c, 0);
+    if (total < MIN_SAMPLE) return null;
+    return { total, text: list.filter(([, c]) => c / total >= MIN_SHARE).map(([k, c]) => `${label(k)} ${pct(c / total)}`).join(" · ") };
+  };
+  const table = (title, rowsArr) => `<div class="hv-rule-title">${title}</div>${rowsArr.map((r) => `<div class="hv-rule-row"><b>${esc(r.name)}</b><span>→ ${esc(r.text)}</span><i>${r.total} chữ</i></div>`).join("")}`;
+  const initRows = Object.entries(rules.initial).filter(([k]) => k.includes("|")).map(([k, list]) => {
+    const [i, f] = k.split("|");
+    const t = top(list, pyIni);
+    return t && { name: `${VN_INIT_LABEL[i] || i}${f === "1" ? " + vần i/ê" : ""}`, ...t };
+  }).filter(Boolean).sort((a, b) => a.name.localeCompare(b.name, "vi"));
+  const finalRows = Object.entries(rules.final).map(([k, list]) => { const t = top(list, (x) => FINAL_LABEL[x] || x); return t && { name: k === "V" ? "vần mở" : `-${k}`, ...t }; }).filter(Boolean);
+  const toneRows = Object.entries(rules.tone).map(([k, list]) => { const t = top(list, (x) => `thanh ${x}`); return t && { name: `thanh ${TONE_VN[k]}`, ...t }; }).filter(Boolean);
+  return `<details class="hv-help"><summary>📖 Bảng quy luật đo từ dữ liệu (${rules.n} cặp chữ–âm)</summary>
+    <div class="hv-rules">${table("Âm đầu: Hán-Việt → pinyin", initRows)}${table("Vần cuối: Hán-Việt → pinyin", finalRows)}${table("Thanh điệu: Hán-Việt → thanh pinyin", toneRows)}</div></details>`;
+}
+
 export async function renderHvList(root) {
-  root.innerHTML = `<a href="#/batches" class="text-muted" style="text-decoration:none;font-size:13px">← Từ vựng</a>
-    <h2 style="margin:8px 0 4px">🔗 Từ Hán-Việt giống tiếng Trung</h2><div id="hvl-body" class="text-muted">Đang tải danh sách...</div>`;
+  root.innerHTML = `${zhSwitcher("hack")}
+    <h2 style="margin:8px 0 4px">🔗 Hack Hán-Việt</h2><div id="hvl-body" class="text-muted">Đang tải danh sách...</div>`;
   const { rules, rows, domains, kinds } = await loadHvData();
   const body = root.querySelector("#hvl-body");
   if (!rules || !rows.length) { body.textContent = "Chưa tải được dữ liệu Hán-Việt."; return; }
@@ -218,7 +244,7 @@ export async function renderHvList(root) {
 
   body.className = "";
   body.innerHTML = `
-    <p class="text-muted" style="font-size:13px;margin:0 0 10px"><b>${items.length}</b> từ: ${count("same")} giống hệt cùng trật tự · ${count("reversed")} đảo trật tự · ${count("drift")} bạn giả (lệch nghĩa) · ${count("partial")} đoán từng chữ. Bấm vào một từ để xem phân tích âm đầu / vần / thanh.</p>
+    <p class="text-muted" style="font-size:13px;margin:0 0 10px">Tiếng Việt có rất nhiều từ Hán-Việt, nên nhiều từ tiếng Trung bạn đoán được cách đọc và nghĩa từ âm Hán-Việt. <b>${items.length}</b> từ: ${count("same")} giống hệt cùng trật tự · ${count("reversed")} đảo trật tự · ${count("drift")} bạn giả (lệch nghĩa) · ${count("partial")} đoán từng chữ. Bấm vào một từ để xem phân tích âm đầu / vần / thanh.</p>
     <input class="search-box" id="hvl-q" placeholder="Tìm chữ Hán, pinyin, âm Hán-Việt hoặc nghĩa..." />
     <div class="hvl-filters">
       <select id="hvl-kind"><option value="">Mọi loại</option>${Object.entries(kinds).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join("")}</select>
@@ -230,6 +256,7 @@ export async function renderHvList(root) {
     <div id="hvl-count" class="text-muted" style="font-size:12px;margin:8px 0"></div>
     <div id="hvl-list"></div>
     <button class="btn ghost block mt-16" id="hvl-more">Xem thêm</button>
+    ${rulesHtml(rules)}
     <div class="text-muted" style="font-size:12px;margin-top:12px">★★★: mọi âm tiết đều khớp quy luật âm đầu + vần + thanh; ★★: khớp ít nhất một nửa số âm tiết; ★: nhiều ngoại lệ. "Bạn giả" = cùng chữ Hán-Việt nhưng nghĩa lệch; "đảo trật tự" = tiếng Việt ghép ngược (nhiệt náo → náo nhiệt).</div>`;
 
   const listEl = body.querySelector("#hvl-list");

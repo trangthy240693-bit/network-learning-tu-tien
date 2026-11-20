@@ -261,6 +261,15 @@ body { overflow-x: hidden; }
 .branch-card--en .branch-card-scrim { background: linear-gradient(180deg, rgba(10,14,22,0.0) 0%, rgba(10,14,22,0.1) 40%, rgba(8,10,18,0.7) 100%); }
 .branch-grid--twin .branch-card--en .branch-card-content p { font-size: 12.5px; }
 
+/* Chinese branch: Tốc Biến / Hack Hán-Việt switcher + rules table */
+a.list-toggle-tile { text-decoration: none; }
+.zh-switch { margin-top: 4px; }
+.hv-rules { margin-top: 8px; }
+.hv-rule-title { font-weight: 700; margin: 12px 0 4px; color: var(--text); }
+.hv-rule-row { display: grid; grid-template-columns: 110px 1fr auto; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.hv-rule-row b { color: var(--text); }
+.hv-rule-row i { color: var(--text-muted); font-style: normal; }
+
 /* Từ Hán-Việt giống tiếng Trung: entry card + browsable list */
 .hv-entry {
   display: flex;

@@ -4,7 +4,7 @@ import { createRecognizer, isSttSupported } from "./stt.js";
 import { mascotBubble, mascotSay } from "./mascot.js";
 import { LANG_META, getEnAccent, setEnAccent } from "./data.js";
 import { rankForPct, nextRank } from "./ranks.js";
-import { renderHvBox } from "./hanviet.js";
+import { renderHvBox, zhSwitcher } from "./hanviet.js";
 
 const BATCH_SIZE = 20;
 
@@ -172,11 +172,8 @@ export async function renderBatchList(root, ctx) {
       </div>
     </div>`;
 
-  let html = rankBanner + mascotBubble("welcome");
-  if (lang === "zh") {
-    html += `<a href="#/hv" class="hv-entry"><span class="emoji">🔗</span><div class="txt"><strong>Từ Hán-Việt giống tiếng Trung</strong><span>Tra cứu hàng nghìn từ mà âm Hán-Việt gần giống pinyin — lọc theo mức giống, HSK, lĩnh vực.</span></div></a>`;
-  }
-  html += `<div class="row between mt-16"><h2 style="margin:0">Các nhóm từ vựng</h2></div>`;
+  let html = (lang === "zh" ? zhSwitcher("speed") : "") + rankBanner + mascotBubble("welcome");
+  html += `<div class="row between mt-16"><h2 style="margin:0">${lang === "zh" ? "⚡ Tốc Biến — 625 từ thông dụng nhất" : "Các nhóm từ vựng"}</h2></div>`;
 
   const batchCard = (batch, idx) => {
     const learnedCount = batch.filter((w) => progressMap.get(w.stt)?.status === "learned").length;
