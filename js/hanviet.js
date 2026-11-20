@@ -142,11 +142,12 @@ export function alignWord(w) {
 // Index of every known word by each of its Hán-Việt syllables.
 function buildIndex(rows, appWords) {
   const entries = [];
-  for (const [han, py, hv, vi, kind, note, vn, hsk, dom] of rows) entries.push({ han, py, hv, vi, kind, note, vn, hsk: Number(hsk) || 7, dom });
+  // App words first: they carry `stt`, so related-word chips can link to the real word page.
   for (const w of appWords) {
     const a = alignWord(w);
     if (a) entries.push({ han: a.hanStr, py: a.py.join(" "), hv: a.hv.join(" "), vi: w.meaning, kind: "same", note: "", vn: "", hsk: 0, stt: w.stt });
   }
+  for (const [han, py, hv, vi, kind, note, vn, hsk, dom] of rows) entries.push({ han, py, hv, vi, kind, note, vn, hsk: Number(hsk) || 7, dom });
   const bySyl = new Map();
   const seen = new Set();
   for (const e of entries) {
@@ -255,7 +256,7 @@ export async function renderHvList(root) {
       <select id="hvl-stars"><option value="0">Mọi mức giống</option><option value="3">★★★ giống nhất</option><option value="2">≥ ★★</option></select>
       <select id="hvl-hsk"><option value="">Mọi HSK</option>${[1, 2, 3, 4, 5, 6, 7].map((n) => `<option value="${n}">${n === 7 ? "HSK 7+" : "HSK " + n}</option>`).join("")}</select>
       <select id="hvl-dom"><option value="">Mọi lĩnh vực</option>${Object.entries(domains).filter(([k]) => items.some((i) => i.dom === k)).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join("")}</select>
-      <select id="hvl-sort"><option value="stars">Giống nhất trước</option><option value="hsk">HSK thấp trước</option><option value="dom">Theo lĩnh vực</option></select>
+      <select id="hvl-sort"><option value="stars">Giống nhất trước</option><option value="root">Gom theo âm gốc đầu</option><option value="hsk">HSK thấp trước</option><option value="dom">Theo lĩnh vực</option></select>
     </div>
     <div id="hvl-count" class="text-muted" style="font-size:12px;margin:8px 0"></div>
     <div id="hvl-list"></div>
@@ -274,6 +275,7 @@ export async function renderHvList(root) {
     const KIND_RANK = { same: 0, reversed: 1, drift: 2, partial: 3 };
     const cmp = {
       stars: (a, b) => b.stars - a.stars || KIND_RANK[a.kind] - KIND_RANK[b.kind] || a.hsk - b.hsk || a.han.length - b.han.length,
+      root: (a, b) => a.hv.split(" ")[0].localeCompare(b.hv.split(" ")[0], "vi") || a.han.length - b.han.length || a.han.localeCompare(b.han),
       hsk: (a, b) => a.hsk - b.hsk || b.stars - a.stars,
       dom: (a, b) => String(a.dom).localeCompare(String(b.dom)) || b.stars - a.stars,
     }[st.sort];
@@ -335,7 +337,9 @@ export async function renderHvBox(blockEl, w, appWords) {
     const list = (bySyl.get(s) || []).filter((e) => e.han !== a.hanStr)
       .sort((x, y) => (y.stt ? 1 : 0) - (x.stt ? 1 : 0) || x.hsk - y.hsk || x.han.length - y.han.length)
       .slice(0, 8);
-    if (list.length) related.push(`<div class="hv-fam"><div class="hv-fam-title">Cùng âm gốc <b>${esc(s)}</b></div><div class="hv-fam-list">${list.map((e) => `
+    const coreCount = (bySyl.get(s) || []).filter((e) => e.stt).length;
+    const famLink = coreCount >= 2 ? ` <a class="hv-fam-link" href="#/family/${encodeURIComponent(s.normalize("NFC").toLowerCase())}">Học cả họ từ này (${coreCount} từ) →</a>` : "";
+    if (list.length) related.push(`<div class="hv-fam"><div class="hv-fam-title">Cùng âm gốc <b>${esc(s)}</b>${famLink}</div><div class="hv-fam-list">${list.map((e) => `
       <span class="hv-word ${e.stt ? "link" : ""}" ${e.stt ? `data-stt="${e.stt}"` : ""}><span class="hv-word-han">${esc(e.han)}</span><span class="hv-word-py">${esc(e.py)}</span><span class="hv-word-vn">${esc(e.hv.split(" ").map((x) => (x === s ? `[${x}]` : x)).join(" "))} · ${esc(e.vi)}</span>${e.kind && e.kind !== "same" ? `<span class="hv-flag">${KIND_BADGE[e.kind] || ""}</span>` : ""}</span>`).join("")}</div></div>`);
   }
   html += related.join("");
