@@ -10,7 +10,7 @@ const CORE = [
   "./js/hanviet.js", "./js/hvhack.js", "./js/hvfamily.js", "./js/main.js", "./js/mascot.js", "./js/profiles.js", "./js/quiz-chat.js",
   "./js/rank-tracker.js", "./js/ranks.js", "./js/review-tab.js", "./js/stt.js",
   "./js/support-widget.js", "./js/tts.js", "./js/vocab-tab.js",
-  "./data/zh.json", "./data/ko.json", "./data/counts.json", "./data/hv.json", "./data/hv-rules.json", "./data/hv-core.json",
+  "./data/zh.json", "./data/ko.json", "./data/counts.json", "./data/hv.json", "./data/hv-rules.json", "./data/hv-core.json", "./data/zhc.json",
   "./assets/gao.jpg", "./assets/tom.jpg", "./assets/swirl-gray.jpg", "./assets/swirl-blue.jpg",
   "./assets/icon-192.png", "./assets/icon-512.png",
 ];

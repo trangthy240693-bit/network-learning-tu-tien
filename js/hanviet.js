@@ -3,6 +3,7 @@
 // (data/hv-rules.json), flag the exceptions, and list other words that share
 // the same Hán-Việt syllable (data/hv.json + the app's own words).
 // Parsing helpers mirror hv_build/build_hv.ps1 so the statistics stay valid.
+import { speak } from "./tts.js";
 
 const VN_INITS = ["ngh", "ng", "nh", "ph", "th", "tr", "ch", "kh", "gh", "gi", "qu", "đ", "b", "c", "d", "g", "h", "k", "l", "m", "n", "q", "r", "s", "t", "v", "x"];
 const VN_FINALS = ["ng", "nh", "ch", "c", "t", "p", "n", "m"];
@@ -229,9 +230,19 @@ export function zhSwitcher(active) {
   </div>`;
 }
 
+// Sub-sections of Hack Hán-Việt.
+export function hackTabs(active) {
+  return `<div class="seg-row">
+    <a href="#/hv" class="seg ${active === "rules" ? "active" : ""}">📐 Quy luật</a>
+    <a href="#/hv/words" class="seg ${active === "words" ? "active" : ""}">📘 Từ ghép</a>
+    <a href="#/hv/all" class="seg ${active === "all" ? "active" : ""}">🗂 Kho mở rộng</a>
+  </div>`;
+}
+
+export const sayZh = (text) => speak(text, "zh-CN");
+
 export async function renderHvList(root) {
-  root.innerHTML = `${zhSwitcher("hack")}
-    <a href="#/hv" class="text-muted" style="text-decoration:none;font-size:13px">← Quy luật Hack Hán-Việt</a>
+  root.innerHTML = `${zhSwitcher("hack")}${hackTabs("all")}
     <h2 style="margin:8px 0 4px">Kho từ mở rộng</h2>
     <p class="text-muted" style="font-size:12.5px;margin:0 0 8px">Danh sách này do máy sinh để tra cứu thêm, chưa rà từng từ — dữ liệu chuẩn nằm ở trang quy luật.</p>
     <div id="hvl-body" class="text-muted">Đang tải danh sách...</div>`;
@@ -284,7 +295,7 @@ export async function renderHvList(root) {
   let current = [];
   function rowHtml(i, idx) {
     return `<div class="hvl-row" data-i="${idx}">
-      <div class="hvl-main"><span class="hvl-han">${esc(i.han)}</span><span class="hvl-py">${esc(i.py)}</span><span class="hvl-eq">≈</span><span class="hvl-vn">${esc(i.vn || i.hv)}</span></div>
+      <div class="hvl-main"><span class="hvl-han">${esc(i.han)}</span><span class="hvl-py">${esc(i.py)}</span><button class="speak-btn small" data-say="${encodeURIComponent(i.han)}" title="Nghe">🔊</button><span class="hvl-eq">≈</span><span class="hvl-vn">${esc(i.vn || i.hv)}</span></div>
       <div class="hvl-vi">${esc(i.vi)}</div>
       <div class="hvl-tags"><span class="tag">${"★".repeat(i.stars)}</span>${i.kind !== "same" ? `<span class="tag warn">${esc(KIND_BADGE[i.kind] || i.kind)}</span>` : ""}<span class="tag">${i.hsk === 7 ? "HSK 7+" : "HSK " + i.hsk}</span><span class="tag">${esc(domains[i.dom] || "")}</span></div>
       ${i.note ? `<div class="hvl-note">${esc(i.note)}</div>` : ""}
@@ -297,6 +308,8 @@ export async function renderHvList(root) {
     moreBtn.hidden = st.shown >= current.length;
   }
   listEl.addEventListener("click", (e) => {
+    const say = e.target.closest("[data-say]");
+    if (say) { sayZh(decodeURIComponent(say.dataset.say)); return; }
     const row = e.target.closest(".hvl-row");
     if (!row) return;
     const d = row.querySelector(".hvl-detail");
@@ -340,11 +353,12 @@ export async function renderHvBox(blockEl, w, appWords) {
     const coreCount = (bySyl.get(s) || []).filter((e) => e.stt).length;
     const famLink = coreCount >= 2 ? ` <a class="hv-fam-link" href="#/family/${encodeURIComponent(s.normalize("NFC").toLowerCase())}">Học cả họ từ này (${coreCount} từ) →</a>` : "";
     if (list.length) related.push(`<div class="hv-fam"><div class="hv-fam-title">Cùng âm gốc <b>${esc(s)}</b>${famLink}</div><div class="hv-fam-list">${list.map((e) => `
-      <span class="hv-word ${e.stt ? "link" : ""}" ${e.stt ? `data-stt="${e.stt}"` : ""}><span class="hv-word-han">${esc(e.han)}</span><span class="hv-word-py">${esc(e.py)}</span><span class="hv-word-vn">${esc(e.hv.split(" ").map((x) => (x === s ? `[${x}]` : x)).join(" "))} · ${esc(e.vi)}</span>${e.kind && e.kind !== "same" ? `<span class="hv-flag">${KIND_BADGE[e.kind] || ""}</span>` : ""}</span>`).join("")}</div></div>`);
+      <span class="hv-word ${e.stt ? "link" : ""}" ${e.stt ? `data-stt="${e.stt}"` : ""}><span class="hv-word-han">${esc(e.han)}</span><span class="hv-word-py">${esc(e.py)} <button class="speak-btn small" data-say="${encodeURIComponent(e.han)}" title="Nghe">🔊</button></span><span class="hv-word-vn">${esc(e.hv.split(" ").map((x) => (x === s ? `[${x}]` : x)).join(" "))} · ${esc(e.vi)}</span>${e.kind && e.kind !== "same" ? `<span class="hv-flag">${KIND_BADGE[e.kind] || ""}</span>` : ""}</span>`).join("")}</div></div>`);
   }
   html += related.join("");
 
   box.innerHTML = html;
   blockEl.hidden = false;
+  box.querySelectorAll("[data-say]").forEach((b) => b.addEventListener("click", (ev) => { ev.stopPropagation(); sayZh(decodeURIComponent(b.dataset.say)); }));
   box.querySelectorAll(".hv-word.link").forEach((el) => el.addEventListener("click", () => { location.hash = `#/word/${el.dataset.stt}`; }));
 }

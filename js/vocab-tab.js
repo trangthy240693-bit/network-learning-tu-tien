@@ -2,7 +2,7 @@ import { Store } from "./db.js";
 import { speak, isTtsSupported, hasVoiceFor, missingVoiceMessage } from "./tts.js";
 import { createRecognizer, isSttSupported } from "./stt.js";
 import { mascotBubble, mascotSay } from "./mascot.js";
-import { LANG_META, getEnAccent, setEnAccent } from "./data.js";
+import { LANG_META, getEnAccent, setEnAccent, COMPOUND_BASE } from "./data.js";
 import { rankForPct, nextRank } from "./ranks.js";
 import { renderHvBox, zhSwitcher } from "./hanviet.js";
 import { familyToggle } from "./hvfamily.js";
@@ -158,7 +158,7 @@ export async function renderBatchList(root, ctx) {
   const progressAll = await Store.getAllProgress(lang);
   const progressMap = new Map(progressAll.map((p) => [p.stt, p]));
 
-  const learnedTotal = progressAll.filter((p) => p.status === "learned").length;
+  const learnedTotal = progressAll.filter((p) => p.status === "learned" && p.stt <= words.length).length;
   const pctTotal = (learnedTotal / words.length) * 100;
   const rank = rankForPct(pctTotal);
   const next = nextRank(rank.id);
@@ -392,16 +392,19 @@ export function diffSentence(expected, recognized, lang) {
 // "Đọc" (with per-sentence flagging) is an always-open section below.
 export async function renderWordDetail(root, ctx, stt) {
   const { lang, words } = ctx;
-  const w = words.find((x) => x.stt === Number(stt));
+  const extra = ctx.extra || [];
+  const w = words.find((x) => x.stt === Number(stt)) || extra.find((x) => x.stt === Number(stt));
   const meta = LANG_META[lang];
   if (!w) { root.innerHTML = `<div class="empty-state">Không tìm thấy từ này.</div>`; return; }
+  // Compound cards (Hack Hán-Việt) live outside the 20-word batches of the core list.
+  const isCompound = w.stt > COMPOUND_BASE;
   const p = await Store.ensureProgress(lang, w.stt);
   const sttOk = isSttSupported();
   const readFlags = p.readFlags || [];
 
   const batchIndex = Math.floor((w.stt - 1) / BATCH_SIZE);
 
-  let html = `<a href="#/batch/${batchIndex}" class="text-muted" style="text-decoration:none;font-size:13px">← Quay lại nhóm từ</a>`;
+  let html = `<a href="${isCompound ? "#/hv/words" : `#/batch/${batchIndex}`}" class="text-muted" style="text-decoration:none;font-size:13px">← ${isCompound ? "Quay lại từ ghép" : "Quay lại nhóm từ"}</a>`;
   html += `
     <div class="word-detail-head">
       <div class="target-big">
@@ -507,6 +510,10 @@ export async function renderWordDetail(root, ctx, stt) {
 
   const goNext = () => {
     const nextStt = w.stt + 1;
+    if (isCompound) {
+      location.hash = extra.some((x) => x.stt === nextStt) ? `#/word/${nextStt}` : "#/hv/words";
+      return;
+    }
     const batchEnd = (batchIndex + 1) * BATCH_SIZE;
     location.hash = nextStt <= batchEnd && nextStt <= words.length ? `#/word/${nextStt}` : `#/batch/${batchIndex}`;
   };
@@ -521,7 +528,7 @@ export async function renderWordDetail(root, ctx, stt) {
 
   const markDone = (skill) => Store.markSkillDone(lang, w.stt, skill);
 
-  if (lang === "zh") renderHvBox(document.getElementById("hv-block"), w, words).catch(() => {});
+  if (lang === "zh") renderHvBox(document.getElementById("hv-block"), w, ctx.all || words).catch(() => {});
 
   // 🔊 main listen
   document.getElementById("btn-speak-main").addEventListener("click", async () => {

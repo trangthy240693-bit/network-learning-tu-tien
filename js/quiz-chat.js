@@ -223,7 +223,7 @@ export async function renderGaoQuizCompact(root, ctx) {
   return renderQuizShell(root, ctx, {
     name: "Gạo",
     avatar: gaoAvatar,
-    words: ctx.words,
+    words: ctx.all || ctx.words,
     introMessage: "Chào ký chủ, Gạo đây ạ 👑 Ôn bài thôi nào!",
   });
 }
@@ -231,7 +231,7 @@ export async function renderGaoQuizCompact(root, ctx) {
 // Gạo — chủ hệ thống: luyện trên toàn bộ vốn từ đã học/đang học của cả
 // nhánh, nên độ khó tự leo theo đúng tiến độ thật, không cần AI đoán trình độ.
 export async function renderGaoQuiz(root, ctx) {
-  const { words } = ctx;
+  const words = ctx.all || ctx.words;
   return renderQuizShell(root, ctx, {
     name: "Gạo",
     avatar: gaoAvatar,

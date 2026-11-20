@@ -44,6 +44,28 @@ export async function loadWords(lang) {
   return words;
 }
 
+// Compound words of the Hack Hán-Việt section: full learning cards with the same
+// shape as the core words, kept in their own file with ids from 1001 so the 625
+// core words (and everyone's progress on them) are never renumbered.
+export const COMPOUND_BASE = 1000;
+let compoundPromise = null;
+export function loadCompounds() {
+  if (!compoundPromise) {
+    compoundPromise = fetch("data/zhc.json")
+      .then((r) => r.json())
+      .then((rows) => rows.map((r) => ({
+        ...r,
+        hanvietDisplay: r.hanviet || null,
+        exampleList: parseExamples(r.examples, "zh"),
+        expandList: parseExpand(r.expand),
+        tier: "low",
+        section: "compound",
+      })))
+      .catch(() => []);
+  }
+  return compoundPromise;
+}
+
 // Tiny file so the home page can show "x / total" without downloading a whole
 // vocabulary file (English is several MB).
 let countsPromise = null;

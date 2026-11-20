@@ -67,7 +67,7 @@ async function renderList(root, ctx, innerSub = "words") {
 }
 
 async function renderWordList(root, ctx, progressAll) {
-  const { words } = ctx;
+  const words = ctx.all || ctx.words;
   const progressMap = new Map(progressAll.map((p) => [p.stt, p]));
 
   const learned = words.filter((w) => progressMap.get(w.stt)?.status === "learned").sort((a, b) => (progressMap.get(b.stt)?.lastSeen || 0) - (progressMap.get(a.stt)?.lastSeen || 0));
@@ -105,7 +105,8 @@ async function renderWordList(root, ctx, progressAll) {
 }
 
 async function renderFlash(root, ctx) {
-  const { lang, words } = ctx;
+  const { lang } = ctx;
+  const words = ctx.all || ctx.words;
   const progressAll = await Store.getAllProgress(lang);
   const progressMap = new Map(progressAll.map((p) => [p.stt, p]));
   const flagged = words.filter((w) => progressMap.get(w.stt)?.flag);
@@ -156,7 +157,8 @@ function pickDistractors(words, correct, n = 3) {
 }
 
 async function renderListenQuiz(root, ctx) {
-  const { lang, words } = ctx;
+  const { lang } = ctx;
+  const words = ctx.all || ctx.words;
   const progressAll = await Store.getAllProgress(lang);
   const progressMap = new Map(progressAll.map((p) => [p.stt, p]));
   const known = words.filter((w) => progressMap.get(w.stt));
@@ -315,7 +317,8 @@ async function renderStory(root, ctx) {
 // page. Sentence-level, not word-level: a word can have some examples
 // flagged and others not.
 async function renderReadFlags(root, ctx) {
-  const { lang, words } = ctx;
+  const { lang } = ctx;
+  const words = ctx.all || ctx.words;
   const meta = LANG_META[lang];
   const progressAll = await Store.getAllProgress(lang);
   const progressMap = new Map(progressAll.map((p) => [p.stt, p]));

@@ -138,7 +138,7 @@ document.getElementById("mascot-slot").innerHTML = `
 
 async function loadProgress(lang, fillId, pctId, countId) {
   const [all, total] = await Promise.all([Store.getAllProgress(lang), wordCount(lang)]);
-  const learned = all.filter((p) => p.status === "learned").length;
+  const learned = all.filter((p) => p.status === "learned" && p.stt <= total).length;
   const pct = Math.round((learned / total) * 100);
   document.getElementById(fillId).style.width = pct + "%";
   document.getElementById(pctId).textContent = pct + "%";

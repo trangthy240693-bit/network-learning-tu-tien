@@ -7,8 +7,10 @@ import { wordCount } from "./data.js";
 
 export async function currentRank(lang) {
   const all = await Store.getAllProgress(lang);
-  const learned = all.filter((p) => p.status === "learned").length;
-  const pct = (learned / (await wordCount(lang))) * 100;
+  const total = await wordCount(lang);
+  // Only the core list counts towards rank; compound cards (ids 1001+) are extra.
+  const learned = all.filter((p) => p.status === "learned" && p.stt <= total).length;
+  const pct = (learned / total) * 100;
   return { rank: rankForPct(pct), pct, learned };
 }
 

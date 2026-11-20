@@ -1,7 +1,7 @@
-import { loadWords, LANG_META } from "./data.js";
+import { loadWords, loadCompounds, LANG_META } from "./data.js";
 import { Store } from "./db.js";
 import { renderHvList } from "./hanviet.js";
-import { renderHvHack } from "./hvhack.js";
+import { renderHvHack, renderCompounds } from "./hvhack.js";
 import { renderFamilyList, renderFamily } from "./hvfamily.js";
 import { currentProfile } from "./profiles.js";
 import { renderBatchList, renderBatch, renderWordDetail } from "./vocab-tab.js";
@@ -44,7 +44,9 @@ async function route() {
   }
   if (parts[0] === "hv" && lang === "zh") {
     setActiveTab("vocab");
-    return parts[1] === "all" ? renderHvList(root, ctx) : renderHvHack(root, ctx);
+    if (parts[1] === "all") return renderHvList(root, ctx);
+    if (parts[1] === "words") return renderCompounds(root, ctx);
+    return renderHvHack(root, ctx);
   }
   if (parts[0] === "family" && lang === "zh") {
     setActiveTab("vocab");
@@ -57,7 +59,7 @@ async function route() {
   }
   if (parts[0] === "word" && parts[1] !== undefined) {
     setActiveTab("vocab");
-    applySeason(Math.floor((Number(parts[1]) - 1) / 20));
+    applySeason(Math.floor((Math.min(Number(parts[1]), 625) - 1) / 20));
     return renderWordDetail(root, ctx, parts[1]);
   }
   if (parts[0] === "review") {
@@ -88,6 +90,9 @@ async function boot() {
   root.innerHTML = `<div class="empty-state">Đang tải dữ liệu...</div>`;
   await Store.restoreIfEmpty();
   ctx.words = await loadWords(lang);
+  // zh only: compound-word cards (ids 1001+). `all` = core + compounds, used by reviews.
+  ctx.extra = lang === "zh" ? await loadCompounds() : [];
+  ctx.all = [...ctx.words, ...ctx.extra];
   await ensureRankBaseline(lang);
   initRankTracker();
   mountGaoSupportWidget(ctx);
